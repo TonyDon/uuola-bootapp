@@ -60,9 +60,12 @@ CREATE TABLE `site_cfg` (
   `list_no` bigint(20) NOT NULL DEFAULT '1' COMMENT '顺序',
   `is_del` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `site_cfg` */
+
+insert  into `site_cfg`(`id`,`name`,`state`,`py_name`,`us_name`,`ext_img_url`,`create_time`,`update_time`,`create_user`,`update_user`,`list_no`,`is_del`) values (1,'农产品报价',1,'NongChanPinBaoJia','abc','http://pic.58pic.com/58pic/13/28/58/00V58PICqa8_1024.jpg','2018-08-21 21:35:12','2018-08-21 21:35:12','tangxiaodong','tangxiaodong',1,0);
+insert  into `site_cfg`(`id`,`name`,`state`,`py_name`,`us_name`,`ext_img_url`,`create_time`,`update_time`,`create_user`,`update_user`,`list_no`,`is_del`) values (2,'供求市场',1,'GongQiuShiChang','efg','http://www.qianjia.com/Upload/News/20160822/images/201608221133152963.jpg','2018-08-21 21:35:12','2018-08-21 21:35:12','tangxiaodong','tangxiaodong',2,0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

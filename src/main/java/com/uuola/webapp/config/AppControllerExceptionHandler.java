@@ -1,8 +1,6 @@
-/*
- * @(#)AppControllerAdvice.java 2018年6月13日
+/**
  * 
- * Copy Right@ JD.COM
- */ 
+ */
 
 package com.uuola.webapp.config;
 
@@ -24,7 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * </pre>
  */
 @RestControllerAdvice
-public class AppControllerAdvice extends ResponseEntityExceptionHandler {
+public class AppControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody

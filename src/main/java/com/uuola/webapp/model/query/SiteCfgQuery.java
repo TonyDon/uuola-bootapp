@@ -1,0 +1,42 @@
+/*
+ * @(#)SiteCfgQuery.java 2018年8月21日
+ * 
+ * Copy Right@ uuola
+ */ 
+
+package com.uuola.webapp.model.query;
+
+
+/**
+ * <pre>
+ *
+ * @author tonydon
+ * 创建日期: 2018年8月21日
+ * </pre>
+ */
+public class SiteCfgQuery {
+
+    private Integer id;
+    
+    private String name;
+
+    
+    public Integer getId() {
+        return id;
+    }
+
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+}

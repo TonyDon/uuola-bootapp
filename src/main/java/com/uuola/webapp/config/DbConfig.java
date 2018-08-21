@@ -62,7 +62,8 @@ public class DbConfig {
 //    }
     
     @Bean
-    public PlatformTransactionManager eptOpenTransactionManager(@Qualifier("dataSource") DataSource dataSource) {
+    @Primary
+    public PlatformTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 }
