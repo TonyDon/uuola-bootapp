@@ -7,12 +7,16 @@
 package com.uuola.webapp.controller;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.common.collect.Maps;
 
 /**
  * <pre>
@@ -31,5 +35,13 @@ public class IndexController {
         mv.addObject("name", UUID.randomUUID().toString());
         mv.addObject("time", LocalDateTime.now());
         return mv;
+    }
+    
+    @GetMapping("show")
+    public ResponseEntity<Object> show(){
+        Map<String, Object> data = Maps.newHashMap();
+        data.put("class", this.getClass().getCanonicalName());
+        data.put("time", System.currentTimeMillis());
+        return ResponseEntity.ok(data);
     }
 }
