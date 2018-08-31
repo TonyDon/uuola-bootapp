@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class WebApp {
     
-    public static ApplicationContext SpringAppContext;
+    public static ApplicationContext SpringContext;
 
 	public static void main(String[] args) {
-		WebApp.SpringAppContext  = SpringApplication.run(WebApp.class, args);
+		WebApp.SpringContext  = SpringApplication.run(WebApp.class, args);
 	}
 }
