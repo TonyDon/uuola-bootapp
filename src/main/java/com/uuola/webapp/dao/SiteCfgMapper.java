@@ -6,9 +6,6 @@
 
 package com.uuola.webapp.dao;
 
-import java.io.Serializable;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.uuola.webapp.model.entity.SiteCfg;
@@ -22,9 +19,6 @@ import com.uuola.webapp.model.query.SiteCfgQuery;
  * </pre>
  */
 @Mapper
-public interface SiteCfgMapper {
-    
-    SiteCfg selectById(Serializable id);
+public interface SiteCfgMapper extends BaseMapper<SiteCfg, SiteCfgQuery>{
 
-    List<SiteCfg> listByQuery(SiteCfgQuery query);
 }

@@ -33,12 +33,12 @@ public class SiteCfgServiceImpl implements SiteCfgService {
 
     @Override
     public SiteCfg get(Serializable id) {
-        return siteCfgMapper.selectById(id);
+        return siteCfgMapper.get(id);
     }
 
     @Override
     public List<SiteCfg> list(SiteCfgQuery query) {
-        return siteCfgMapper.listByQuery(query);
+        return siteCfgMapper.list(query);
     }
 
 }

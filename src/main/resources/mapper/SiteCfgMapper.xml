@@ -3,7 +3,7 @@
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.uuola.webapp.dao.SiteCfgMapper">
 
-	<select id="selectById" resultType="SiteCfg" parameterType="java.lang.Integer">
+	<select id="get" resultType="SiteCfg" parameterType="java.lang.Integer">
 		select * from site_cfg where id=#{id}
 	</select>
 
@@ -14,7 +14,7 @@
 		</where>
 	</sql>
 
-	<select id="listByQuery" resultType="SiteCfg" parameterType="SiteCfgQuery">
+	<select id="list" resultType="SiteCfg" parameterType="SiteCfgQuery">
 		select * from site_cfg <include refid="listQueryCondition"/>
 	</select>
 </mapper>

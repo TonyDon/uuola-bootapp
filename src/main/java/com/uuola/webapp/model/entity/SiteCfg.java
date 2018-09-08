@@ -8,8 +8,6 @@ package com.uuola.webapp.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.Table;
-
 /**
  * <pre>
  *
@@ -17,7 +15,6 @@ import javax.persistence.Table;
  * 创建日期: 2018年8月21日
  * </pre>
  */
-@Table(name="site_cfg")
 public class SiteCfg {
 
     private Integer id;

@@ -14,7 +14,7 @@ package com.uuola.webapp.model.query;
  * 创建日期: 2018年8月21日
  * </pre>
  */
-public class SiteCfgQuery {
+public class SiteCfgQuery extends BaseQuery{
 
     private Integer id;
     
@@ -38,5 +38,12 @@ public class SiteCfgQuery {
     
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    @Override
+    public void filter() {
+        // TODO Auto-generated method stub
+        
     }
 }
