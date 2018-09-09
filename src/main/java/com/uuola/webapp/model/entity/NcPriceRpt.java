@@ -8,6 +8,11 @@ package com.uuola.webapp.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * <pre>
  *
@@ -15,26 +20,38 @@ import java.util.Date;
  * 创建日期: 2018年9月9日
  * </pre>
  */
+@Table
+@Entity
 public class NcPriceRpt {
     
+    @Id
     private Long id;
     
+    @Column
     private Integer itemId;
     
+    @Column
     private Integer zoneId;
     
+    @Column
     private Integer year;
     
+    @Column
     private Integer month;
     
+    @Column
     private Integer statType;
     
+    @Column
     private Double avgPrice;
     
+    @Column
     private Double maxPrice;
     
+    @Column
     private Double minPrice;
     
+    @Column
     private Date createTime;
 
     

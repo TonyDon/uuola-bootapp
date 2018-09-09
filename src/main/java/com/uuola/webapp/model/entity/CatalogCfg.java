@@ -8,6 +8,11 @@ package com.uuola.webapp.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * <pre>
  *
@@ -15,36 +20,53 @@ import java.util.Date;
  * 创建日期: 2018年9月9日
  * </pre>
  */
+@Table
+@Entity
 public class CatalogCfg {
 
+    @Id
     private Integer id;
     
+    @Column
     private Integer siteId;
     
+    @Column
     private String zhName;
     
+    @Column
     private String code;
     
+    @Column
     private String pyName;
     
+    @Column
     private String cidPath;
     
+    @Column
     private Integer pid;
     
+    @Column
     private Integer state;
     
+    @Column
     private Long listNo;
     
+    @Column
     private String extCode;
     
+    @Column
     private String extImgUrl;
     
+    @Column
     private Date createTime;
     
+    @Column
     private Date updateTime;
     
+    @Column
     private String createUser;
     
+    @Column
     private String updateUser;
 
     

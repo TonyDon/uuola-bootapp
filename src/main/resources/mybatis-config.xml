@@ -20,4 +20,7 @@
     	<package name="com.uuola.webapp.model.query"/>
     </typeAliases>
     
+<!--     <plugins>
+	  <plugin interceptor="com.uuola.webapp.support.MapperInterceptor"></plugin>
+	</plugins> -->
 </configuration>

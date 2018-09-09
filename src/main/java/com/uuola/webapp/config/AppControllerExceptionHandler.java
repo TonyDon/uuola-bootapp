@@ -6,6 +6,8 @@ package com.uuola.webapp.config;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,10 +25,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @RestControllerAdvice
 public class AppControllerExceptionHandler extends ResponseEntityExceptionHandler {
+    
+    private Logger log = LoggerFactory.getLogger(getClass());
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
     ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
+        log.error("ExceptionHandler:", ex);
         HttpStatus status = getStatus(request);
         return new ResponseEntity<>("server error", status);
     }

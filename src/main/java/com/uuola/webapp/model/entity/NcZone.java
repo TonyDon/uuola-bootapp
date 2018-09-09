@@ -6,6 +6,10 @@
 
 package com.uuola.webapp.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * <pre>
@@ -14,12 +18,17 @@ package com.uuola.webapp.model.entity;
  * 创建日期: 2018年9月8日
  * </pre>
  */
+@Table
+@Entity
 public class NcZone {
 
+    @Id
     private Long id;
     
+    @Column
     private String zoneName;
     
+    @Column
     private Integer zoneId;
 
     
