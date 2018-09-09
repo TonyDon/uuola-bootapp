@@ -1,5 +1,5 @@
 /*
- * @(#)SiteCfg.java 2018年8月21日
+ * @(#)CatalogCfg.java 2018年9月9日
  * 
  * Copy Right@ uuola
  */ 
@@ -12,20 +12,30 @@ import java.util.Date;
  * <pre>
  *
  * @author tonydon
- * 创建日期: 2018年8月21日
+ * 创建日期: 2018年9月9日
  * </pre>
  */
-public class SiteCfg {
+public class CatalogCfg {
 
     private Integer id;
     
-    private String name;
+    private Integer siteId;
     
-    private Integer state;
+    private String zhName;
+    
+    private String code;
     
     private String pyName;
     
-    private String usName;
+    private String cidPath;
+    
+    private Integer pid;
+    
+    private Integer state;
+    
+    private Long listNo;
+    
+    private String extCode;
     
     private String extImgUrl;
     
@@ -36,8 +46,6 @@ public class SiteCfg {
     private String createUser;
     
     private String updateUser;
-    
-    private Long listNo;
 
     
     public Integer getId() {
@@ -50,23 +58,33 @@ public class SiteCfg {
     }
 
     
-    public String getName() {
-        return name;
+    public Integer getSiteId() {
+        return siteId;
     }
 
     
-    public void setName(String name) {
-        this.name = name;
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
     }
 
     
-    public Integer getState() {
-        return state;
+    public String getZhName() {
+        return zhName;
     }
 
     
-    public void setState(Integer state) {
-        this.state = state;
+    public void setZhName(String zhName) {
+        this.zhName = zhName;
+    }
+
+    
+    public String getCode() {
+        return code;
+    }
+
+    
+    public void setCode(String code) {
+        this.code = code;
     }
 
     
@@ -80,13 +98,53 @@ public class SiteCfg {
     }
 
     
-    public String getUsName() {
-        return usName;
+    public String getCidPath() {
+        return cidPath;
     }
 
     
-    public void setUsName(String usName) {
-        this.usName = usName;
+    public void setCidPath(String cidPath) {
+        this.cidPath = cidPath;
+    }
+
+    
+    public Integer getPid() {
+        return pid;
+    }
+
+    
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    
+    public Integer getState() {
+        return state;
+    }
+
+    
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    
+    public Long getListNo() {
+        return listNo;
+    }
+
+    
+    public void setListNo(Long listNo) {
+        this.listNo = listNo;
+    }
+
+    
+    public String getExtCode() {
+        return extCode;
+    }
+
+    
+    public void setExtCode(String extCode) {
+        this.extCode = extCode;
     }
 
     
@@ -138,16 +196,6 @@ public class SiteCfg {
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
     }
-
     
-    public Long getListNo() {
-        return listNo;
-    }
-
     
-    public void setListNo(Long listNo) {
-        this.listNo = listNo;
-    }
-
-
 }
