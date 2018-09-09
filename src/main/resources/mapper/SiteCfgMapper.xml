@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="com.uuola.webapp.dao.SiteCfgMapper">
-
-	<select id="get" resultType="SiteCfg" parameterType="java.lang.Integer">
-		select * from site_cfg where id=#{id}
-	</select>
+<mapper namespace="com.uuola.webapp.dao.SiteCfgDAO">
 
 	<sql id="listQueryCondition">
 		<where>

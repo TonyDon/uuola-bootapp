@@ -16,6 +16,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -56,10 +57,11 @@ public class DbConfig {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
     
-//    @Bean
-//    public JdbcOperations eptOpenJdbcOperations(@Qualifier("dataSource") DataSource dataSource) {
-//        return new JdbcTemplate(eptOpenDataSource);
-//    }
+    @Bean
+    @Primary
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(@Qualifier("dataSource") DataSource dataSource) {
+        return new NamedParameterJdbcTemplate(dataSource);
+    }
     
     @Bean
     @Primary

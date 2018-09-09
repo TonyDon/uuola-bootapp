@@ -12,7 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uuola.webapp.dao.NcZoneMapper;
+import com.uuola.webapp.dao.NcZoneDAO;
 import com.uuola.webapp.model.entity.NcZone;
 import com.uuola.webapp.model.query.NcZoneQuery;
 import com.uuola.webapp.service.NcZoneService;
@@ -29,16 +29,16 @@ import com.uuola.webapp.service.NcZoneService;
 public class NcZoneServiceImpl implements NcZoneService {
     
     @Autowired
-    private NcZoneMapper ncZoneMapper;
+    private NcZoneDAO ncZoneDAO;
 
     @Override
     public NcZone get(Serializable id) {
-        return ncZoneMapper.get(id);
+        return ncZoneDAO.findById(id);
     }
 
     @Override
     public List<NcZone> list(NcZoneQuery query) {
-        return ncZoneMapper.list(query);
+        return ncZoneDAO.selectList("list", query);
     }
 
 }

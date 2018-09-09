@@ -12,7 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uuola.webapp.dao.SiteCfgMapper;
+import com.uuola.webapp.dao.SiteCfgDAO;
 import com.uuola.webapp.model.entity.SiteCfg;
 import com.uuola.webapp.model.query.SiteCfgQuery;
 import com.uuola.webapp.service.SiteCfgService;
@@ -29,16 +29,16 @@ import com.uuola.webapp.service.SiteCfgService;
 public class SiteCfgServiceImpl implements SiteCfgService {
     
     @Autowired
-    private SiteCfgMapper siteCfgMapper;
+    private SiteCfgDAO siteCfgDAO;
 
     @Override
     public SiteCfg get(Serializable id) {
-        return siteCfgMapper.get(id);
+        return siteCfgDAO.findById(id);
     }
 
     @Override
     public List<SiteCfg> list(SiteCfgQuery query) {
-        return siteCfgMapper.list(query);
+        return siteCfgDAO.selectList("list", query);
     }
 
 }
