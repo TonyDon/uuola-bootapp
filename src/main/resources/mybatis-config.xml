@@ -21,6 +21,6 @@
     </typeAliases>
     
 <!--     <plugins>
-	  <plugin interceptor="com.uuola.webapp.support.MapperInterceptor"></plugin>
+	  <plugin interceptor="com.uuola.webapp.support.mapper.MapperInterceptor"></plugin>
 	</plugins> -->
 </configuration>

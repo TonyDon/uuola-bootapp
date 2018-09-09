@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.support;
+package com.uuola.webapp.support.mapper;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;

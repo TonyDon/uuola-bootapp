@@ -13,8 +13,8 @@
     <context:annotation-config/>
     <task:annotation-driven/>
     
-    <bean class="com.uuola.webapp.support.EntityClassLoader" init-method="init" destroy-method="destroy">
+ <!--    <bean class="com.uuola.webapp.support.EntityClassLoader" init-method="init" destroy-method="destroy">
     	<property name="entityPackagePaths" value="com.uuola.webapp.model.entity"/>
-    </bean>
+    </bean> -->
 
 </beans>
