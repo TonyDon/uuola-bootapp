@@ -9,6 +9,7 @@ package com.uuola.webapp.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.entity.NcPriceStat;
 import com.uuola.webapp.model.query.NcPriceStatQuery;
 
@@ -24,4 +25,6 @@ public interface NcPriceStatService {
     NcPriceStat get(Serializable id);
     
     List<NcPriceStat> list(NcPriceStatQuery query);
+    
+    NcPriceRpt statPriceRpt(NcPriceStatQuery query);
 }

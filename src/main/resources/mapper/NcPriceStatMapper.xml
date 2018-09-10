@@ -23,4 +23,14 @@
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
+	
+	<select id="statPriceRpt" resultType="NcPriceRpt" parameterType="NcPriceStatQuery">
+		select   
+		  zone_id,
+		  item_id,
+		  MAX(price) as maxPrice,
+		  MIN(price) as minPrice,
+		  AVG(price) as avgPrice
+  		from nc_price_stat where id!=0 <include refid="listQueryCondition"/> 
+	</select>
 </mapper>

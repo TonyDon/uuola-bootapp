@@ -9,10 +9,12 @@ package com.uuola.webapp.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uuola.webapp.dao.NcPriceStatDAO;
+import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.entity.NcPriceStat;
 import com.uuola.webapp.model.query.NcPriceStatQuery;
 import com.uuola.webapp.service.NcPriceStatService;
@@ -45,6 +47,12 @@ public class NcPriceStatServiceImpl implements NcPriceStatService {
     @Override
     public List<NcPriceStat> list(NcPriceStatQuery query) {
         return ncPriceStatDAO.selectList("list", query);
+    }
+
+    @Override
+    public NcPriceRpt statPriceRpt(NcPriceStatQuery query) {
+        List<NcPriceRpt> list = ncPriceStatDAO.selectList("statPriceRpt", query);
+        return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
 }

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.query.NcPriceStatQuery;
 import com.uuola.webapp.service.NcPriceStatService;
+import com.uuola.webapp.util.JsonUtil;
 
 /**
  * <pre>
@@ -38,6 +40,13 @@ public class NcPriceStatController {
     @GetMapping("/list")
     public ResponseEntity<Object> list(NcPriceStatQuery query){
         return ResponseEntity.ok(ncPriceStatService.list(query));
+    }
+    
+    @GetMapping("/statPriceRpt")
+    public ResponseEntity<Object> statPriceRpt(NcPriceStatQuery query){
+        NcPriceRpt rpt = ncPriceStatService.statPriceRpt(query);
+        System.out.println(JsonUtil.parseJSON(rpt));
+        return ResponseEntity.ok(rpt);
     }
     
 
