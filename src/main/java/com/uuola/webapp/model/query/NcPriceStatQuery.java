@@ -6,6 +6,7 @@
 
 package com.uuola.webapp.model.query;
 
+import java.util.Date;
 
 /**
  * <pre>
@@ -15,6 +16,22 @@ package com.uuola.webapp.model.query;
  * </pre>
  */
 public class NcPriceStatQuery extends BaseQuery {
+    
+    private Long id;
+    
+    private Integer catId;
+    
+    private Integer itemId;
+    
+    private Integer zoneId;
+    
+    private Integer marketId;
+    
+    private Date beginStatDate;
+    
+    private Date endStatDate;
+    
+    
 
     /* (non-Javadoc)
      * @see com.uuola.webapp.model.query.BaseQuery#filter()
@@ -23,6 +40,104 @@ public class NcPriceStatQuery extends BaseQuery {
     public void filter() {
         // TODO Auto-generated method stub
 
+    }
+
+
+
+    
+    public Long getId() {
+        return id;
+    }
+
+
+
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+
+    
+    public Integer getCatId() {
+        return catId;
+    }
+
+
+
+    
+    public void setCatId(Integer catId) {
+        this.catId = catId;
+    }
+
+
+
+    
+    public Integer getItemId() {
+        return itemId;
+    }
+
+
+
+    
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+
+
+    
+    public Integer getZoneId() {
+        return zoneId;
+    }
+
+
+
+    
+    public void setZoneId(Integer zoneId) {
+        this.zoneId = zoneId;
+    }
+
+
+
+    
+    public Integer getMarketId() {
+        return marketId;
+    }
+
+
+
+    
+    public void setMarketId(Integer marketId) {
+        this.marketId = marketId;
+    }
+
+
+
+    
+    public Date getBeginStatDate() {
+        return beginStatDate;
+    }
+
+
+
+    
+    public void setBeginStatDate(Date beginStatDate) {
+        this.beginStatDate = beginStatDate;
+    }
+
+
+
+    
+    public Date getEndStatDate() {
+        return endStatDate;
+    }
+
+
+
+    
+    public void setEndStatDate(Date endStatDate) {
+        this.endStatDate = endStatDate;
     }
 
 }

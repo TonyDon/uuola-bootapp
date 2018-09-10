@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.uuola.webapp.dao.NcPriceStatDAO">
+
+	<sql id="listQueryCondition">
+			<if test="catId!=null">and cat_id=#{catId}</if>
+			<if test="zoneId!=null">and zone_id=#{zoneId}</if>
+			<if test="marketId!=null">and market_id=#{marketId}</if>
+			<if test="itemId!=null">and item_id=#{itemId}</if>
+			<if test="beginStatDate!=null and endStatDate!=null">
+				and ( stat_date <![CDATA[ >= ]]> #{beginStatDate} and stat_date <![CDATA[ < ]]> #{endStatDate} )
+			</if>
+	</sql>
+	
+	<select id="count" parameterType="NcPriceStatQuery" resultType="java.lang.Integer">
+        select count(*) from nc_price_stat where id!=0 <include refid="listQueryCondition"/>
+    </select>
+
+	<select id="list" resultType="NcPriceStat" parameterType="NcPriceStatQuery">
+		select * from nc_price_stat where id <![CDATA[ <= ]]> (
+			select id from nc_price_stat where id!=0 <include refid="listQueryCondition"/> 
+			order by id desc limit #{crow}, 1
+		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+</mapper>

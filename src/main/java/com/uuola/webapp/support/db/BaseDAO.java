@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.uuola.webapp.support;
+package com.uuola.webapp.support.db;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

@@ -10,7 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.uuola.webapp.support.BaseDAO;
+import com.uuola.webapp.support.db.BaseDAO;
 
 
 /**

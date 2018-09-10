@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.support;
+package com.uuola.webapp.support.db;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -86,7 +86,9 @@ public class EntityDefManager {
             if (null != column) {
                 if (StringUtil.isEmpty(colName = column.name())) {
                     colName = StringUtil.getUnderscoreName(field.getName());
-                    log.warn("Not Set @Column.name ! Entity:[{}], using name:{} replace it.", defBean.getEntityClass().getCanonicalName(), colName);
+                    if(log.isDebugEnabled()) {
+                        log.debug("Not Set @Column.name ! Entity:[{}], using name:{} replace it.", defBean.getEntityClass().getCanonicalName(), colName);
+                    }
                 } 
                 propColumnMap.put(propName, colName);
             }
