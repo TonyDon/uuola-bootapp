@@ -15,11 +15,47 @@ package com.uuola.webapp.model.query;
  * </pre>
  */
 public class NcItemQuery extends BaseQuery {
+    
+    private Long id;
+    
+    private Integer catId;
+    
+    private Integer itemId;
 
     @Override
     public void filter() {
         // TODO Auto-generated method stub
         
+    }
+
+    
+    public Long getId() {
+        return id;
+    }
+
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
+    public Integer getCatId() {
+        return catId;
+    }
+
+    
+    public void setCatId(Integer catId) {
+        this.catId = catId;
+    }
+
+    
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
 }

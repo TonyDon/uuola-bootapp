@@ -6,6 +6,8 @@
 
 package com.uuola.webapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.query.NcPriceStatQuery;
 import com.uuola.webapp.service.NcPriceStatService;
-import com.uuola.webapp.util.JsonUtil;
 
 /**
  * <pre>
@@ -44,9 +45,8 @@ public class NcPriceStatController {
     
     @GetMapping("/statPriceRpt")
     public ResponseEntity<Object> statPriceRpt(NcPriceStatQuery query){
-        NcPriceRpt rpt = ncPriceStatService.statPriceRpt(query);
-        System.out.println(JsonUtil.parseJSON(rpt));
-        return ResponseEntity.ok(rpt);
+        List<NcPriceRpt> rpts = ncPriceStatService.statPriceRpt(query);
+        return ResponseEntity.ok(rpts);
     }
     
 

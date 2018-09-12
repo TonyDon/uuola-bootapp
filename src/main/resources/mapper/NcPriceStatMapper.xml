@@ -31,6 +31,6 @@
 		  MAX(price) as maxPrice,
 		  MIN(price) as minPrice,
 		  AVG(price) as avgPrice
-  		from nc_price_stat where id!=0 <include refid="listQueryCondition"/> 
+  		from nc_price_stat where id!=0 <include refid="listQueryCondition"/> group by zone_id
 	</select>
 </mapper>

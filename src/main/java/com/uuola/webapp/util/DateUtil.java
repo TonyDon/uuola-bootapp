@@ -14,6 +14,8 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.uuola.webapp.constants.DATE_FORMAT;
+
 
 /**
  * <pre>
@@ -50,6 +52,16 @@ public final class DateUtil {
         } catch (ParseException ex) {
             throw new IllegalArgumentException("Could not parse date: " + dateText);
         }
+    }
+    
+    /**
+     * 格式化日期为字符串, 默认格式yyyy-MM-dd HH:mm:ss
+     * @param date
+     * @return
+     */
+    public static String formatDate(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT.YYYY_MM_DD_HH_MM_SS);
+        return sdf.format(date);
     }
     
     /**
@@ -212,6 +224,29 @@ public final class DateUtil {
      */
     public static int getDayInYear(Calendar cal){
         return cal.get(Calendar.DAY_OF_YEAR);
+    }
+    
+    
+    /**
+     * 得到年份
+     * @param Date
+     * @return
+     */
+    public static int getYear(Date date){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return c.get(Calendar.YEAR);
+    }
+    
+    /**
+     * 得到月份
+     * @param Date
+     * @return
+     */
+    public static int getMonth(Date date){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return c.get(Calendar.MONTH)+1;
     }
 
     public  static void main(String...strings ){

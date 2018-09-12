@@ -15,11 +15,71 @@ package com.uuola.webapp.model.query;
  * </pre>
  */
 public class NcPriceRptQuery extends BaseQuery {
+    
+    private Integer itemId;
+    
+    private Integer zoneId;
+    
+    private Integer year;
+    
+    private Integer month;
+    
+    private Integer statType;
 
     @Override
     public void filter() {
         // TODO Auto-generated method stub
         
+    }
+
+    
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    
+    public Integer getZoneId() {
+        return zoneId;
+    }
+
+    
+    public void setZoneId(Integer zoneId) {
+        this.zoneId = zoneId;
+    }
+
+    
+    public Integer getYear() {
+        return year;
+    }
+
+    
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    
+    public Integer getMonth() {
+        return month;
+    }
+
+    
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    
+    public Integer getStatType() {
+        return statType;
+    }
+
+    
+    public void setStatType(Integer statType) {
+        this.statType = statType;
     }
 
 }

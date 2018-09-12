@@ -7,6 +7,10 @@
 package com.uuola.webapp.config;
 
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +35,18 @@ public class ComponentConfig {
     @Bean
     public Converter<String, Date> stringToDateConverter(){
         return new StringToDateConverter();
+    }
+    
+    /**
+     * 应用APP 默认的线程执行器
+     * @return
+     */
+    @Bean 
+    public ExecutorService executorService() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(32, 32,
+                60L, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<Runnable>());
+         executor.allowCoreThreadTimeOut(true);
+         return executor;
     }
 }

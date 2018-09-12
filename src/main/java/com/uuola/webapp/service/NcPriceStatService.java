@@ -26,5 +26,5 @@ public interface NcPriceStatService {
     
     List<NcPriceStat> list(NcPriceStatQuery query);
     
-    NcPriceRpt statPriceRpt(NcPriceStatQuery query);
+    List<NcPriceRpt> statPriceRpt(NcPriceStatQuery query);
 }
