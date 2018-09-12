@@ -53,6 +53,10 @@ public class NcPriceStatReportProcessor {
     private ExecutorService executorService;
     
     public void execute(Integer year, Integer month) {
+        if(!checkParams(year, month)) {
+            logger.info("please check params {},{}", year, month);
+            return ;
+        }
         List<NcItem> items = ncItemService.list(new NcItemQuery());
         List<NcPriceRptMonthTask> tasks = Lists.newArrayList();
         Date beginStatDate = DateUtil.parseDate(String.format("%04d-%02d-01 00:00:00", year, month), DATE_FORMAT.YYYY_MM_DD_HH_MM_SS);
@@ -79,5 +83,13 @@ public class NcPriceStatReportProcessor {
         } catch (Exception e) {
             logger.error("execute futures error:", e);
         }
+    }
+
+    private Boolean checkParams(Integer year, Integer month) {
+        if(null == year || null == month) {
+            return false;
+        }
+        // 如存在报表记录则不再统计该月份
+        return !rptService.isExistYearMonthReport(year, month);
     }
 }

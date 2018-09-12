@@ -16,6 +16,8 @@ package com.uuola.webapp.model.query;
  */
 public class NcPriceRptQuery extends BaseQuery {
     
+    private Long id;
+    
     private Integer itemId;
     
     private Integer zoneId;
@@ -80,6 +82,18 @@ public class NcPriceRptQuery extends BaseQuery {
     
     public void setStatType(Integer statType) {
         this.statType = statType;
+    }
+
+
+    
+    public Long getId() {
+        return id;
+    }
+
+
+    
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

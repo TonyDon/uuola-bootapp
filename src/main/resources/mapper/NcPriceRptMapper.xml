@@ -7,10 +7,21 @@
 		<where>
 			<if test="zoneId!=null">zone_id=#{zoneId}</if>
 			<if test="itemId!=null">and item_id=#{itemId}</if>
+			<if test="year!=null">and year=#{year}</if>
+			<if test="month!=null">and month=#{month}</if>
 		</where>
 	</sql>
 
 	<select id="list" resultType="NcPriceRpt" parameterType="NcPriceRptQuery">
 		select * from nc_price_rpt <include refid="listQueryCondition"/>
 	</select>
+	
+	<select id="isExistYearMonthReport" resultType="java.lang.Integer" parameterType="NcPriceRptQuery">
+		select 1 from nc_price_rpt where year=#{year} and month=#{month} limit 0, 1
+	</select>
+	
+	<delete id="remove" parameterType="NcPriceRptQuery">
+		delete from nc_price_rpt <include refid="listQueryCondition"/> and id!=0
+	</delete>
+	
 </mapper>

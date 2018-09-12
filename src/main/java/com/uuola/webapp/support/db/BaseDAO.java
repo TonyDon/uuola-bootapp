@@ -293,6 +293,16 @@ public abstract class BaseDAO<T> {
     }
     
     /**
+     * Mybatis Delete
+     * @param mapperId
+     * @param parameter
+     * @return
+     */
+    public int deleteByMapper(String mapperId, Object parameter){
+        return this.sqlSessionTemplate.delete(convertMapperId(mapperId), parameter);
+    }
+    
+    /**
      * Mybatis Insert
      * @param mapperId
      * @param parameter

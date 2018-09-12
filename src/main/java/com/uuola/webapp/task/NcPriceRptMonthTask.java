@@ -66,7 +66,7 @@ public class NcPriceRptMonthTask implements Callable<String> {
             List<NcPriceRpt> rpts = statService.statPriceRpt(query);
             checkAndSetValue(rpts);
             rptService.batchInsert(rpts);
-            result = String.format("--success, query:%s", getQueryStr());
+            result = String.format("--success, count:%d, query:%s", rpts.size(), getQueryStr());
         }catch(Exception e) {
             logger.error("query:{},error:{}", getQueryStr(), ExceptionUtils.getRootCauseMessage(e));
             result = String.format("--error, query:%s", getQueryStr());

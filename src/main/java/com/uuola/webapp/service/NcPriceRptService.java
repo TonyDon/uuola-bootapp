@@ -28,4 +28,20 @@ public interface NcPriceRptService {
     List<NcPriceRpt> list(NcPriceRptQuery query);
 
     NcPriceRpt get(Long id);
+    
+    /**
+     * 根据年月判断是否存在统计记录
+     * @param year
+     * @param month
+     * @return
+     */
+    Boolean isExistYearMonthReport(Integer year, Integer month);
+    
+    /**
+     * 通过年月删除报表记录
+     * @param year
+     * @param month
+     * @return
+     */
+    Integer remove(NcPriceRptQuery query);
 }

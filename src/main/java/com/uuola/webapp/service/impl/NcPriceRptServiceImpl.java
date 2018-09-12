@@ -28,7 +28,6 @@ import com.uuola.webapp.support.db.PrimaryTx;
  * </pre>
  */
 @Service
-
 public class NcPriceRptServiceImpl implements NcPriceRptService {
     
     @Autowired
@@ -61,6 +60,22 @@ public class NcPriceRptServiceImpl implements NcPriceRptService {
     @Override
     public NcPriceRpt get(Long id) {
         return ncPriceRptDAO.findById(id);
+    }
+
+
+    @Override
+    public Boolean isExistYearMonthReport(Integer year, Integer month) {
+        NcPriceRptQuery query = new NcPriceRptQuery();
+        query.setYear(year);
+        query.setMonth(month);
+        List<Integer> list = ncPriceRptDAO.selectList("isExistYearMonthReport", query);
+        return CollectionUtils.isNotEmpty(list);
+    }
+
+
+    @Override
+    public Integer remove(NcPriceRptQuery query) {
+        return ncPriceRptDAO.deleteByMapper("remove", query);
     }
 
 }
