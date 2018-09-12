@@ -96,7 +96,7 @@ public class NcPriceRptMonthTask implements Callable<String> {
             rpt.setCreateTime(currTime);
             rpt.setYear(year);
             rpt.setMonth(month);
-            rpt.setStatType(NC_PRICE_STAT_TYPE.year.intVal());
+            rpt.setStatType(NC_PRICE_STAT_TYPE.month.intVal());
         });
     }
 
