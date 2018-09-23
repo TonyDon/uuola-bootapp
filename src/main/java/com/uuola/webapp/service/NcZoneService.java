@@ -6,11 +6,8 @@
 
 package com.uuola.webapp.service;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.uuola.webapp.model.entity.NcZone;
-import com.uuola.webapp.model.query.NcZoneQuery;
+import com.uuola.webapp.support.db.CrudService;
 
 /**
  * <pre>
@@ -19,9 +16,6 @@ import com.uuola.webapp.model.query.NcZoneQuery;
  * 创建日期: 2018年9月8日
  * </pre>
  */
-public interface NcZoneService {
+public interface NcZoneService extends CrudService<NcZone>{
 
-    NcZone get(Serializable id);
-    
-    List<NcZone> list(NcZoneQuery query);
 }

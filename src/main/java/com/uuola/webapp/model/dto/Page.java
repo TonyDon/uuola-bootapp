@@ -85,4 +85,8 @@ public class Page<T> {
     public void setTotal(int total) {
         this.total = total;
     }
+    
+    public static <T> Page<T> build(Collection<T> datas, int total){
+        return new Page<>(datas, total);
+    }
 }

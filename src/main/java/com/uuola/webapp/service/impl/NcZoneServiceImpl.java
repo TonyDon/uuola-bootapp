@@ -6,16 +6,12 @@
 
 package com.uuola.webapp.service.impl;
 
-import java.io.Serializable;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uuola.webapp.dao.NcZoneDAO;
 import com.uuola.webapp.model.entity.NcZone;
-import com.uuola.webapp.model.query.NcZoneQuery;
 import com.uuola.webapp.service.NcZoneService;
+import com.uuola.webapp.support.db.CrudOperator;
+import com.uuola.webapp.support.db.PrimaryTx;
 
 
 /**
@@ -26,19 +22,7 @@ import com.uuola.webapp.service.NcZoneService;
  * </pre>
  */
 @Service
-public class NcZoneServiceImpl implements NcZoneService {
-    
-    @Autowired
-    private NcZoneDAO ncZoneDAO;
-
-    @Override
-    public NcZone get(Serializable id) {
-        return ncZoneDAO.findById(id);
-    }
-
-    @Override
-    public List<NcZone> list(NcZoneQuery query) {
-        return ncZoneDAO.selectList("list", query);
-    }
+@PrimaryTx
+public class NcZoneServiceImpl extends CrudOperator<NcZone> implements NcZoneService {
 
 }

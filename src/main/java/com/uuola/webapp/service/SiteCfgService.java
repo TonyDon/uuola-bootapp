@@ -6,11 +6,8 @@
 
 package com.uuola.webapp.service;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.uuola.webapp.model.entity.SiteCfg;
-import com.uuola.webapp.model.query.SiteCfgQuery;
+import com.uuola.webapp.support.db.CrudService;
 
 /**
  * <pre>
@@ -19,9 +16,5 @@ import com.uuola.webapp.model.query.SiteCfgQuery;
  * 创建日期: 2018年8月21日
  * </pre>
  */
-public interface SiteCfgService {
-
-    SiteCfg get(Serializable id);
-    
-    List<SiteCfg> list(SiteCfgQuery query);
+public interface SiteCfgService extends CrudService<SiteCfg>{
 }

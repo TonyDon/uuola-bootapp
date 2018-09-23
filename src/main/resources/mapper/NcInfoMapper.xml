@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.uuola.webapp.dao.NcInfoDAO">
+
+	<sql id="listQueryCondition">
+		<if test="id!=null">and id=#{id}</if>
+		<if test="zoneId!=null">and zone_id=#{zoneId}</if>
+	</sql>
+	
+	<select id="count" parameterType="NcInfoQuery" resultType="java.lang.Integer">
+        select count(*) from nc_info where id!=0 <include refid="listQueryCondition"/>
+    </select>
+
+	<select id="list" resultType="NcInfo" parameterType="NcInfoQuery">
+		select * from nc_info where id <![CDATA[ <= ]]> (
+			select id from nc_info where id!=0 <include refid="listQueryCondition"/> 
+			order by id desc limit #{crow}, 1
+		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+</mapper>

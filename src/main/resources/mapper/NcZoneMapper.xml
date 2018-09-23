@@ -4,12 +4,18 @@
 <mapper namespace="com.uuola.webapp.dao.NcZoneDAO">
 
 	<sql id="listQueryCondition">
-		<where>
-			<if test="zoneId!=null">zone_id=#{zoneId}</if>
-		</where>
+			<if test="id!=null">and id=#{id}</if>
+			<if test="zoneId!=null">and zone_id=#{zoneId}</if>
 	</sql>
+	
+	<select id="count" parameterType="NcZoneQuery" resultType="java.lang.Integer">
+        select count(*) from nc_zone where id!=0 <include refid="listQueryCondition"/>
+    </select>
 
 	<select id="list" resultType="NcZone" parameterType="NcZoneQuery">
-		select * from nc_zone <include refid="listQueryCondition"/>
+		select * from nc_zone where id <![CDATA[ <= ]]> (
+			select id from nc_zone where id!=0 <include refid="listQueryCondition"/> 
+			order by id desc limit #{crow}, 1
+		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
 </mapper>

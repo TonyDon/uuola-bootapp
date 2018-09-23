@@ -10,13 +10,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uuola.webapp.dao.NcPriceRptDAO;
 import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.query.NcPriceRptQuery;
 import com.uuola.webapp.service.NcPriceRptService;
+import com.uuola.webapp.support.db.CrudOperator;
 import com.uuola.webapp.support.db.PrimaryTx;
 
 
@@ -28,38 +27,16 @@ import com.uuola.webapp.support.db.PrimaryTx;
  * </pre>
  */
 @Service
-public class NcPriceRptServiceImpl implements NcPriceRptService {
-    
-    @Autowired
-    private NcPriceRptDAO ncPriceRptDAO;
+@PrimaryTx
+public class NcPriceRptServiceImpl extends CrudOperator<NcPriceRpt> implements NcPriceRptService {
 
-    
-    @Override
-    public void insert(NcPriceRpt entity) {
-        ncPriceRptDAO.insert(entity);
-    }
-
-
-    @PrimaryTx
     @Override
     public void batchInsert(Collection<NcPriceRpt> entitis) {
         if(CollectionUtils.isNotEmpty(entitis)) {
             for(NcPriceRpt rpt : entitis) {
-                ncPriceRptDAO.insert(rpt);
+                crudDAO.insert(rpt);
             }
         }
-    }
-
-
-    @Override
-    public List<NcPriceRpt> list(NcPriceRptQuery query) {
-        return ncPriceRptDAO.selectList("list", query);
-    }
-
-
-    @Override
-    public NcPriceRpt get(Long id) {
-        return ncPriceRptDAO.findById(id);
     }
 
 
@@ -68,14 +45,14 @@ public class NcPriceRptServiceImpl implements NcPriceRptService {
         NcPriceRptQuery query = new NcPriceRptQuery();
         query.setYear(year);
         query.setMonth(month);
-        List<Integer> list = ncPriceRptDAO.selectList("isExistYearMonthReport", query);
+        List<Integer> list = crudDAO.selectList("isExistYearMonthReport", query);
         return CollectionUtils.isNotEmpty(list);
     }
 
 
     @Override
     public Integer remove(NcPriceRptQuery query) {
-        return ncPriceRptDAO.deleteByMapper("remove", query);
+        return crudDAO.deleteByMapper("remove", query);
     }
 
 }

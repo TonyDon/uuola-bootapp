@@ -6,10 +6,8 @@
 
 package com.uuola.webapp.service;
 
-import java.util.List;
-
 import com.uuola.webapp.model.entity.NcItem;
-import com.uuola.webapp.model.query.NcItemQuery;
+import com.uuola.webapp.support.db.CrudService;
 
 /**
  * <pre>
@@ -18,10 +16,6 @@ import com.uuola.webapp.model.query.NcItemQuery;
  * 创建日期: 2018年9月12日
  * </pre>
  */
-public interface NcItemService {
-
-    List<NcItem> list(NcItemQuery query);
-
-    NcItem get(Long id);
-    
+public interface NcItemService extends CrudService<NcItem>{
+  
 }

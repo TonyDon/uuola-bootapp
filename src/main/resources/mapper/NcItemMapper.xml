@@ -4,13 +4,19 @@
 <mapper namespace="com.uuola.webapp.dao.NcItemDAO">
 
 	<sql id="listQueryCondition">
-		<where>
-			<if test="itemId!=null">item_id=#{itemId}</if>
+			<if test="id!=null">and id=#{id}</if>
+			<if test="itemId!=null">and item_id=#{itemId}</if>
 			<if test="catId!=null">and cat_id=#{catId}</if>
-		</where>
 	</sql>
+	
+	<select id="count" parameterType="NcItemQuery" resultType="java.lang.Integer">
+        select count(*) from nc_item where id!=0 <include refid="listQueryCondition"/>
+    </select>
 
 	<select id="list" resultType="NcItem" parameterType="NcItemQuery">
-		select * from nc_item <include refid="listQueryCondition"/>
+		select * from nc_item where id <![CDATA[ <= ]]> (
+			select id from nc_item where id!=0 <include refid="listQueryCondition"/> 
+			order by id desc limit #{crow}, 1
+		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
 </mapper>

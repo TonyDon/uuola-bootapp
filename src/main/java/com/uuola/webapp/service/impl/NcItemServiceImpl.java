@@ -6,15 +6,12 @@
 
 package com.uuola.webapp.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uuola.webapp.dao.NcItemDAO;
 import com.uuola.webapp.model.entity.NcItem;
-import com.uuola.webapp.model.query.NcItemQuery;
 import com.uuola.webapp.service.NcItemService;
+import com.uuola.webapp.support.db.CrudOperator;
+import com.uuola.webapp.support.db.PrimaryTx;
 
 
 /**
@@ -25,19 +22,8 @@ import com.uuola.webapp.service.NcItemService;
  * </pre>
  */
 @Service
-public class NcItemServiceImpl implements NcItemService {
+@PrimaryTx
+public class NcItemServiceImpl extends CrudOperator<NcItem> implements NcItemService {
     
-    @Autowired
-    private NcItemDAO ncItemDAO;
-
-    @Override
-    public List<NcItem> list(NcItemQuery query) {
-        return ncItemDAO.selectList("list", query);
-    }
-
-    @Override
-    public NcItem get(Long id) {
-        return ncItemDAO.findById(id);
-    }
 
 }

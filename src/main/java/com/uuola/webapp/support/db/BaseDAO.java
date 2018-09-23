@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,7 +22,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
@@ -92,6 +92,22 @@ public abstract class BaseDAO<T> {
         return list;
     }
     
+    /**
+     * 支持按单个字段查询记录
+     * @param fieldName
+     * @param value
+     * @return List<T>
+     */
+    public <E> List<T> findByField(String fieldName, Object value){
+        String column = entityDef.getPropColumnMap().get(fieldName);
+        if(StringUtils.isEmpty(column)) {
+            throw new IllegalArgumentException("Don't find column from EntityDef["+fieldName+"]");
+        }
+        String sql = "select * from " + this.tableName + " where " + idColumnName +  "=? ";
+        List<T> list = jdbcTemplate.getJdbcOperations().query(sql, new Object[] { value }, new RowMapperResultSetExtractor<T>(entityPropertyRowMapper, 1));
+        return list;
+    }
+    
    
     /**
      * 删除一个实体
@@ -145,7 +161,10 @@ public abstract class BaseDAO<T> {
         if (null != id) {
             Map<String, Field> propField = entityDef.getPropFieldMap();
             Field idField = propField.get("id");
-            Assert.notNull(idField, "The id Field, Not found in [" + entity.getClass().getCanonicalName() + "]");
+            if (null == idField) {
+                throw new IllegalArgumentException(
+                        "The id Field, Not found in [" + entity.getClass().getCanonicalName() + "]");
+            }
             Object idValue = getIdValueByNumber(id, idField.getType());
             ReflectionUtils.setField(idField, entity, idValue);
         }
@@ -198,7 +217,9 @@ public abstract class BaseDAO<T> {
      */
     public String getIdColumn(){
         String keyPropName = entityDef.getUniqueKeyPropName();
-        Assert.hasLength(keyPropName, "not found uniqueKeyPropName at entity : " + entityClass.getCanonicalName());
+        if (StringUtils.isEmpty(keyPropName)) {
+            throw new IllegalArgumentException("not found uniqueKeyPropName at entity : " + entityClass.getCanonicalName());
+        }
         return entityDef.getPropColumnMap().get(keyPropName);
     }
     

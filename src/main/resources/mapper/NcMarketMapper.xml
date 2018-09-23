@@ -4,13 +4,19 @@
 <mapper namespace="com.uuola.webapp.dao.NcMarketDAO">
 
 	<sql id="listQueryCondition">
-		<where>
+			<if test="id!=null">and id=#{id}</if>
 			<if test="zoneId!=null">zone_id=#{zoneId}</if>
 			<if test="marketId!=null">and market_id=#{marketId}</if>
-		</where>
 	</sql>
+	
+	<select id="count" parameterType="NcMarketQuery" resultType="java.lang.Integer">
+        select count(*) from nc_market where id!=0 <include refid="listQueryCondition"/>
+    </select>
 
 	<select id="list" resultType="NcMarket" parameterType="NcMarketQuery">
-		select * from nc_market <include refid="listQueryCondition"/>
+		select * from nc_market where id <![CDATA[ <= ]]> (
+			select id from nc_market where id!=0 <include refid="listQueryCondition"/> 
+			order by id desc limit #{crow}, 1
+		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
 </mapper>
