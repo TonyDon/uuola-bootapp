@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uuola.webapp.model.entity.NcPriceRpt;
 import com.uuola.webapp.model.query.NcPriceStatQuery;
 import com.uuola.webapp.service.NcPriceStatService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -28,7 +29,7 @@ import com.uuola.webapp.service.NcPriceStatService;
  */
 @RestController
 @RequestMapping("/nc-price-stat")
-public class NcPriceStatController {
+public class NcPriceStatController extends BaseController{
     
     @Autowired
     private NcPriceStatService ncPriceStatService;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uuola.webapp.model.query.NcMarketQuery;
 import com.uuola.webapp.service.NcMarketService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -25,7 +26,7 @@ import com.uuola.webapp.service.NcMarketService;
  */
 @RestController
 @RequestMapping("/nc-market")
-public class NcMarketController {
+public class NcMarketController extends BaseController{
 
     @Autowired
     private NcMarketService ncMarketService;

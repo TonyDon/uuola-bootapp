@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uuola.webapp.model.query.NcItemQuery;
 import com.uuola.webapp.service.NcItemService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -25,7 +26,7 @@ import com.uuola.webapp.service.NcItemService;
  */
 @RestController
 @RequestMapping("/nc-item")
-public class NcItemController {
+public class NcItemController extends BaseController{
 
     @Autowired
     private NcItemService ncItemService;

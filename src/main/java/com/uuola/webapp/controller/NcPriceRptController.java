@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uuola.webapp.model.query.NcPriceRptQuery;
 import com.uuola.webapp.service.NcPriceRptService;
+import com.uuola.webapp.support.view.BaseController;
 import com.uuola.webapp.task.NcPriceStatReportProcessor;
 
 /**
@@ -27,7 +28,7 @@ import com.uuola.webapp.task.NcPriceStatReportProcessor;
  */
 @RestController
 @RequestMapping("/nc-price-rpt")
-public class NcPriceRptController {
+public class NcPriceRptController extends BaseController{
 
     @Autowired
     private NcPriceRptService ncPriceRptService;

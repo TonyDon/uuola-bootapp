@@ -17,6 +17,7 @@ import com.uuola.webapp.model.entity.BlogInfo;
 import com.uuola.webapp.model.entity.BlogPost;
 import com.uuola.webapp.service.BlogInfoService;
 import com.uuola.webapp.service.BlogPostService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -27,7 +28,7 @@ import com.uuola.webapp.service.BlogPostService;
  */
 @RestController
 @RequestMapping("/blog")
-public class BlogController {
+public class BlogController extends BaseController{
     
     @Autowired
     private BlogInfoService blogInfoService;
@@ -37,7 +38,7 @@ public class BlogController {
     
     @GetMapping("/{title}/{id}")
     public ModelAndView show(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("blog-show");
+        ModelAndView mv = this.makeModelView("show");
         BlogInfo blogInfo = blogInfoService.get(id);
         BlogPost blogPost = blogPostService.get(id);
         mv.addObject("blogInfo", blogInfo);

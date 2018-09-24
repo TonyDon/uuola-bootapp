@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uuola.webapp.model.query.NcZoneQuery;
 import com.uuola.webapp.service.NcZoneService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -25,7 +26,7 @@ import com.uuola.webapp.service.NcZoneService;
  */
 @RestController
 @RequestMapping("/nc-zone")
-public class NcZoneController {
+public class NcZoneController extends BaseController{
 
     @Autowired
     private NcZoneService ncZoneService;

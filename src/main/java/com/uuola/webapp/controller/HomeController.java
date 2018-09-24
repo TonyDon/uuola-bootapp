@@ -23,6 +23,8 @@ import com.google.common.collect.Maps;
 import com.uuola.webapp.model.entity.SiteCfg;
 import com.uuola.webapp.model.query.SiteCfgQuery;
 import com.uuola.webapp.service.SiteCfgService;
+import com.uuola.webapp.support.view.BaseController;
+import com.uuola.webapp.util.DateUtil;
 
 /**
  * <pre>
@@ -33,16 +35,16 @@ import com.uuola.webapp.service.SiteCfgService;
  */
 @RestController
 @RequestMapping("/")
-public class IndexController {
+public class HomeController extends BaseController{
     
     @Autowired
     private SiteCfgService siteCfgService;
 
     @GetMapping("")
-    public ModelAndView home() {
-        ModelAndView mv = new ModelAndView("index");
+    public ModelAndView index() {
+        ModelAndView mv = makeModelView();
         mv.addObject("name", UUID.randomUUID().toString());
-        mv.addObject("time", LocalDateTime.now());
+        mv.addObject("time", DateUtil.getNowTime());
         return mv;
     }
     

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uuola.webapp.model.query.SysCfgQuery;
 import com.uuola.webapp.service.SysCfgService;
+import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
@@ -25,14 +26,14 @@ import com.uuola.webapp.service.SysCfgService;
  */
 @RestController
 @RequestMapping("/sys-cfg")
-public class SysCfgController {
+public class SysCfgController extends BaseController{
 
     @Autowired
     private SysCfgService sysCfgService;
     
     @GetMapping("")
     public ModelAndView index() {
-        return new ModelAndView("index");
+        return this.makeModelView();
     }
     
     @GetMapping("/search")
