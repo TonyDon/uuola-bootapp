@@ -5,7 +5,7 @@
 
 	<sql id="listQueryCondition">
 			<if test="id!=null">and id=#{id}</if>
-			<if test="zoneId!=null">zone_id=#{zoneId}</if>
+			<if test="zoneId!=null">and zone_id=#{zoneId}</if>
 			<if test="marketId!=null">and market_id=#{marketId}</if>
 	</sql>
 	
