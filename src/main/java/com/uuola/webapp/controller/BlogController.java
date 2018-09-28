@@ -38,7 +38,7 @@ public class BlogController extends BaseController{
     
     @GetMapping("/{title}/{id}")
     public ModelAndView show(@PathVariable("id") Long id) {
-        ModelAndView mv = this.makeModelView("show");
+        ModelAndView mv = this.makeModelView();
         BlogInfo blogInfo = blogInfoService.get(id);
         BlogPost blogPost = blogPostService.get(id);
         mv.addObject("blogInfo", blogInfo);
