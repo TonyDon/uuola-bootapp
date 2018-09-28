@@ -1,15 +1,3 @@
-<!--
-  release package directory structure:
-    *.tar.gz
-      conf
-        *.xml
-        *.properties
-      lib
-        application jar
-        third party jar dependencies
-      run.sh
-      run.bat
--->
 <assembly>
   <id>dist</id>
   <formats>
@@ -18,16 +6,24 @@
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
+  	<fileSet>
+      <directory>src/main/resources/static</directory>
+      <outputDirectory>static</outputDirectory>
+    </fileSet>
     <fileSet>
-      <directory>src/main/conf</directory>
-      <outputDirectory>conf</outputDirectory>
+      <directory>src/main/files</directory>
+      <outputDirectory>files</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/main/resources</directory>
+      <outputDirectory>config</outputDirectory>
       <includes>
-        <include>*.properties</include>
+      	<include>*.properties</include>
       </includes>
     </fileSet>
     <fileSet>
       <directory>src/main/bin</directory>
-      <outputDirectory>bin</outputDirectory>
+      <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>
       <fileMode>755</fileMode>
     </fileSet> 
