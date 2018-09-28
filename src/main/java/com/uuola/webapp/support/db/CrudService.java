@@ -35,5 +35,7 @@ public interface CrudService<T> {
     
     int delete(T entity);
     
+    int count(BaseQuery query);
+    
     Page<T> range(BaseQuery query);
 }

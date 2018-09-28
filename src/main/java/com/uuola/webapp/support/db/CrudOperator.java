@@ -75,6 +75,10 @@ public abstract class CrudOperator<T> {
     public int deleteById(Serializable id) {
         return crudDAO.deleteById(id);
     }
+    
+    public int count(BaseQuery query) {
+        return crudDAO.selectOne("count", query);
+    }
 
     public Page<T> range(BaseQuery query) {
         // 执行分页查询记录行计算
