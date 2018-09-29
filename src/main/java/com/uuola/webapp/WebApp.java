@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class WebApp {
 
+    /**
+     * dev mode : program args --spring.resources.static-locations=file:C:/doc/git/uuola-bootapp/src/main/static
+     * @param args
+     */
 	public static void main(String[] args) {
 		SpringApplication.run(WebApp.class, args);
 	}

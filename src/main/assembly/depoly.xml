@@ -7,7 +7,7 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
   	<fileSet>
-      <directory>src/main/resources/static</directory>
+      <directory>src/main/static</directory>
       <outputDirectory>static</outputDirectory>
     </fileSet>
     <fileSet>
