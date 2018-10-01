@@ -19,4 +19,8 @@
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
+	
+	<select id="listAll"  resultType="NcItem" parameterType="NcItemQuery">
+		select * from nc_item where id!=0 <include refid="listQueryCondition"/>
+	</select>
 </mapper>

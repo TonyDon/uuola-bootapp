@@ -43,7 +43,8 @@ public class ComponentConfig {
      */
     @Bean 
     public ExecutorService executorService() {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(32, 32,
+        int coreNum = (Runtime.getRuntime().availableProcessors()<<1) - 1;
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(coreNum, coreNum,
                 60L, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>());
          executor.allowCoreThreadTimeOut(true);
