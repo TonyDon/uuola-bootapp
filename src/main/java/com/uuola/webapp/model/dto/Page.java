@@ -19,6 +19,16 @@ import java.util.Map;
  * </pre>
  */
 public class Page<T> {
+    
+    /**
+     * 当前页码
+     */
+    private Integer pageNo;
+    
+    /**
+     * 列表大小
+     */
+    protected Integer listSize;
 
 
     /**
@@ -64,16 +74,18 @@ public class Page<T> {
         return dataSet;
     }
 
-    public void setDataSet(Collection<T> datas) {
+    public Page<T> setDataSet(Collection<T> datas) {
         this.dataSet = datas;
+        return this;
     }
 
     public Map<String, Object> getExtra() {
         return extra;
     }
 
-    public void setExtra(Map<String, Object> extra) {
+    public Page<T> setExtra(Map<String, Object> extra) {
         this.extra = extra;
+        return this;
     }
 
     
@@ -82,11 +94,34 @@ public class Page<T> {
     }
 
     
-    public void setTotal(int total) {
+    public Page<T> setTotal(int total) {
         this.total = total;
+        return this;
     }
     
     public static <T> Page<T> build(Collection<T> datas, int total){
         return new Page<>(datas, total);
+    }
+
+    
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    
+    public Page<T> setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+        return this;
+    }
+
+    
+    public Integer getListSize() {
+        return listSize;
+    }
+
+    
+    public Page<T> setListSize(Integer listSize) {
+        this.listSize = listSize;
+        return this;
     }
 }

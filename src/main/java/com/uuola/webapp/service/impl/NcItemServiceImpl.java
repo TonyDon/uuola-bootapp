@@ -6,12 +6,9 @@
 
 package com.uuola.webapp.service.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.uuola.webapp.model.entity.NcItem;
-import com.uuola.webapp.model.query.BaseQuery;
 import com.uuola.webapp.service.NcItemService;
 import com.uuola.webapp.support.db.CrudOperator;
 import com.uuola.webapp.support.db.PrimaryTx;
@@ -27,11 +24,5 @@ import com.uuola.webapp.support.db.PrimaryTx;
 @Service
 @PrimaryTx
 public class NcItemServiceImpl extends CrudOperator<NcItem> implements NcItemService {
-
-    @Override
-    public List<NcItem> listAll(BaseQuery query) {
-        return this.crudDAO.selectList("listAll", query);
-    }
-    
 
 }

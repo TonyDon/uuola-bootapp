@@ -57,7 +57,7 @@ public class NcPriceStatReportProcessor {
             logger.info("please check params {},{}", year, month);
             return ;
         }
-        List<NcItem> items = ncItemService.listAll(new NcItemQuery());
+        List<NcItem> items = ncItemService.list(new NcItemQuery());
         List<NcPriceRptMonthTask> tasks = Lists.newArrayList();
         Date beginStatDate = DateUtil.parseDate(String.format("%04d-%02d-01 00:00:00", year, month), DATE_FORMAT.YYYY_MM_DD_HH_MM_SS);
         Date endStatDate = DateUtil.add(beginStatDate, Calendar.MONTH, 1);

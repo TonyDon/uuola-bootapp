@@ -21,21 +21,72 @@ import com.uuola.webapp.model.query.BaseQuery;
  */
 public interface CrudService<T> {
 
+    /**
+     * 通过主键ID获取记录
+     * @param id
+     * @return
+     */
     T get(Serializable id);
     
+    /**
+     * 无分页条件查询所有记录
+     * @param query
+     * @return
+     */
     List<T> list(BaseQuery query);
     
+    /**
+     * 通过实体对象（有值字段值全匹配）更新记录
+     * @param entity
+     * @return
+     */
     int update(T entity);
     
+    /**
+     * 插入一条记录
+     * @param entity
+     */
     void insert(T entity);
     
+    /**
+     * 根据主键ID集合批量删除
+     * @param ids
+     * @return
+     */
     int bulkDelete(List<Serializable> ids);
     
+    /**
+     * 根据主键ID删除记录
+     * @param id
+     * @return
+     */
     int deleteById(Serializable id);
     
+    /**
+     * 通过实体对象有值字段全匹配删除记录
+     * @param entity
+     * @return
+     */
     int delete(T entity);
     
+    /**
+     * 返回条件查询记录数
+     * @param query
+     * @return
+     */
     int count(BaseQuery query);
     
-    Page<T> range(BaseQuery query);
+    /**
+     * 带条件分页查询，并返回查询总数
+     * @param query
+     * @return Page
+     */
+    Page<T> rangePage(BaseQuery query);
+    
+    /**
+     * 带条件范围查询
+     * @param query
+     * @return
+     */
+    List<T> range(BaseQuery query);
 }

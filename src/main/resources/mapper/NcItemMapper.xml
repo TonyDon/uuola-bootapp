@@ -13,14 +13,14 @@
         select count(*) from nc_item where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="NcItem" parameterType="NcItemQuery">
+	<select id="range" resultType="NcItem" parameterType="NcItemQuery">
 		select * from nc_item where id <![CDATA[ <= ]]> (
 			select id from nc_item where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
 	</select>
 	
-	<select id="listAll"  resultType="NcItem" parameterType="NcItemQuery">
-		select * from nc_item where id!=0 <include refid="listQueryCondition"/>
+	<select id="list"  resultType="NcItem" parameterType="NcItemQuery">
+		select * from nc_item where id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 </mapper>

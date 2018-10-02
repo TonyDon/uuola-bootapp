@@ -12,10 +12,14 @@
         select count(*) from nc_zone where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="NcZone" parameterType="NcZoneQuery">
+	<select id="range" resultType="NcZone" parameterType="NcZoneQuery">
 		select * from nc_zone where id <![CDATA[ <= ]]> (
 			select id from nc_zone where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+	
+	<select id="list" resultType="NcZone" parameterType="NcZoneQuery">
+		select * from nc_zone where id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 </mapper>

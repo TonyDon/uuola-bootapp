@@ -25,8 +25,9 @@ public class NcMarketQuery extends BaseQuery {
 
     @Override
     public void filter() {
-        // TODO Auto-generated method stub
-        
+        if(this.getListSize()>20) {
+            this.setListSize(20);
+        }
     }
 
 

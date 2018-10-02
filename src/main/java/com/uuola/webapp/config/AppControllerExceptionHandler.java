@@ -30,7 +30,7 @@ public class AppControllerExceptionHandler extends ResponseEntityExceptionHandle
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
+    public ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
         log.error("ExceptionHandler:", ex);
         HttpStatus status = getStatus(request);
         return new ResponseEntity<>("server error", status);

@@ -28,7 +28,7 @@ import com.uuola.webapp.model.query.BaseQuery;
  * 创建日期: 2018年9月23日
  * </pre>
  */
-public abstract class CrudOperator<T> {
+public abstract class CrudOperator<T> implements CrudService<T>{
     
     @Autowired
     protected ApplicationContext ac;
@@ -47,45 +47,60 @@ public abstract class CrudOperator<T> {
         log.info("CrudOperator() fetch CrudDAO success - {}", crudDAO.getClass().getName());
     }
 
-
+    @Override
     public T get(Serializable id) {
         return crudDAO.findById(id);
     }
 
+    @Override
     public List<T> list(BaseQuery query) {
         return crudDAO.selectList("list", query);
     }
 
+    @Override
     public int update(T entity) {
         return crudDAO.update(entity);
     }
 
+    @Override
     public void insert(T entity) {
         crudDAO.insert(entity);
     }
 
+    @Override
     public int bulkDelete(List<Serializable> ids) {
         return crudDAO.deleteByIds(ids);
     }
     
+    @Override
     public int delete(T entity) {
         return crudDAO.delete(entity);
     }
     
+    @Override
     public int deleteById(Serializable id) {
         return crudDAO.deleteById(id);
     }
     
+    @Override
     public int count(BaseQuery query) {
         return crudDAO.selectOne("count", query);
     }
 
-    public Page<T> range(BaseQuery query) {
+    @Override
+    public Page<T> rangePage(BaseQuery query) {
         // 执行分页查询记录行计算
         query.calcCurrRowIndex();
         Integer total = crudDAO.selectOne("count", query);
-        List<T> list = crudDAO.selectList("list", query);
-        return Page.build(list, total);
+        List<T> list = crudDAO.selectList("range", query);
+        return Page.build(list, total).setPageNo(query.getPageNo()).setListSize(query.getListSize());
     }
-    
+
+    @Override
+    public List<T> range(BaseQuery query) {
+        // 执行分页查询记录行计算
+        query.calcCurrRowIndex();
+        return crudDAO.selectList("range", query);
+    }
+
 }

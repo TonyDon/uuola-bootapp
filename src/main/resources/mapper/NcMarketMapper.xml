@@ -13,10 +13,14 @@
         select count(*) from nc_market where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="NcMarket" parameterType="NcMarketQuery">
+	<select id="range" resultType="NcMarket" parameterType="NcMarketQuery">
 		select * from nc_market where id <![CDATA[ <= ]]> (
 			select id from nc_market where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+	
+	<select id="list" resultType="NcMarket" parameterType="NcMarketQuery">
+		select * from nc_market where  id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 </mapper>

@@ -12,10 +12,14 @@
         select count(*) from site_cfg where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="SiteCfg" parameterType="SiteCfgQuery">
+	<select id="range" resultType="SiteCfg" parameterType="SiteCfgQuery">
 		select * from site_cfg where id <![CDATA[ <= ]]> (
 			select id from site_cfg where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+	
+	<select id="list" resultType="SiteCfg" parameterType="SiteCfgQuery">
+		select * from site_cfg where id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 </mapper>

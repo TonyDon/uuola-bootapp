@@ -15,11 +15,15 @@
         select count(*) from nc_price_rpt where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="NcPriceRpt" parameterType="NcPriceRptQuery">
+	<select id="range" resultType="NcPriceRpt" parameterType="NcPriceRptQuery">
 		select * from nc_price_rpt where id <![CDATA[ <= ]]> (
 			select id from nc_price_rpt where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+	
+	<select id="list" resultType="NcPriceRpt" parameterType="NcPriceRptQuery">
+		select * from nc_price_rpt where id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 	
 	<select id="isExistYearMonthReport" resultType="java.lang.Integer" parameterType="NcPriceRptQuery">

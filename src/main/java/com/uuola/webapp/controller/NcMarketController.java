@@ -41,4 +41,9 @@ public class NcMarketController extends BaseController{
         return ResponseEntity.ok(ncMarketService.list(query));
     }
     
+    @GetMapping("/search")
+    public ResponseEntity<Object> search(NcMarketQuery query){
+        return ResponseEntity.ok(ncMarketService.rangePage(query));
+    }
+    
 }

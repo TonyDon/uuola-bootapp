@@ -17,11 +17,15 @@
         select count(*) from nc_price_stat where id!=0 <include refid="listQueryCondition"/>
     </select>
 
-	<select id="list" resultType="NcPriceStat" parameterType="NcPriceStatQuery">
+	<select id="range" resultType="NcPriceStat" parameterType="NcPriceStatQuery">
 		select * from nc_price_stat where id <![CDATA[ <= ]]> (
 			select id from nc_price_stat where id!=0 <include refid="listQueryCondition"/> 
 			order by id desc limit #{crow}, 1
 		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+	</select>
+	
+	<select id="list" resultType="NcPriceStat" parameterType="NcPriceStatQuery">
+		select * from nc_price_stat where id!=0 <include refid="listQueryCondition"/> order by id desc
 	</select>
 	
 	<select id="statPriceRpt" resultType="NcPriceRpt" parameterType="NcPriceStatQuery">

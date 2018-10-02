@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 
+import com.uuola.webapp.support.aop.ControllerMethodAop;
 import com.uuola.webapp.support.converter.StringToDateConverter;
 
 /**
@@ -49,5 +50,14 @@ public class ComponentConfig {
                 new LinkedBlockingQueue<Runnable>());
          executor.allowCoreThreadTimeOut(true);
          return executor;
+    }
+    
+    /**
+     * 控制器方法拦截AOP
+     * @return
+     */
+    @Bean 
+    public ControllerMethodAop ControllerMethodAop() {
+        return new ControllerMethodAop();
     }
 }
