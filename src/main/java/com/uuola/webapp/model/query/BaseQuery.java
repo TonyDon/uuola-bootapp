@@ -17,7 +17,7 @@ package com.uuola.webapp.model.query;
 public abstract class BaseQuery {
 
     // 当前页码
-    protected Integer pageNo;
+    protected Integer pageNo = 1;
 
     // 当前排号
     protected Integer crow = 0;
@@ -39,8 +39,8 @@ public abstract class BaseQuery {
      * 2.查询前对参数进行修改<br/>
      */
     public void filter() {
-        if (this.listSize > 20 || this.listSize < 1) {
-            this.listSize = 20;
+        if (this.listSize > 100 || this.listSize < 1) {
+            this.listSize = 100;
         }
     }
 
