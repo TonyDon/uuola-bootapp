@@ -22,6 +22,7 @@ public class SysCfgQuery extends BaseQuery {
      */
     @Override
     public void filter() {
+        super.filter();
         if(StringUtils.isNotBlank(matchName)) {
             matchName = "%"+matchName+"%";
         }

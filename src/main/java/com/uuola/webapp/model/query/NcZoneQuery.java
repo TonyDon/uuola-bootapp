@@ -44,6 +44,6 @@ public class NcZoneQuery extends BaseQuery{
     @Override
     public void filter() {
         // TODO Auto-generated method stub
-        
+        super.filter();
     }
 }

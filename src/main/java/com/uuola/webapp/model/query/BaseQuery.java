@@ -35,9 +35,14 @@ public abstract class BaseQuery {
     protected String sidx;
 
     /**
-     * 过滤参数不符合要求的属性值
+     * 1.合法性校验，过滤参数不符合要求的属性值<br/>
+     * 2.查询前对参数进行修改<br/>
      */
-    abstract public void filter();
+    public void filter() {
+        if (this.listSize > 20 || this.listSize < 1) {
+            this.listSize = 20;
+        }
+    }
 
     public BaseQuery() {
         

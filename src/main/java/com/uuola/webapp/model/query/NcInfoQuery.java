@@ -22,7 +22,7 @@ public class NcInfoQuery extends BaseQuery {
     @Override
     public void filter() {
         // TODO Auto-generated method stub
-
+        super.filter();
     }
 
     private Long id;

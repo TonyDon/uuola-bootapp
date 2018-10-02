@@ -22,7 +22,7 @@ public class CatalogCfgQuery extends BaseQuery {
     @Override
     public void filter() {
         // TODO Auto-generated method stub
-
+        super.filter();
     }
 
 }
