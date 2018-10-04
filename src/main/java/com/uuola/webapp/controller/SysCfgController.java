@@ -38,6 +38,6 @@ public class SysCfgController extends BaseController{
     
     @GetMapping("/search")
     public ResponseEntity<Object> search(SysCfgQuery query){
-        return ResponseEntity.ok(sysCfgService.range(query));
+        return ResponseEntity.ok(sysCfgService.rangePage(query));
     }
 }

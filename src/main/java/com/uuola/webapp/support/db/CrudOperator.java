@@ -68,7 +68,7 @@ public abstract class CrudOperator<T> implements CrudService<T>{
     }
 
     @Override
-    public int bulkDelete(List<Serializable> ids) {
+    public int bulkDelete(List<?> ids) {
         return crudDAO.deleteByIds(ids);
     }
     

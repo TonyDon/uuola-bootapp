@@ -53,7 +53,7 @@ public interface CrudService<T> {
      * @param ids
      * @return
      */
-    int bulkDelete(List<Serializable> ids);
+    int bulkDelete(List<?> ids);
     
     /**
      * 根据主键ID删除记录

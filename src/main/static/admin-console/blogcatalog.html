@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>后台管理</title>
+
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../jqgrid/css/ui.jqgrid-bootstrap4.css" rel="stylesheet">
+        <link href="../css/console.css" rel="stylesheet">
+        <link href="../css/fonts.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+              <a class="navbar-brand" href="#">
+              		久富农客网 后台管理
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">首页</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客分类</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客文章</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客评论</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+               <div class="card">
+               	<div class="card-header bg-light">分类查询</div>
+		        <div class="card-body p-1">
+		            <form id="searchFrm">
+		            	<div class="form-row">
+			                <div class="col-md-3">
+			                   <input type="text" class="form-control" id="name" name="name" placeholder="类目名称">
+			                </div>
+			                <div class="col-md-3">
+			                        <select id="state" name="state" class="form-control">
+			                            <option value="">-请选择-</option>
+			                            <option value="0">禁用</option>
+			                            <option value="1" selected="selected">启用</option>
+			                        </select>
+			                </div>
+			                <div class="col-md-6">
+			                    <div class="input-group">
+			                        <input type="text" size="13" class="form-control" id="beginCreateTime" name="beginCreateTime"
+			                               placeholder="起始时间" readonly>
+			                        <div class="input-group-text">~</div>
+			                        <input type="text" size="13" class="form-control" id="endCreateTime" name="endCreateTime"
+			                               placeholder="截止时间" readonly>
+			                    </div>
+			                </div>
+		                </div>
+		                    <div class="btn-group mt-2 float-right">
+		                        <button type="button" id="searchBtn" class="btn btn-primary"><span
+		                                class="glyphicon glyphicon-search"></span> 查询
+		                        </button>
+		                        <button type="button" id="addBtn" class="btn btn-warning"><span
+		                                class="glyphicon glyphicon-plus"></span> 新增
+		                        </button>
+		                        <button type="button" id="delBtn" class="btn btn-danger"><span
+		                                class="glyphicon glyphicon-remove"></span> 删除
+		                        </button>
+		                        <button type="button" id="resetBtn" class="btn btn-default"><span
+		                                class="glyphicon glyphicon-refresh"></span> 重置
+		                        </button>
+		                    </div>
+		            </form>
+		        </div>
+		    </div>
+		    
+		    <div class="card mt-3">
+               	<div class="card-header">查询结果</div>
+		        <div class="card-body p-1" id="grid-panel">
+		        	<table id="grid"></table>
+            		<div id="gridPager"></div>
+		        </div>
+		    </div>
+        </main>
+        
+<div id="addFrmBox"  class="hide">
+    <div class="container-fluid">
+        <form id="addFrm" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-sm-4 control-label">分类名称：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="name" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="state" class="col-sm-4 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <select name="state" class="form-control">
+                        <option value="">-请选择-</option>
+                        <option value="0">禁用</option>
+                        <option value="1">启用</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group float-right">
+                <div class="col-sm-3"></div>
+                <div class="btn-group col-sm-9" role="group">
+                    <button type="button" id="addSubmitBtn" class="btn btn-info"><span
+                            class="glyphicon glyphicon-ok"></span> 确认
+                    </button>
+                    <button type="button" class="btn btn-default cancel-btn"><span
+                            class="glyphicon glyphicon-remove-circle"></span> 取消
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="editFrmBox"  class="hide">
+    <div class="container-fluid">
+        <form id="editFrm" class="form-horizontal">
+        <input type="hidden" v-model="orgData.id" name="id">
+            <div class="form-group">
+                <label for="name"   class="col-sm-4 control-label">分类名称：</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"  v-model="orgData.name" name="name" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="state"   class="col-sm-4 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <select name="state" v-model="orgData.state" class="form-control">
+                        <option value="">-请选择-</option>
+                        <option value="0">禁用</option>
+                        <option value="1">启用</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group  float-right">
+                <div class="col-sm-3"></div>
+                <div class="btn-group col-sm-9" role="group">
+                    <button type="button" v-on:click="editSubmit" class="btn btn-info submit-btn"><span
+                            class="glyphicon glyphicon-ok"></span> 确认
+                    </button>
+                    <button type="button" v-on:click="cancel" class="btn btn-default cancel-btn"><span
+                            class="glyphicon glyphicon-remove-circle"></span> 取消
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+        <footer class="footer">
+            <div class="container">
+              <span class="text-muted">2008~2018&copy;986001.com 久富农客网</span>
+            </div>
+        </footer>
+
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../bootstrap/bootstrap.min.js"></script>
+        <script src="../jqgrid/js/i18n/grid.locale-cn.js"></script>
+        <script src="../jqgrid/js/jquery.jqGrid.min.js"></script>
+        <script src="../layui/layui.js"></script>
+        <script src="../js/vue.min.js"></script>
+        <script src="../js/common.js"></script>
+        <script>
+         layui.use(['layer','laydate'], function(){
+        	 var layer = layui.layer, laydate = layui.laydate;
+             laydate.render({
+                 elem: '#beginCreateTime',
+                 type: 'datetime'
+             });
+             laydate.render({
+                 elem: '#endCreateTime',
+                 type: 'datetime'
+             });
+         });
+          (function(){
+        	  var searchfrm = $('#searchFrm');
+        	  var addfrm = $('#addFrm');
+        	  var editfrm = $('#editFrm');
+        	  
+        	// 初始化表格
+              var colModel = [
+                  {label: 'ID', name: 'id', key: true },
+                  {label: '类目名称', name: 'name', width: 200, formatter: JGrid.initEidtFormat},
+                  {label: '状态', name: 'state', width: 80, formatter: JGrid.boolStateFormat},
+                  {label: '记录数', name: 'recordNum', width: 80},
+                  {label: '创建时间', name: 'createTime' },
+                  {label: '更新时间', name: 'updateTime' }
+              ];
+              var gridOpt = {
+                      url: '/blogcatalog/search?' + $.param($('#searchFrm').getFormData()),
+                      shrinkToFit: true,
+                      height:300
+                  };
+              var myGrid = JGrid.initSearchGrid("#grid", "#gridPager", colModel, gridOpt);
+             // 自适应宽度调整
+              $(window).resize(function () {
+                  myGrid.setGridWidth($('#grid-panel').width());
+              });
+             
+             //搜索按钮触发
+              $("#searchBtn").on('click', function () {
+                  var url = '/blogcatalog/search?' + $.param($('#searchFrm').getFormData());
+                  myGrid.setGridParam({url: url, page: 1});
+                  myGrid.trigger("reloadGrid");
+              });
+             
+              $('#addBtn').on('click', function () {
+                  JDialog.openWin("添加分类", "#addFrmBox", {width:500});
+              });
+           
+             $('#addSubmitBtn').on('click', function(){
+              $.post('/blogcatalog', $('#addFrm').getFormData(), function(r){
+            	  JDialog.alertMsg('创建成功!', function () {
+                      $("#searchBtn").click();
+                      JDialog.closeAll();
+                      addfrm.resetfrm();
+                  });
+              });
+             });
+             
+             //删除记录按钮触发
+             $('#delBtn').on('click', function () {
+                 var selrows = myGrid.getGridParam("selarrrow");
+                 if (selrows && selrows.length == 0) {
+                     JDialog.msg('请选择需要删除的记录.');
+                 } else {
+                     layer.confirm('确认删除记录吗？', function (index) {
+                         $.post('/blogcatalog?_method=delete', {'ids[]': selrows}, function (x) {
+                             JDialog.alertMsg('删除成功!', function () {
+                                 $("#searchBtn").click();
+                             });
+                         });
+                     });
+                 }
+             });
+             
+            // 编辑表单关联
+             var editVue = new Vue({
+                 el: '#editFrm',
+                 data: {
+                     orgData: {}
+                 },
+                 methods: {
+                     editSubmit: function () {
+                         $.post('/blogcatalog?_method=put', $('#editFrm').getFormData(), function () {
+                             JDialog.alertMsg('更新成功!', function () {
+                                 $("#searchBtn").click();
+                                 JDialog.closeAll();
+                             });
+                         });
+                     },
+                     cancel: function () {
+                     	editVue.$data.orgData = {};
+                        JDialog.closeAll();
+                     }
+                 }
+             });
+            
+             // 编辑行绑定
+             JGrid.bindEidtOnClickEvent(myGrid, function (id) {
+                 JDialog.ajaxLoadWin('/blogcatalog/' + id, function (x) {
+                     editVue.$data.orgData = x;
+                 }, "#editFrmBox", "编辑参数[" + id + "]", 500);
+             });
+          
+          
+          })();
+        </script>
+    </body>
+</html>
