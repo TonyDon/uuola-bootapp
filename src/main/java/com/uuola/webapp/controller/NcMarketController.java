@@ -25,7 +25,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/nc-market")
+@RequestMapping("/ncmarket")
 public class NcMarketController extends BaseController{
 
     @Autowired

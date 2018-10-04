@@ -36,6 +36,10 @@ public abstract class BaseController {
         this.viewPrefixPath = getViewPath().concat(CHAR.STR_SLASH).concat(getActionPrefixName()).concat(CHAR.STR_LINE);
         log.info("viewPath:{}*.*", this.viewPrefixPath);
     }
+    
+    public String getViewPrefixPath() {
+        return this.viewPrefixPath;
+    }
 
 
     /**
@@ -88,12 +92,12 @@ public abstract class BaseController {
     }
     
     /**
-     * 定义包含视图名的ModelAndView
+     * 定义包含空视图名的ModelAndView
      * @param defineName
      * @return
      */
     protected ModelAndView makeModelView(){
-        return new ModelAndView();
+        return new ModelAndView("");
     }
     
     /**

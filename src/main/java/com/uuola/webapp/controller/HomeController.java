@@ -6,22 +6,16 @@
 
 package com.uuola.webapp.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Maps;
-import com.uuola.webapp.model.entity.SiteCfg;
-import com.uuola.webapp.model.query.SiteCfgQuery;
-import com.uuola.webapp.service.SiteCfgService;
 import com.uuola.webapp.support.view.BaseController;
 import com.uuola.webapp.util.DateUtil;
 
@@ -35,9 +29,7 @@ import com.uuola.webapp.util.DateUtil;
 @RestController
 @RequestMapping("/")
 public class HomeController extends BaseController{
-    
-    @Autowired
-    private SiteCfgService siteCfgService;
+
 
     @GetMapping("")
     public ModelAndView index() {
@@ -54,16 +46,5 @@ public class HomeController extends BaseController{
         data.put("time", System.currentTimeMillis());
         return ResponseEntity.ok(data);
     }
-    
-    @GetMapping("/site-cfg/list")
-    public ResponseEntity<Object> listSiteCfg(SiteCfgQuery query){
-        List<SiteCfg> list = siteCfgService.list(query);
-        return ResponseEntity.ok(list);
-    }
-    
-    @GetMapping("/site-cfg/{id}")
-    public ResponseEntity<Object> showSiteCfg(@PathVariable("id") Integer id){
-        SiteCfg siteCfg = siteCfgService.get(id);
-        return ResponseEntity.ok(siteCfg);
-    }
+
 }

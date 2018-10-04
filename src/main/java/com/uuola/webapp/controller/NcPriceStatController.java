@@ -28,7 +28,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/nc-price-stat")
+@RequestMapping("/ncpricestat")
 public class NcPriceStatController extends BaseController{
     
     @Autowired

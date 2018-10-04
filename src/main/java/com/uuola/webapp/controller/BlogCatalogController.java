@@ -1,5 +1,5 @@
 /*
- * @(#)SysCfgController.java 2018年9月23日
+ * @(#)BlogCatalogController.java 2018-10-04 14:33:34
  * 
  * Copy Right@ uuola
  */ 
@@ -13,31 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.uuola.webapp.model.query.SysCfgQuery;
-import com.uuola.webapp.service.SysCfgService;
 import com.uuola.webapp.support.view.BaseController;
 
 /**
  * <pre>
  *
  * @author tonydon
- * 创建日期: 2018年9月23日
+ * by make_bootapp_skt.py script generated
+ * at 2018-10-04 14:33:34
  * </pre>
  */
 @RestController
-@RequestMapping("/syscfg")
-public class SysCfgController extends BaseController{
-
-    @Autowired
-    private SysCfgService sysCfgService;
+@RequestMapping("/blogcatalog")
+public class BlogCatalogController extends BaseController{
     
     @GetMapping("")
     public ModelAndView index() {
-        return this.makeModelView();
+        return makeModelView();
     }
-    
-    @GetMapping("/search")
-    public ResponseEntity<Object> search(SysCfgQuery query){
-        return ResponseEntity.ok(sysCfgService.range(query));
-    }
+
 }

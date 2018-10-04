@@ -27,7 +27,7 @@ import com.uuola.webapp.task.NcPriceStatReportProcessor;
  * </pre>
  */
 @RestController
-@RequestMapping("/nc-price-rpt")
+@RequestMapping("/ncpricerpt")
 public class NcPriceRptController extends BaseController{
 
     @Autowired

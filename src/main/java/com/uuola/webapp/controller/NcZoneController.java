@@ -25,7 +25,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/nc-zone")
+@RequestMapping("/nczone")
 public class NcZoneController extends BaseController{
 
     @Autowired

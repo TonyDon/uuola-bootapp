@@ -25,7 +25,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/nc-item")
+@RequestMapping("/ncitem")
 public class NcItemController extends BaseController{
 
     @Autowired
