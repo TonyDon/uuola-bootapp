@@ -37,6 +37,9 @@ public class BlogCatalogQuery extends BaseQuery {
         
         private Date updateTime;
         
+        private Date beginCreateTime;
+        
+        private Date endCreateTime;
 
 
         public Integer getId() {
@@ -86,6 +89,27 @@ public class BlogCatalogQuery extends BaseQuery {
         public void setUpdateTime(Date updateTime) {
             this.updateTime = updateTime;
         }
+
         
+        public Date getBeginCreateTime() {
+            return beginCreateTime;
+        }
+
+        
+        public void setBeginCreateTime(Date beginCreateTime) {
+            this.beginCreateTime = beginCreateTime;
+        }
+
+        
+        public Date getEndCreateTime() {
+            return endCreateTime;
+        }
+
+        
+        public void setEndCreateTime(Date endCreateTime) {
+            this.endCreateTime = endCreateTime;
+        }
+
+
     
 }
