@@ -537,7 +537,7 @@ JGrid.initSearchGrid = function(tableId, pageId, _colModel, _opt){
 			viewrecords : true,
 			height : 500,
 			rowList : [ 10, 20, 50 ],
-			rowNum : 15,
+			rowNum : 10,
 			pager : pageId,
 			shrinkToFit : false,
 			autowidth : true,
@@ -548,7 +548,7 @@ JGrid.initSearchGrid = function(tableId, pageId, _colModel, _opt){
 				rows : 'listSize'
 			},
 			postData : {
-				"_ref" : "common_search"
+				"_ref" : "uuola_search"
 			},
 			jsonReader : {
 				root : "dataSet",
