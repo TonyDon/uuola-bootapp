@@ -536,7 +536,7 @@ JGrid.initSearchGrid = function(tableId, pageId, _colModel, _opt){
 			multiselect : true,
 			viewrecords : true,
 			height : 500,
-			rowList : [ 15, 20, 50 ],
+			rowList : [ 10, 20, 50 ],
 			rowNum : 15,
 			pager : pageId,
 			shrinkToFit : false,

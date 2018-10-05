@@ -133,14 +133,14 @@
         <form id="editFrm">
         <input type="hidden" v-model="orgData.id" name="id">
             <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label col-form-label-sm">分类名称：</label>
-                <div class="col-sm-9">
+                <label for="name" class="col-sm-4 col-form-label col-form-label-sm">分类名称：</label>
+                <div class="col-sm-8">
                     <input type="text" class="form-control"  v-model="orgData.name" name="name" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="state" class="col-sm-3 col-form-label col-form-label-sm">状态：</label>
-                <div class="col-sm-9">
+                <label for="state" class="col-sm-4 col-form-label col-form-label-sm">状态：</label>
+                <div class="col-sm-8">
                     <select name="state" v-model="orgData.state" class="form-control">
                             <option value="">-请选择-</option>
                             <option value="0">禁用</option>
@@ -169,7 +169,7 @@
               <span class="text-muted">2008~2018&copy;986001.com 久富农客网</span>
             </div>
 </footer>
-
+<script src="../ctx.js"></script>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../bootstrap/bootstrap.min.js"></script>
 <script src="../jqgrid/js/i18n/grid.locale-cn.js"></script>
@@ -204,7 +204,7 @@
                   {label: '更新时间', name: 'updateTime' }
               ];
               var gridOpt = {
-                      url: '/blogcatalog/search?' + $.param($('#searchFrm').getFormData()),
+                      url: ctx+'/blogcatalog/search?' + $.param($('#searchFrm').getFormData()),
                       shrinkToFit: true,
                       height:300
                   };
@@ -216,7 +216,7 @@
              
              //搜索按钮触发
               $("#searchBtn").on('click', function () {
-                  var url = '/blogcatalog/search?' + $.param($('#searchFrm').getFormData());
+                  var url = ctx+'/blogcatalog/search?' + $.param($('#searchFrm').getFormData());
                   myGrid.setGridParam({url: url, page: 1});
                   myGrid.trigger("reloadGrid");
               });
@@ -226,7 +226,7 @@
               });
              
               $('#addBtn').on('click', function () {
-                  JDialog.openWin("添加分类", "#addFrmBox", {width:500});
+                  JDialog.openWin("添加分类", "#addFrmBox");
               });
 
               $('#cancelBtn').on('click', function(){
@@ -235,7 +235,7 @@
               });
            
              $('#addSubmitBtn').on('click', function(){
-              $.post('/blogcatalog', $('#addFrm').getFormData(), function(r){
+              $.post(ctx+'/blogcatalog', $('#addFrm').getFormData(), function(r){
             	  JDialog.alertMsg('创建成功!', function () {
                       $("#searchBtn").click();
                       JDialog.closeAll();
@@ -251,7 +251,7 @@
                      JDialog.msg('请选择需要删除的记录.');
                  } else {
                      layer.confirm('确认删除记录吗？', function (index) {
-                         $.post('/blogcatalog?_method=delete', {'ids[]': selrows}, function (x) {
+                         $.post(ctx+'/blogcatalog?_method=delete', {'ids[]': selrows}, function (x) {
                              JDialog.alertMsg('删除成功!', function () {
                                  $("#searchBtn").click();
                              });
@@ -268,7 +268,7 @@
                  },
                  methods: {
                      editSubmit: function () {
-                         $.post('/blogcatalog?_method=put', $('#editFrm').getFormData(), function () {
+                         $.post(ctx+'/blogcatalog?_method=put', $('#editFrm').getFormData(), function () {
                              JDialog.alertMsg('更新成功!', function () {
                                  $("#searchBtn").click();
                                  JDialog.closeAll();
@@ -284,9 +284,9 @@
             
              // 编辑行绑定
              JGrid.bindEidtOnClickEvent(myGrid, function (id) {
-                 JDialog.ajaxLoadWin('/blogcatalog/' + id, function (x) {
+                 JDialog.ajaxLoadWin(ctx+'/blogcatalog/' + id, function (x) {
                      editVue.$data.orgData = x;
-                 }, "#editFrmBox", "编辑参数[" + id + "]", 500);
+                 }, "#editFrmBox", "编辑参数[" + id + "]");
              });
           
           

@@ -9,10 +9,12 @@ package com.uuola.webapp.controller;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Maps;
@@ -39,12 +41,18 @@ public class HomeController extends BaseController{
         return mv;
     }
     
-    @GetMapping("show")
+    @GetMapping("/show")
     public ResponseEntity<Object> show(){
         Map<String, Object> data = Maps.newHashMap();
         data.put("class", this.getClass().getCanonicalName());
         data.put("time", System.currentTimeMillis());
         return ResponseEntity.ok(data);
+    }
+    
+    @GetMapping("/ctx.js")
+    public ResponseEntity<?> outContextPath(WebRequest request){
+        String ctx = String.format("window.ctx='%s';", request.getContextPath());
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/x-javascript;charset=UTF-8")).body(ctx);
     }
 
 }
