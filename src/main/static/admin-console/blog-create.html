@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>后台管理</title>
+        <link href="../layui/css/layui.css" rel="stylesheet">
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../jqgrid/css/ui.jqgrid-bootstrap4.css" rel="stylesheet">
+        <link href="../css/console.css" rel="stylesheet">
+        <link href="../css/fonts.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+              <a class="navbar-brand" href="#">
+              		久富农客网 后台管理
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">首页</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客分类</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客文章</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">博客评论</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+			<form id="blogInfoCreateFrm">
+               <div class="card">
+               	<div class="card-header bg-light">创建BLOG</div>
+		        <div class="card-body p-3">
+		            
+						<div class="form-group">
+							<label for="title">文章标题</label>
+							<input type="text" class="form-control" name="info.title" id="title" placeholder="title" maxlength="50">
+						</div>
+
+						<div class="form-group">
+								<label for="summary">文章摘要</label>
+								<textarea  class="form-control" name="info.summary" id="summary" placeholder="summary"></textarea>
+						</div>
+
+		            	 <div class="form-row">
+							<div class="form-group col-md-6">
+							  <label for="pubTime">发布日期</label>
+							  <input type="text" class="form-control" id="pubTime" name="info.pubTime" placeholder="pubTime">
+							</div>
+							<div class="form-group col-md-6">
+							  <label for="catalog_name">分类</label>
+							  <input type="text" class="form-control" id="catalog_name" name="catalog_name" placeholder="catalog_name">
+							  <input type="hidden" class="form-control" id="cid" name="info.cid" placeholder="cid" value="2">
+							</div>
+						  </div>
+
+						  <div class="form-row">
+							<div class="form-group col-md-3">
+							  <label for="funcType">功能类型</label>
+							  <select id="funcType" class="form-control" name="info.funcType">
+									<option selected value="1">文章</option>
+									<option value="2">重定向</option>
+								  </select>
+							</div>
+							<div class="form-group col-md-3">
+							  <label for="conType">内容分类</label>
+							  <select id="conType" class="form-control" name="info.conType">
+									<option selected value="1">图文</option>
+									<option value="2">视频</option>
+									<option value="3">AD</option>
+									<option value="4">下载</option>
+							  </select>
+							</div>
+							<div class="form-group col-md-3">
+									<label for="conState">状态</label>
+									<select id="conState" class="form-control" name="info.conState">
+										  <option selected value="1">有效</option>
+										  <option value="0">无效</option>
+									</select>
+							</div>
+							<div class="form-group col-md-3">
+									<label for="clickNum">点击次数</label>
+									<input type="text" class="form-control" id="clickNum" name="info.clickNum" placeholder="click_num" value="0">
+							</div>
+						  </div>
+
+						  <div class="form-group">
+								<label for="mainPicUrl">主图地址</label>
+								<input type="text" class="form-control" name="info.mainPicUrl" id="mainPicUrl" placeholder="main_pic_url" maxlength="100">
+						  </div>
+						  <div class="form-group">
+								<label for="vodUrl">视频地址</label>
+								<input type="text" class="form-control" name="info.vodUrl" id="vodUrl" placeholder="vod_url" maxlength="200">
+						  </div>
+						  <div class="form-group">
+								<label for="vodUrl">下载资源</label>
+								<input type="text" class="form-control" name="info.downUrl" id="downUrl" placeholder="down_url" maxlength="200">
+						  </div>
+						  <div class="form-group">
+								<label for="redirectUrl">跳转地址</label>
+								<input type="text" class="form-control" name="info.redirectUrl" id="redirectUrl" placeholder="redirect_url" maxlength="200">
+						  </div>
+						  
+		            
+		        </div>
+		    </div>
+		    
+		    <div class="card mt-3">
+               	<div class="card-header">Blog内容</div>
+		        <div class="card-body p-3">
+					<div class="clearfix">
+						<label for="post_content">*正文内容</label>
+						<textarea  class="form-control" name="post.content" id="post_content" placeholder="content" rows="10"></textarea>
+					</div>
+					<div class="clearfix mt-2">
+							<label for="post_content">Javascript内容</label>
+							<textarea  class="form-control" name="post.script" id="post_script" placeholder="script" rows="5"></textarea>
+					</div>
+		        </div>
+			</div>
+			<div class="clearfix">
+				<button type="button" id="addBlogBtn" class="btn btn-primary mt-2 float-right">确认创建</button>
+			</div>
+		 </form>
+        </main>
+		<footer class="footer">
+		            <div class="container">
+		              <span class="text-muted">2008~2018&copy;986001.com 久富农客网</span>
+		            </div>
+		</footer>
+<script src="../ctx.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script src="../jqgrid/js/jquery.jqGrid.min.js"></script>
+<script src="../layui/layui.js"></script>
+<script src="../js/vue.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../editor/kindeditor-all-min.js"></script>
+<script src="../editor/lang/zh-CN.js"></script>
+<script>
+layui.use(['layer','laydate'], function(){
+        	 var layer = layui.layer, laydate = layui.laydate;
+             laydate.render({
+                 elem: '#pubTime',
+                 type: 'datetime'
+             });
+});
+(function(){
+
+		var frm = $('#blogInfoCreateFrm');
+
+        KindEditor.ready(function(K) {
+                window.postContent = K.create('#post_content');
+        });
+
+		$('#addBlogBtn').on('click',function(){
+			window.postContent.sync();
+			var blogData = frm.getFormData();
+			$.post(ctx+'/blog',blogData,function(r){
+				JDialog.alertMsg('创建成功!', function () {
+                      JDialog.closeAll();
+                      frm.resetfrm();
+                });
+			});
+		});
+          
+})();
+</script>
+    </body>
+</html>
