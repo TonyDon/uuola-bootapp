@@ -191,7 +191,7 @@ public class ImageCodeParams {
     }
 
     
-    public ImageCodeParams setFontColors(Color[] fontColors) {
+    public ImageCodeParams setFontColors(Color... fontColors) {
         this.fontColors = fontColors;
         return this;
     }
@@ -202,7 +202,7 @@ public class ImageCodeParams {
     }
 
     
-    public ImageCodeParams setBackgroundColors(Color[] backgroundColors) {
+    public ImageCodeParams setBackgroundColors(Color... backgroundColors) {
         this.backgroundColors = backgroundColors;
         return this;
     }

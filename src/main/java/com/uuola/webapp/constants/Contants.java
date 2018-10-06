@@ -17,4 +17,6 @@ package com.uuola.webapp.constants;
 public abstract class Contants {
 
     public static final String APP_NAME ="ny_site";
+    
+    public static final String SESSION_IMAGE_CODE = "session_image_code";
 }

@@ -28,7 +28,7 @@ public class WebAppMvcConfig implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ViewInterceptor());
         registry.addInterceptor(new AdminAccessInterceptor()).addPathPatterns("/admin-console/**")
-                .excludePathPatterns("/admin-console/login*");
+                .excludePathPatterns("/admin-console/login*", "/admin-console/imagecode");
     }
     
 }

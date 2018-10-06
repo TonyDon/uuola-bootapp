@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 import com.uuola.webapp.util.NumberUtil;
 
 
-public class ImageVerifier {
+public class ImageCodeMaker {
 
-    protected static Logger logger = LoggerFactory.getLogger(ImageVerifier.class);
+    protected static Logger logger = LoggerFactory.getLogger(ImageCodeMaker.class);
     
     /**
      * 传入参数对象，输出验证码数据流到params.OutputStream
@@ -41,7 +41,7 @@ public class ImageVerifier {
         g2d.setBackground(bgColr);
         g2d.fillRect(0, 0, width, height);
         g2d.setFont(params.getFont());
-        BasicStroke stroke = new BasicStroke(genInt(2,5));
+        BasicStroke stroke = new BasicStroke(genInt(2,4));
 
         
         int ct_f = (charBoxSize >> 1);
