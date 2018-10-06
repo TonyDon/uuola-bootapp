@@ -44,7 +44,9 @@ public abstract class CrudOperator<T> implements CrudService<T>{
         Class<T> entityClass = (Class<T>) pt.getActualTypeArguments()[0];
         String daoName = StringUtils.uncapitalize(entityClass.getSimpleName()+"DAO");
         crudDAO =  ac.getBean(daoName, BaseDAO.class);
-        log.info("CrudOperator() fetch CrudDAO success - {}", crudDAO.getClass().getName());
+        if(log.isDebugEnabled()) {
+            log.debug("CrudOperator() fetch CrudDAO success - {}", crudDAO.getClass().getName());
+        }
     }
 
     @Override
