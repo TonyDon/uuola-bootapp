@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.uuola.webapp.support.view.AdminAccessInterceptor;
+import com.uuola.webapp.support.view.ConsoleAccessInterceptor;
 import com.uuola.webapp.support.view.ViewInterceptor;
 
 
@@ -27,7 +27,8 @@ public class WebAppMvcConfig implements WebMvcConfigurer{
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ViewInterceptor());
-        registry.addInterceptor(new AdminAccessInterceptor())
+        registry.addInterceptor(new ConsoleAccessInterceptor()
+                .setRedirectUri("/admin-console/login.html"))
                 .addPathPatterns("/admin-console/**")
                 .excludePathPatterns(
                         "/admin-console/login*", 

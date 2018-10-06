@@ -22,17 +22,24 @@ import com.uuola.webapp.constants.Constants;
  * 创建日期: 2018年10月6日
  * </pre>
  */
-public class AdminAccessInterceptor implements HandlerInterceptor {
+public class ConsoleAccessInterceptor implements HandlerInterceptor {
+    
+    private String redirectUri;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession sn = request.getSession(false);
-        if(null == sn || null == sn.getAttribute(Constants.SESSION_ADMIN)) {
-            response.sendRedirect(request.getContextPath()+"/admin-console/login.html");
+        if (null == sn || null == sn.getAttribute(Constants.SESSION_ADMIN)) {
+            response.sendRedirect(request.getContextPath() + redirectUri);
             return false;
         }
         return true;
+    }
+    
+    public ConsoleAccessInterceptor setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
+        return this;
     }
 
 }
