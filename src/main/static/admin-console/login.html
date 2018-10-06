@@ -41,18 +41,26 @@
             </nav>
         </header>
 
-        <main role="main" class="container">
-			<form id="blogInfoCreateFrm">
-			<div class="clearfix">
-				<button type="button" id="addBlogBtn" class="btn btn-primary mt-2 float-right">登陆</button>
-			</div>
-		 </form>
+        <main role="main" class="container w-25">
+          <form id="blogInfoCreateFrm">
+              <div class="form-group">
+                  <label for="login_name">Login Name</label>
+                  <input type="text" class="form-control" id="login_name" name="name" aria-describedby="emailHelp" placeholder="admin name">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="password">
+                </div>
+              <div class="clearfix">
+                <button type="button" id="addBlogBtn" class="btn btn-primary mt-2 float-right">登陆</button>
+              </div>
+          </form>
         </main>
-		<footer class="footer">
-		            <div class="container">
-		              <span class="text-muted">2008~2018&copy;986001.com 久富农客网</span>
-		            </div>
-		</footer>
+      <footer class="footer">
+                  <div class="container">
+                    <span class="text-muted">2008~2018&copy;986001.com 久富农客网</span>
+                  </div>
+      </footer>
 <script src="../ctx.js"></script>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../bootstrap/bootstrap.min.js"></script>
