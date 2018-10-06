@@ -23,7 +23,7 @@ import com.uuola.webapp.model.query.BaseQuery;
 @Aspect
 public class ControllerMethodAop {
 
-    @Pointcut("execution(public * com.uuola.webapp.controller.*Controller.*(..))")
+    @Pointcut("execution(public * com.uuola.webapp.**.*Controller.*(..))")
     public void doPointcut() {
     }
     

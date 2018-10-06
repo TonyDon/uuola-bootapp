@@ -8,8 +8,11 @@ package com.uuola.webapp.support.view;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import com.uuola.webapp.constants.Constants;
 
 
 /**
@@ -24,7 +27,11 @@ public class AdminAccessInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        // TODO Auto-generated method stub
+        HttpSession sn = request.getSession(false);
+        if(null == sn || null == sn.getAttribute(Constants.SESSION_ADMIN)) {
+            response.sendRedirect(request.getContextPath()+"/admin-console/login.html");
+            return false;
+        }
         return true;
     }
 

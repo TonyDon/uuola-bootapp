@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.controller;
+package com.uuola.webapp.face.controller;
 
 import java.util.List;
 

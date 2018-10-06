@@ -34,7 +34,7 @@ var ut = {
     dec:function(s){return decodeURIComponent(s);},
     enc:function(s){return encodeURIComponent(s);},
     reload:function(s){if(va.isnull(s)){location.reload();}else{location.replace(s);} },
-    gopage:function(s){top.location.replace(s);return;},/* location.href=s; */
+    gopage:function(s){top.location.replace(s+'#t='+ut.r());return;},/* location.href=s; */
     get:function(q){
         var v="";var s = location.href;s = s.replace("?","?&").split("&");for(var i=1;i<s.length;i++){if(s[i].indexOf(q+"=")==0)v = s[i].replace(q+"=","");}v = ( typeof(v) == "undefined" )?'':v;if( v.indexOf("#")>=0)v = v.substring(0,v.indexOf("#"));return v;},
     delay:function(f){setTimeout(f,600);},

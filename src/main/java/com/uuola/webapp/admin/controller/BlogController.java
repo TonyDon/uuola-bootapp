@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.controller;
+package com.uuola.webapp.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/blog")
+@RequestMapping("/admin-console/blog")
 public class BlogController extends BaseController{
     
     @Autowired

@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.controller;
+package com.uuola.webapp.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ import com.uuola.webapp.support.view.BaseController;
  * </pre>
  */
 @RestController
-@RequestMapping("/syscfg")
+@RequestMapping("/admin-console/syscfg")
 public class SysCfgController extends BaseController{
 
     @Autowired

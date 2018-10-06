@@ -17,7 +17,7 @@
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
               <a class="navbar-brand" href="#">
-              	 后台管理
+              		后台管理
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,41 +27,14 @@
                   <li class="nav-item active">
                     <a class="nav-link" href="#">首页</a>
                   </li>
-                </ul>
-                <ul class="navbar-nav px-3">
-                    <li class="nav-item text-nowrap">
-                      <a class="nav-link" href="logout.html">Sign out</a>
-                    </li>
-                </ul>
               </div>
             </nav>
         </header>
 
-        <main role="main" class="container w-25">
-          <form id="loginFrm" class="mt-3">
-              <div class="form-group">
-                  <label for="login_name">Login Name</label>
-                  <input type="text" class="form-control" id="login_name" name="name" aria-describedby="emailHelp" placeholder="admin name">
+        <main role="main" class="container">
+                <div class="alert alert-success mt-3" role="alert">
+                        Logout Admin Console ,Please wait... <span id="logout_state" class="badge"></span>
                 </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="password">
-                </div>
-                <div class="form-group">
-                    <label for="imagecode">Valid Code</label>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <input type="text" class="form-control" id="imagecode" name="code" placeholder="code">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <img id="image_code" src="../imagecode?t=init" height="38" width="110" class="border"/>
-                        </div>
-                    </div>
-                </div>
-              <div class="clearfix">
-                <button type="button" id="addBlogBtn" class="btn btn-primary mt-2 float-right">登陆</button>
-              </div>
-          </form>
         </main>
       <footer class="footer">
                   <div class="container">
@@ -79,24 +52,15 @@
 <script src="../js/jquery.md5.js"></script>
 <script>
 (function(){
-
-    $('#image_code').on('click',function(){
-      var imgsrc = $(this).attr('src');
-      imgsrc = imgsrc.substr(0,imgsrc.indexOf('?'));
-      $(this).attr('src',imgsrc+'?t='+ut.r());
-    });
-
-    $('#addBlogBtn').on('click',function(){
-    	var data = $('#loginFrm').getFormData();
-      data['password']=$.md5([$.md5(data['password']),data['code']].join(''));
-      $.get(ctx+'/admin-console/verify',data,function(r){
+    $.get(ctx+'/admin-console/logout',function(r){
         if(r.state===1){
-          ut.gopage('blogcatalog.html?t'+ut.r())
+            $('#logout_state').addClass('badge-success').text(' - success! ');
         }else{
-          alert('login fail.');
-          ut.reload();
+            $('#logout_state').addClass('badge-danger').text(' - fail! ');
         }
-      });
+        ut.delay(function(){
+            ut.gopage('login.html?t'+ut.r());
+        });
     });
 })();
 </script>

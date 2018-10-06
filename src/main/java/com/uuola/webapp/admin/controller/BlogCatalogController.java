@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.controller;
+package com.uuola.webapp.admin.controller;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ import com.uuola.webapp.util.DateUtil;
  * </pre>
  */
 @RestController
-@RequestMapping("/blogcatalog")
+@RequestMapping("/admin-console/blogcatalog")
 public class BlogCatalogController extends BaseController{
     
     @Autowired

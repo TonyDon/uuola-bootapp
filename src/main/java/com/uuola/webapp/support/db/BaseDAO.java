@@ -103,7 +103,7 @@ public abstract class BaseDAO<T> {
         if(StringUtils.isEmpty(column)) {
             throw new IllegalArgumentException("Don't find column from EntityDef["+fieldName+"]");
         }
-        String sql = "select * from " + this.tableName + " where " + idColumnName +  "=? ";
+        String sql = "select * from " + this.tableName + " where " + column +  "=? ";
         List<T> list = jdbcTemplate.getJdbcOperations().query(sql, new Object[] { value }, new RowMapperResultSetExtractor<T>(entityPropertyRowMapper, 1));
         return list;
     }

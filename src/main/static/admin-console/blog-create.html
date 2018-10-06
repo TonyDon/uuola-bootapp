@@ -17,7 +17,7 @@
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
               <a class="navbar-brand" href="#">
-              		久富农客网 后台管理
+              		后台管理
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">首页</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">博客分类</a>
+                    <a class="nav-link" href="blogcatalog.html">博客分类</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">博客文章</a>
@@ -36,6 +36,17 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">博客评论</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="syscfg.html">系统参数</a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav px-3">
+                   <li class="nav-item text-nowrap">
+                       <a class="nav-link" id="my_name"></a>
+                   </li>
+                   <li class="nav-item text-nowrap">
+                       <a class="nav-link" href="logout.html">Sign out</a>
+                   </li>
                 </ul>
               </div>
             </nav>
@@ -172,7 +183,7 @@ layui.use(['layer','laydate'], function(){
 		$('#addBlogBtn').on('click',function(){
 			window.postContent.sync();
 			var blogData = frm.getFormData();
-			$.post(ctx+'/blog',blogData,function(r){
+			$.post(ctx+'/admin-console/blog',blogData,function(r){
 				JDialog.alertMsg('创建成功!', function () {
                       JDialog.closeAll();
                       frm.resetfrm();
