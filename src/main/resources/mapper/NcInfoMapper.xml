@@ -20,6 +20,6 @@
 	</select>
 	
 	<select id="list" resultType="NcInfo" parameterType="NcInfoQuery">
-		select * from nc_info where  id!=0 <include refid="listQueryCondition"/> order by id desc
+		select * from nc_info where  id!=0 <include refid="listQueryCondition"/> order by id desc limit 0, 10000
 	</select>
 </mapper>

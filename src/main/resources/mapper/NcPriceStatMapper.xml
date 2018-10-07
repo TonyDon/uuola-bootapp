@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="list" resultType="NcPriceStat" parameterType="NcPriceStatQuery">
-		select * from nc_price_stat where id!=0 <include refid="listQueryCondition"/> order by id desc
+		select * from nc_price_stat where id!=0 <include refid="listQueryCondition"/> order by id desc limit 0, 10000
 	</select>
 	
 	<select id="statPriceRpt" resultType="NcPriceRpt" parameterType="NcPriceStatQuery">

@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="list" resultType="BlogCatalog" parameterType="BlogCatalogQuery">
-		select * from blog_catalog where id!=0 <include refid="listQueryCondition"/> order by id desc
+		select * from blog_catalog where id!=0 <include refid="listQueryCondition"/> order by id desc limit 0, 10000
 	</select>
 	
 </mapper>

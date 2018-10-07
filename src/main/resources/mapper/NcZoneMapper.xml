@@ -20,6 +20,6 @@
 	</select>
 	
 	<select id="list" resultType="NcZone" parameterType="NcZoneQuery">
-		select * from nc_zone where id!=0 <include refid="listQueryCondition"/> order by id desc
+		select * from nc_zone where id!=0 <include refid="listQueryCondition"/> order by id desc limit 0, 10000
 	</select>
 </mapper>
