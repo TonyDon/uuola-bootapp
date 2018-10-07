@@ -49,7 +49,9 @@ public  abstract  class ClassUtil {
                     clazz.getCanonicalName())); 
         }else if (StringUtils.isEmpty(table.name())) {
             tableName = StringUtil.getUnderscoreName(clazz.getSimpleName());
-            log.warn("entity class @Table not set name, using name:{} replace it. for class:{}", tableName, clazz.getCanonicalName());
+            if(log.isDebugEnabled()) {
+                log.debug("entity class @Table not set name, using name:{} replace it. for class:{}", tableName, clazz.getCanonicalName());
+            }
         }else {
             tableName = table.name();
         }
