@@ -6,6 +6,10 @@
 
 package com.uuola.webapp.service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.uuola.webapp.model.entity.SysCfg;
 import com.uuola.webapp.support.db.CrudService;
 
@@ -19,4 +23,16 @@ import com.uuola.webapp.support.db.CrudService;
 public interface SysCfgService extends CrudService<SysCfg> {
 
     SysCfg getByName(String name);
+    
+    Number getNumber(String name);
+    
+    String getText(String name);
+    
+    Boolean getBool(String name);
+    
+    <T> List<T> getList(String name);
+    
+    <K, V> Map<K, V> getDict(String name);
+    
+    <E> Set<E> getSet(String name);
 }

@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.Maps;
 import com.uuola.webapp.constants.Constants;
 import com.uuola.webapp.model.dto.AdminDTO;
-import com.uuola.webapp.model.entity.SysCfg;
 import com.uuola.webapp.model.query.AdminQuery;
 import com.uuola.webapp.service.SysCfgService;
 import com.uuola.webapp.support.view.BaseController;
@@ -58,12 +57,11 @@ public class ConsoleController extends BaseController {
             //验证码错误
             result.put("state", -1);
         }else {
-            SysCfg adminCfg = sysCfgService.getByName(query.getName());
-            if(null == adminCfg) {
+            String pass = sysCfgService.getText(query.getName());
+            if(null == pass) {
                 result.put("state", -2);
             }else {
-                String password = adminCfg.getCfgVal();
-                String serverHash = DigestHash.md5(String.format("%s%s", password, code));
+                String serverHash = DigestHash.md5(String.format("%s%s", pass, code));
                 if(!serverHash.equals(query.getPassword())) {
                     result.put("state", -3);
                 }else {

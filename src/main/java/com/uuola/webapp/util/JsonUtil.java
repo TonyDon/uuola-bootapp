@@ -98,6 +98,15 @@ public final class JsonUtil {
         }
         return null;
     }
+    
+    /**
+     * 将JSON字符串转位泛型对象
+     * @param value
+     * @return
+     */
+    public static <E> E convert(String value) {
+        return parseObject(value, new TypeReference<E>() {});
+    }
 
     public static void main(String[] args) {
         String dict = "{\"1\":\"通过\",\"2\":\"在路上\"}";

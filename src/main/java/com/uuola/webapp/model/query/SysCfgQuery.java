@@ -6,6 +6,8 @@
 
 package com.uuola.webapp.model.query;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -37,6 +39,10 @@ public class SysCfgQuery extends BaseQuery {
     private Integer cfgState;
     
     private String matchName;
+    
+    private Date beginCreateTime;
+    
+    private Date endCreateTime;
 
     
     public Integer getId() {
@@ -88,6 +94,30 @@ public class SysCfgQuery extends BaseQuery {
     
     public void setMatchName(String matchName) {
         this.matchName = matchName;
+    }
+
+
+    
+    public Date getBeginCreateTime() {
+        return beginCreateTime;
+    }
+
+
+    
+    public void setBeginCreateTime(Date beginCreateTime) {
+        this.beginCreateTime = beginCreateTime;
+    }
+
+
+    
+    public Date getEndCreateTime() {
+        return endCreateTime;
+    }
+
+
+    
+    public void setEndCreateTime(Date endCreateTime) {
+        this.endCreateTime = endCreateTime;
     }
 
 }

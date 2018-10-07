@@ -9,6 +9,9 @@
 			<if test="cfgType!=null">and cfg_type=#{cfgType}</if>
 			<if test="cfgState!=null">and cfg_state=#{cfgState}</if>
 			<if test="matchName!=null">and name like #{matchName}</if>
+			<if test="beginCreateTime!=null and endCreateTime!=null">
+				and ( create_time <![CDATA[ >= ]]> #{beginCreateTime} and create_time <![CDATA[ < ]]> #{endCreateTime} )
+		    </if>
 	</sql>
 
 	<select id="count" parameterType="SysCfgQuery" resultType="java.lang.Integer">
