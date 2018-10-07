@@ -1,7 +1,7 @@
 /*
  * @(#)DbConfig.java 2018年6月12日
  * 
- * Copy Right@ JD.COM
+ * Copy Right@ uuola
  */ 
 
 package com.uuola.webapp.config;

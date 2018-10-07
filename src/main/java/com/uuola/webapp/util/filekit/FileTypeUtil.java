@@ -1,7 +1,7 @@
 /*
  * @(#)TypeUtil.java 2018年5月9日
  * 
- * Copy Right@ JD.COM
+ * Copy Right@ uuola
  */ 
 
 package com.uuola.webapp.util.filekit;
