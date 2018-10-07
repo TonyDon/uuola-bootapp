@@ -1,7 +1,7 @@
 /*
  * @(#)JsonUtil.java 2017年9月10日
  * 
- * Copy Right@ JD.COM
+ * Copy Right@ uuola
  */ 
 
 package com.uuola.webapp.util;
