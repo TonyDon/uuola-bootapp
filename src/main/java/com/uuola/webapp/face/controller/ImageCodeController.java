@@ -44,7 +44,7 @@ public class ImageCodeController {
         ByteArrayOutputStream bufferStream = new ByteArrayOutputStream();
         params.setOutputStream(bufferStream)
         .setCharBoxSize(22)
-        .setDrawLine(true)
+        .setDrawLine(false)
         .setRotate(true)
         .setWidth(90)
         .setHeight(30)
