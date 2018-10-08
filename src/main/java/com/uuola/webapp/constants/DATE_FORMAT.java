@@ -7,7 +7,7 @@ public class DATE_FORMAT {
     public static final String YY_MM_DD_HH_MM = "yy-MM-dd HH:mm";
     public static final String YYYYMMDD_HHMMSS = "yyyyMMdd HHmmss";
     public static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
-    public static final String YYYY_MM_DD_HH_MM_SS_ZZZ = "yyyy-MM-dd HH:mm:ss ZZZ";
+    public static final String YYYY_MM_DDTHH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
     public static final String YYMMDDHHMMSS = "yyMMddHHmmss";
     public static final String HHMMSSSSS = "HHmmssSSS";
     public static final String HHMMSS = "HHmmss";

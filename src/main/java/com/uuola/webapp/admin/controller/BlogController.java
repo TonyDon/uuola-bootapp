@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uuola.webapp.model.dto.BlogDTO;
-import com.uuola.webapp.model.dto.Page;
-import com.uuola.webapp.model.entity.BlogInfo;
 import com.uuola.webapp.model.query.BlogInfoQuery;
 import com.uuola.webapp.service.BlogInfoService;
 import com.uuola.webapp.service.BlogService;
@@ -54,7 +52,6 @@ public class BlogController extends BaseController{
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable("id") Long id) {
         BlogDTO  blog = blogService.get(id);
-        blog.configSid();
         return ResponseEntity.ok(blog);
     }
 
@@ -77,10 +74,6 @@ public class BlogController extends BaseController{
     
     @GetMapping("/search")
     public ResponseEntity<?> search(BlogInfoQuery query){
-        Page<BlogInfo> page = blogInfoService.rangePage(query);
-        page.getDataSet().forEach(d->{
-            d.configSid();
-        });
-        return ResponseEntity.ok(page);
+        return ResponseEntity.ok(blogInfoService.rangePage(query));
     }
 }

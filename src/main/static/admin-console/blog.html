@@ -124,7 +124,7 @@
 	<div id="editFrmBox"  class="hide">
         <div class="container-fluid mt-2">
         <form id="editFrm">
-        <input type="hidden" v-model="orgData.info.sid" name="info.id">
+        <input type="hidden" v-model="orgData.info.id" name="info.id">
             <div class="form-group row">
                 <label for="info.title" class="col-sm-4 col-form-label col-form-label-sm">分类名称：</label>
                 <div class="col-sm-8">
@@ -186,15 +186,11 @@
         	  var searchfrm = $('#searchFrm');
         	  var addfrm = $('#addFrm');
               var editfrm = $('#editFrm');
-              
-              var initEidtFormat = function(cellvalue, options, rowObject) {
-                    return '<a href="#init-edit" class="edit-record" data-id="'+rowObject.sid+'">' + cellvalue + '</a>';
-                };
         	  
         	// 初始化表格
               var colModel = [
-                  {label: 'ID', name: 'sid', key: true , hidden:true},
-                  {label: '标题', name: 'title', width: 200, formatter: initEidtFormat},
+                  {label: 'ID', name: 'id', key: true , hidden:true},
+                  {label: '标题', name: 'title', width: 200, formatter: JGrid.initEidtFormat},
                   {label: '状态', name: 'conState', width: 45, formatter: JGrid.boolStateFormat},
                   {label: '板块分类', name: 'cid', width: 45},
                   {label: '功能类别', name: 'funcType', width: 45 },
