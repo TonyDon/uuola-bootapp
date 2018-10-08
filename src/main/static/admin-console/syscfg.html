@@ -24,21 +24,21 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">首页</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="blogcatalog.html">博客分类</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">博客文章</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">博客评论</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="syscfg.html">系统参数</a>
-                  </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">首页</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="blogcatalog.html">博客分类</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="blog.html">博客文章</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="blog-create.html">创建博客</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="syscfg.html">系统参数</a>
+                      </li>
                 </ul>
                 <ul class="navbar-nav px-3">
                    <li class="nav-item text-nowrap">
@@ -280,7 +280,7 @@
                   {label: '更新时间', name: 'updateTime' }
               ];
               var gridOpt = {
-                      url: ctx+'/admin-console/syscfg/search?' + $.param($('#searchFrm').getFormData()),
+                      url: ctx+'/admin-console/syscfg/search?' + $('#searchFrm').getQueryFormData(),
                       shrinkToFit: true,
                       height:300
                   };
@@ -292,7 +292,7 @@
              
              //搜索按钮触发
               $("#searchBtn").on('click', function () {
-                  var url = ctx+'/admin-console/syscfg/search?' + $.param($('#searchFrm').getFormData());
+                  var url = ctx+'/admin-console/syscfg/search?' + $('#searchFrm').getQueryFormData();
                   myGrid.setGridParam({url: url, page: 1});
                   myGrid.trigger("reloadGrid");
               });

@@ -1,5 +1,5 @@
 /*
- * @(#)BlogInfoQuery.java 2018-10-04 14:40:07
+ * @(#)BlogInfoQuery.java 2018-10-08 18:38:01
  * 
  * Copy Right@ uuola
  */ 
@@ -13,14 +13,13 @@ import java.util.Date;
  *
  * @author tonydon
  * by make_bootapp_skt.py script generated
- * at 2018-10-04 14:40:07
+ * at 2018-10-08 18:38:01
  * </pre>
  */
 public class BlogInfoQuery extends BaseQuery {
 
     @Override
     public void filter() {
-    	// TODO Auto-generated method stub
         super.filter();
     }
 
@@ -56,6 +55,10 @@ public class BlogInfoQuery extends BaseQuery {
         private Long clickNum;
         
         private Date createTime;
+        
+        private Date beginCreateTime;
+        
+        private Date endCreateTime;
         
         private Date updateTime;
         
@@ -187,6 +190,22 @@ public class BlogInfoQuery extends BaseQuery {
         
         public void setCreateTime(Date createTime) {
             this.createTime = createTime;
+        }
+        
+        public Date getBeginCreateTime() {
+            return beginCreateTime;
+        }
+    
+        public void setBeginCreateTime(Date beginCreateTime) {
+            this.beginCreateTime = beginCreateTime;
+        }
+    
+        public Date getEndCreateTime() {
+            return endCreateTime;
+        }
+    
+        public void setEndCreateTime(Date endCreateTime) {
+            this.endCreateTime = endCreateTime;
         }
         
         public Date getUpdateTime() {

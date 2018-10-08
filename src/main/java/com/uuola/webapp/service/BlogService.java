@@ -6,6 +6,8 @@
 
 package com.uuola.webapp.service;
 
+import java.util.List;
+
 import com.uuola.webapp.model.dto.BlogDTO;
 
 /**
@@ -23,6 +25,12 @@ public interface BlogService {
      * @return blog id
      */
     Long create(BlogDTO blog);
+
+    BlogDTO get(Long id);
+
+    int update(BlogDTO blog);
+
+    int bulkDelete(List<Long> ids);
     
 
 }

@@ -24,21 +24,21 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">首页</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="blogcatalog.html">博客分类</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="blog.html">博客文章</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="blog-create.html">创建博客</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="syscfg.html">系统参数</a>
-                      </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/">首页</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="blogcatalog.html">博客分类</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="blog.html">博客文章</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="blog-create.html">创建博客</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="syscfg.html">系统参数</a>
+                  </li>
                 </ul>
                 <ul class="navbar-nav px-3">
                    <li class="nav-item text-nowrap">
@@ -58,17 +58,33 @@
 		        <div class="card-body p-1">
 		            <form id="searchFrm">
 		            	<div class="form-row">
-			                <div class="col-md-3">
-			                   <input type="text" class="form-control" id="name" name="name" placeholder="类目名称">
+			                <div class="col-md-2">
+			                   <input type="text" class="form-control" id="id" name="id" placeholder="ID">
 			                </div>
-			                <div class="col-md-3">
-			                        <select id="state" name="state" class="form-control">
+			                <div class="col-md-2">
+			                        <select id="conState" name="conState" class="form-control">
 			                            <option value="">-请选择-</option>
 			                            <option value="0">禁用</option>
-			                            <option value="1" selected="selected">启用</option>
+			                            <option value="1">启用</option>
 			                        </select>
 			                </div>
-			                <div class="col-md-6">
+			                <div class="col-md-2">
+			                        <select id="funcType" name="funcType" class="form-control">
+			                            <option value="">-请选择-</option>
+			                            <option value="1">文章</option>
+			                            <option value="2">重定向</option>
+			                        </select>
+			                </div>
+			                <div class="col-md-2">
+			                        <select id="conType" name="conType" class="form-control">
+			                            <option value="">-请选择-</option>
+			                            <option value="1">图文</option>
+			                            <option value="2">视频</option>
+			                            <option value="3">AD</option>
+			                            <option value="4">下载</option>
+			                        </select>
+			                </div>
+			                <div class="col-md-4">
 			                    <div class="input-group">
 			                        <input type="text" size="13" class="form-control" id="beginCreateTime" name="beginCreateTime"
 			                               placeholder="起始时间" readonly>
@@ -104,55 +120,21 @@
 		        </div>
 		    </div>
         </main>
-        
-<div id="addFrmBox"  class="hide">
-    <div class="container-fluid mt-2">
-        <form id="addFrm">
-            <div class="form-group row">
-                <label for="name" class="col-sm-4 control-label">分类名称：</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="name" placeholder="">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="state" class="col-sm-4 control-label">状态：</label>
-                <div class="col-sm-8">
-                    <select name="state" class="form-control">
-                        <option value="">-请选择-</option>
-                        <option value="0">禁用</option>
-                        <option value="1">启用</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group float-right">
-                <div class="col-sm-3"></div>
-                <div class="btn-group col-sm-9" role="group">
-                    <button type="button" id="addSubmitBtn" class="btn btn-info"><span
-                            class="glyphicon glyphicon-ok"></span> 确认
-                    </button>
-                    <button type="button" id="cancelBtn" class="btn btn-default cancel-btn"><span
-                            class="glyphicon glyphicon-remove-circle"></span> 取消
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
-<div id="editFrmBox"  class="hide">
+	<div id="editFrmBox"  class="hide">
         <div class="container-fluid mt-2">
         <form id="editFrm">
-        <input type="hidden" v-model="orgData.id" name="id">
+        <input type="hidden" v-model="orgData.info.sid" name="info.id">
             <div class="form-group row">
-                <label for="name" class="col-sm-4 col-form-label col-form-label-sm">分类名称：</label>
+                <label for="info.title" class="col-sm-4 col-form-label col-form-label-sm">分类名称：</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control"  v-model="orgData.name" name="name" placeholder="">
+                    <input type="text" class="form-control"  v-model="orgData.info.title" name="info.title" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="state" class="col-sm-4 col-form-label col-form-label-sm">状态：</label>
+                <label for="info.conState" class="col-sm-4 col-form-label col-form-label-sm">状态：</label>
                 <div class="col-sm-8">
-                    <select name="state" v-model="orgData.state" class="form-control">
+                    <select name="info.conState" v-model="orgData.info.conState" class="form-control">
                             <option value="">-请选择-</option>
                             <option value="0">禁用</option>
                             <option value="1">启用</option>
@@ -173,7 +155,7 @@
             </div>
         </form>
         </div>
-</div>
+	</div>
 
 <footer class="footer">
             <div class="container">
@@ -203,19 +185,25 @@
           (function(){
         	  var searchfrm = $('#searchFrm');
         	  var addfrm = $('#addFrm');
-        	  var editfrm = $('#editFrm');
+              var editfrm = $('#editFrm');
+              
+              var initEidtFormat = function(cellvalue, options, rowObject) {
+                    return '<a href="#init-edit" class="edit-record" data-id="'+rowObject.sid+'">' + cellvalue + '</a>';
+                };
         	  
         	// 初始化表格
               var colModel = [
-                  {label: 'ID', name: 'id', key: true },
-                  {label: '类目名称', name: 'name', width: 200, formatter: JGrid.initEidtFormat},
-                  {label: '状态', name: 'state', width: 80, formatter: JGrid.boolStateFormat},
-                  {label: '记录数', name: 'recordNum', width: 80},
-                  {label: '创建时间', name: 'createTime' },
-                  {label: '更新时间', name: 'updateTime' }
+                  {label: 'ID', name: 'sid', key: true , hidden:true},
+                  {label: '标题', name: 'title', width: 200, formatter: initEidtFormat},
+                  {label: '状态', name: 'conState', width: 45, formatter: JGrid.boolStateFormat},
+                  {label: '板块分类', name: 'cid', width: 45},
+                  {label: '功能类别', name: 'funcType', width: 45 },
+                  {label: '内容分类', name: 'conType', width: 45 },
+                  {label: '创建时间', name: 'createTime' , width: 80},
+                  {label: '更新时间', name: 'updateTime' , width: 80}
               ];
               var gridOpt = {
-                      url: ctx+'/admin-console/blogcatalog/search?' + $('#searchFrm').getQueryFormData(),
+                      url: ctx+'/admin-console/blog/search?' + $('#searchFrm').getQueryFormData(),
                       shrinkToFit: true,
                       height:300
                   };
@@ -227,7 +215,7 @@
              
              //搜索按钮触发
               $("#searchBtn").on('click', function () {
-                  var url = ctx+'/admin-console/blogcatalog/search?' + $('#searchFrm').getQueryFormData();
+                  var url = ctx+'/admin-console/blog/search?' + $('#searchFrm').getQueryFormData();
                   myGrid.setGridParam({url: url, page: 1});
                   myGrid.trigger("reloadGrid");
               });
@@ -246,7 +234,7 @@
               });
            
              $('#addSubmitBtn').on('click', function(){
-              $.post(ctx+'/admin-console/blogcatalog', $('#addFrm').getFormData(), function(r){
+              $.post(ctx+'/admin-console/blog', $('#addFrm').getFormData(), function(r){
             	  JDialog.alertMsg('创建成功!', function () {
                       $("#searchBtn").click();
                       JDialog.closeAll();
@@ -262,7 +250,7 @@
                      JDialog.msg('请选择需要删除的记录.');
                  } else {
                      layer.confirm('确认删除记录吗？', function (index) {
-                         $.post(ctx+'/admin-console/blogcatalog?_method=delete', {'ids[]': selrows}, function (x) {
+                         $.post(ctx+'/admin-console/blog?_method=delete', {'ids[]': selrows}, function (x) {
                              JDialog.alertMsg('删除成功!', function () {
                                  $("#searchBtn").click();
                              });
@@ -279,7 +267,7 @@
                  },
                  methods: {
                      editSubmit: function () {
-                         $.post(ctx+'/admin-console/blogcatalog?_method=put', $('#editFrm').getFormData(), function () {
+                         $.post(ctx+'/admin-console/blog?_method=put', $('#editFrm').getFormData(), function () {
                              JDialog.alertMsg('更新成功!', function () {
                                  $("#searchBtn").click();
                                  JDialog.closeAll();
@@ -295,7 +283,7 @@
             
              // 编辑行绑定
              JGrid.bindEidtOnClickEvent(myGrid, function (id) {
-                 JDialog.ajaxLoadWin(ctx+'/admin-console/blogcatalog/' + id, function (x) {
+                 JDialog.ajaxLoadWin(ctx+'/admin-console/blog/' + id, function (x) {
                      editVue.$data.orgData = x;
                  }, "#editFrmBox", "编辑参数[" + id + "]");
              });

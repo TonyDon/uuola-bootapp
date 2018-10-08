@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * <pre>
@@ -38,6 +39,9 @@ public class BlogPost {
     
     @Column
     private Date updateTime;
+    
+    @Transient
+    private String sid;
 
     
     public Long getId() {
@@ -87,5 +91,24 @@ public class BlogPost {
     
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    
+    public String getSid() {
+        return sid;
+    }
+
+    
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+    
+    /**
+     * 将ID转为字符串SID
+     */
+    public void configSid() {
+        if(null != id) {
+            this.sid = String.valueOf(id);
+        }
     }
 }

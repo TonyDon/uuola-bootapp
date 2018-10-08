@@ -55,4 +55,13 @@ public class BlogDTO {
             post.setId(id);
         }
     }
+    
+    public void configSid() {
+        if(null != info) {
+            info.configSid();
+        }
+        if(null != post) {
+            post.configSid();
+        }
+    }
 }

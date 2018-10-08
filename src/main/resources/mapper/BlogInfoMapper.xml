@@ -5,23 +5,25 @@
 
 	<sql id="listQueryCondition">
 		
-        <if test="id!=null">and id=#{id}</if>
-        <if test="title!=null">and title=#{title}</if>
-        <if test="summary!=null">and summary=#{summary}</if>
-        <if test="keywords!=null">and keywords=#{keywords}</if>
-        <if test="pubTime!=null">and pub_time=#{pubTime}</if>
-        <if test="mainPicUrl!=null">and main_pic_url=#{mainPicUrl}</if>
-        <if test="extPicUrls!=null">and ext_pic_urls=#{extPicUrls}</if>
-        <if test="vodUrl!=null">and vod_url=#{vodUrl}</if>
-        <if test="downUrl!=null">and down_url=#{downUrl}</if>
-        <if test="redirectUrl!=null">and redirect_url=#{redirectUrl}</if>
-        <if test="cid!=null">and cid=#{cid}</if>
-        <if test="funcType!=null">and func_type=#{funcType}</if>
-        <if test="conType!=null">and con_type=#{conType}</if>
-        <if test="conState!=null">and con_state=#{conState}</if>
-        <if test="clickNum!=null">and click_num=#{clickNum}</if>
-        <if test="createTime!=null">and create_time=#{createTime}</if>
-        <if test="updateTime!=null">and update_time=#{updateTime}</if>
+            <if test="id!=null">and id=#{id}</if>
+            <if test="title!=null">and title=#{title}</if>
+            <if test="summary!=null">and summary=#{summary}</if>
+            <if test="keywords!=null">and keywords=#{keywords}</if>
+            <if test="pubTime!=null">and pub_time=#{pubTime}</if>
+            <if test="mainPicUrl!=null">and main_pic_url=#{mainPicUrl}</if>
+            <if test="extPicUrls!=null">and ext_pic_urls=#{extPicUrls}</if>
+            <if test="vodUrl!=null">and vod_url=#{vodUrl}</if>
+            <if test="downUrl!=null">and down_url=#{downUrl}</if>
+            <if test="redirectUrl!=null">and redirect_url=#{redirectUrl}</if>
+            <if test="cid!=null">and cid=#{cid}</if>
+            <if test="funcType!=null">and func_type=#{funcType}</if>
+            <if test="conType!=null">and con_type=#{conType}</if>
+            <if test="conState!=null">and con_state=#{conState}</if>
+            <if test="clickNum!=null">and click_num=#{clickNum}</if>
+            <if test="beginCreateTime!=null and endCreateTime!=null">
+                and ( create_time <![CDATA[ >= ]]> #{beginCreateTime} and create_time <![CDATA[ < ]]> #{endCreateTime} )
+            </if>
+            <if test="updateTime!=null">and update_time=#{updateTime}</if>
 	</sql>
 
 	<select id="count" parameterType="BlogInfoQuery" resultType="java.lang.Integer">
