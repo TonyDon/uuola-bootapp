@@ -9,6 +9,7 @@ package com.uuola.webapp.util;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 /**
  * <pre>
@@ -39,8 +40,9 @@ public final class NumberUtil {
      * @limit 不可到达数值 范围是 begin<=int f()<limit， 均匀分布
      */
     public static int genRndInt(int begin, int limit) {
-        return begin + (int) (Math.random() * (limit - begin));
+        return begin + new Random().nextInt(limit - begin);
     }
+    
 
     /*
      * BigDecimal类型数值转换
