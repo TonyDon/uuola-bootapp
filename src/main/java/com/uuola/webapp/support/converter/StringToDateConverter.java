@@ -39,6 +39,8 @@ public class StringToDateConverter implements Converter<String, Date> {
             return DateUtil.parseDate(source, DATE_FORMAT.YYYY_MM_DD_HH_MM);
         } else if (REGEX.RE_DATETIME.matcher(source).matches()) {
             return DateUtil.parseDate(source, DATE_FORMAT.YYYY_MM_DD_HH_MM_SS);
+        } else if (REGEX.RE_DATETIME_TIMEZONE.matcher(source).matches()) {
+            return DateUtil.parseDate(source, DATE_FORMAT.YYYY_MM_DDTHH_MM_SS_Z);
         } else {
             throw new IllegalArgumentException("Invalid Date value '" + source + "'");
         }

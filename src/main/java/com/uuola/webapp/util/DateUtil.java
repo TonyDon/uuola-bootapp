@@ -256,5 +256,6 @@ public final class DateUtil {
         System.out.println(getDay(c));
         System.out.println(getDayInYear(c));
         System.out.println(getMinute(c));
+        System.out.println(DateUtil.parseDate("2018-10-04T14:50:08+0000", DATE_FORMAT.YYYY_MM_DDTHH_MM_SS_Z));
     }
 }

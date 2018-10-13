@@ -15,6 +15,7 @@ public class REGEX {
     public static final Pattern RE_DATE = Pattern.compile("(\\d{4})-(\\d{1,2})-(\\d{1,2})");
     public static final Pattern RE_DATETIME = Pattern.compile("(\\d{4})-(\\d{1,2})-(\\d{1,2}) (\\d{1,2}):(\\d{1,2}):(\\d{1,2})");
     public static final Pattern RE_DATETIME_NOT_SS = Pattern.compile("(\\d{4})-(\\d{1,2})-(\\d{1,2}) (\\d{1,2}):(\\d{1,2})");
+    public static final Pattern RE_DATETIME_TIMEZONE = Pattern.compile("(\\d{4})-(\\d{1,2})-(\\d{1,2})T(\\\\d{1,2}):(\\\\d{1,2}):(\\\\d{1,2})(\\-|\\+)(\\d{4})");
     public static final Pattern RE_DOUBLE = Pattern.compile("([\\d\\-]{1,15})\\.([0-9]{1,2})");
     public static final Pattern RE_TEL = Pattern.compile("((\\(\\d{2,3}\\))|(\\d{3}\\-))?(13|15|18)\\d{9}");
     // 去掉 /* ... */ //...  注释
