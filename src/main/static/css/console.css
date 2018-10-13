@@ -29,3 +29,9 @@ body > .container {
 .show{
 	display:block;
 }
+#load_grid{
+	padding:0.8em 4em 0.8em 4em;
+    background-color:#007bff;
+    color:#ffffff;
+    border:none;
+}
