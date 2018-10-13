@@ -37,12 +37,23 @@ public final class NumberUtil {
      * 
      * @begin 开始于数值
      * 
-     * @limit 不可到达数值 范围是 begin<=int f()<limit， 均匀分布
+     * @limit 不可到达数值 范围是 begin<=int f()<limit
      */
     public static int genRndInt(int begin, int limit) {
         return begin + new Random().nextInt(limit - begin);
     }
     
+    
+    /**
+     * 通过给定random生成器，随机生成范围内整数
+     * @param r
+     * @param begin
+     * @param limit  范围是 begin<= f()<limit
+     * @return
+     */
+    public static int genRndInt(Random r, int begin, int limit) {
+        return begin + r.nextInt(limit - begin);
+    }
 
     /*
      * BigDecimal类型数值转换

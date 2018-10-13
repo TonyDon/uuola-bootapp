@@ -11,8 +11,6 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.uuola.webapp.util.NumberUtil;
-
 
 public class ImageCodeMaker {
 
@@ -25,8 +23,6 @@ public class ImageCodeMaker {
     public static void outputImage(ImageCodeParams params) {
         String text= params.getText();
         int num = text.length();
-        int fontColrLen = params.getFontColors().length;
-        Color[] fontColors = params.getFontColors();
         int charBoxSize = params.getCharBoxSize();
         int width = params.getWidth();
         int height = params.getHeight();
@@ -36,12 +32,12 @@ public class ImageCodeMaker {
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
         
         // 取一个背景色
-        Color bgColr =  params.getBackgroundColors()[genInt(0, params.getBackgroundColors().length)];
+        Color bgColr =  params.rndBackgroundColor();
         g2d.setColor(bgColr);
         g2d.setBackground(bgColr);
         g2d.fillRect(0, 0, width, height);
         g2d.setFont(params.getFont());
-        BasicStroke stroke = new BasicStroke(genInt(2,4));
+        BasicStroke stroke = new BasicStroke(params.randInt(2,4));
 
         
         int ct_f = (charBoxSize >> 1);
@@ -54,15 +50,15 @@ public class ImageCodeMaker {
             // 先将坐标移到left-center.
             g2d.translate(num, ct_y);
             for (int k = 0; k < num; k++) {
-                g2d.setColor(fontColors[genInt(0, fontColrLen)]);
-                rot = Math.toRadians(genInt(-42, 32)); // 倾斜角度范围
+                g2d.setColor(params.rndFontColor());
+                rot = Math.toRadians(params.randInt(-42, 32)); // 倾斜角度范围
                 g2d.rotate(rot);
                 g2d.drawString(text.substring(k, k + 1), cc_f, ct_f - 3);
                 // g2d.drawLine(0, 0, pixSize, 0);
                 // 复原角度
                 g2d.rotate(-rot);
                 // 再横向平移
-                cr_v = genInt(ct_f, ct_f + num);
+                cr_v = params.randInt(ct_f, ct_f + num);
                 g2d.translate(cr_v, 0);
                 cr_x += cr_v;
             }
@@ -72,8 +68,8 @@ public class ImageCodeMaker {
             int ph = (ct_f + num);
             int mn = (num << 1);
             for (int k = 0; k < num; k++) {
-                g2d.setColor(fontColors[genInt(0, fontColrLen)]);
-                g2d.drawString(text.substring(k, k + 1), (k * ph) + mn, genInt(charBoxSize, height - 2));
+                g2d.setColor(params.rndFontColor());
+                g2d.drawString(text.substring(k, k + 1), (k * ph) + mn, params.randInt(charBoxSize, height - 2));
             }
         }
 
@@ -85,37 +81,37 @@ public class ImageCodeMaker {
             int actualCircleTimes = (params.getPointNum()>>2);
             if (params.isMixedColor()) {
                 for (int k = 1; k <= actualCircleTimes; k++) {
-                    g2d.setColor(fontColors[genInt(0, fontColrLen)]);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
+                    g2d.setColor(params.rndFontColor());
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
                 }
             } else {
-                g2d.setColor(fontColors[genInt(0, fontColrLen)]);
+                g2d.setColor(params.rndFontColor());
                 for (int k = 1; k <= actualCircleTimes; k++) {
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
-                    drawNoisePoint(g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
+                    drawNoisePoint(params, g2d, xb, xe, yb, ye);
                 }
             }
         }
 
         if (params.isDrawArc()) { // 画三条干扰曲线
             int hh = (height >> 1) + num;
-            g2d.setColor(fontColors[genInt(0, fontColrLen)]);
+            g2d.setColor(params.rndFontColor());
             g2d.setStroke(stroke);
-            g2d.drawArc(genInt(8, charBoxSize), genInt(8, hh - charBoxSize), 60, 10, -180, 90);
-            g2d.drawArc(genInt(8, charBoxSize), genInt(8, hh), 60, 10, 0, 90);
-            g2d.drawArc(genInt(8, charBoxSize), genInt(8, hh), 60, 10, -180, 90);
+            g2d.drawArc(params.randInt(8, charBoxSize), params.randInt(8, hh - charBoxSize), 60, 10, -180, 90);
+            g2d.drawArc(params.randInt(8, charBoxSize), params.randInt(8, hh), 60, 10, 0, 90);
+            g2d.drawArc(params.randInt(8, charBoxSize), params.randInt(8, hh), 60, 10, -180, 90);
         }
 
         if (params.isDrawLine()) { //画一条干扰直线
             int k = (height-charBoxSize)>>1;
-            g2d.setColor(fontColors[genInt(0, fontColrLen)]);
+            g2d.setColor(params.rndFontColor());
             g2d.setStroke(stroke);
-            g2d.drawLine(genInt(num, k), genInt(num, height - num), genInt(width-charBoxSize, width), genInt(k, height));
+            g2d.drawLine(params.randInt(num, k), params.randInt(num, height - num), params.randInt(width-charBoxSize, width), params.randInt(k, height));
         }
 
         try {
@@ -136,15 +132,11 @@ public class ImageCodeMaker {
      * @param yb y起始坐标
      * @param ye y结束坐标
      */
-    private static void drawNoisePoint(Graphics2D g2d, int xb, int xe, int yb, int ye) {
-        int x = genInt(xb, xe);
-        int y = genInt(yb, ye);
-        int z = genInt(-2, 2);
+    private static void drawNoisePoint(ImageCodeParams icp, Graphics2D g2d, int xb, int xe, int yb, int ye) {
+        int x = icp.randInt(xb, xe);
+        int y = icp.randInt(yb, ye);
+        int z = icp.randInt(-2, 2);
         g2d.drawLine(x, y, x + z, y - z);
     }
 
-
-    private static int genInt(int i, int j) {
-        return NumberUtil.genRndInt(i, j);
-    }
 }

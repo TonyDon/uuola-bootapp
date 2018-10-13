@@ -34,7 +34,7 @@ import com.uuola.webapp.util.imagecode.ImageCodeParams;
 @RequestMapping("/imagecode")
 public class ImageCodeController {
 
-    private Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
+    private Font font = new Font(Font.MONOSPACED, Font.PLAIN, 21);
     
 
     @GetMapping("")
@@ -43,11 +43,8 @@ public class ImageCodeController {
         ImageCodeParams params = new ImageCodeParams(code);
         ByteArrayOutputStream bufferStream = new ByteArrayOutputStream();
         params.setOutputStream(bufferStream)
-        .setCharBoxSize(22)
-        .setDrawLine(false)
+        .setPointNum(32)
         .setRotate(true)
-        .setWidth(90)
-        .setHeight(30)
         .setBackgroundColors(Color.GRAY)
         .setFontColors(Color.BLACK,Color.LIGHT_GRAY)
         .setFont(font);

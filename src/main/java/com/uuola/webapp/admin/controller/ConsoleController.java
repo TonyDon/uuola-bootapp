@@ -52,7 +52,8 @@ public class ConsoleController extends BaseController {
         admin.setName(query.getName());
         admin.setLoginTime(DateUtil.getNowTime());
         Map<String,Object> result = Maps.newHashMap();
-        String code = (String)request.getSession().getAttribute(Constants.SESSION_IMAGE_CODE);
+        HttpSession sn = request.getSession();
+        String code = (String)sn.getAttribute(Constants.SESSION_IMAGE_CODE);
         if(StringUtils.isEmpty(query.getCode()) || null == code || !code.equalsIgnoreCase(query.getCode())) {
             //验证码错误
             result.put("state", -1);
@@ -65,11 +66,12 @@ public class ConsoleController extends BaseController {
                 if(!serverHash.equals(query.getPassword())) {
                     result.put("state", -3);
                 }else {
-                    request.getSession().setAttribute(Constants.SESSION_ADMIN, admin);
+                    sn.setAttribute(Constants.SESSION_ADMIN, admin);
                     result.put("state", 1);
                 }
             }
         }
+        sn.setAttribute(Constants.SESSION_IMAGE_CODE, null);
         log.info("console-login[state={}, admin={}]", result.get("state"), admin);
         return ResponseEntity.ok(result);
     }

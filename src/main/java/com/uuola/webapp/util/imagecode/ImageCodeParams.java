@@ -9,6 +9,9 @@ package com.uuola.webapp.util.imagecode;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.OutputStream;
+import java.util.Random;
+
+import com.uuola.webapp.util.NumberUtil;
 
 
 /**
@@ -20,13 +23,13 @@ import java.io.OutputStream;
  */
 public class ImageCodeParams {
     // 图片宽
-    private int width;
+    private int width = 100;
     
     //图片高度
-    private int height;
+    private int height = 36;
     
     // 字符区域尺寸：（字体+之间间隔）尺寸
-    private int charBoxSize;
+    private int charBoxSize = 24;
     
     // 是否偏转字体 默认不偏转
     private boolean isRotate = false;
@@ -61,8 +64,11 @@ public class ImageCodeParams {
     // 输出流对象
     private OutputStream outputStream;
     
+    private Random random;
+    
     public ImageCodeParams(String text){
         this.text = text;
+        this.random = new Random();
     }
 
     
@@ -189,6 +195,13 @@ public class ImageCodeParams {
     public Color[] getFontColors() {
         return fontColors;
     }
+    
+    public Color rndFontColor() {
+        if(fontColors.length==1) {
+            return fontColors[0];
+        }
+        return fontColors[randInt(0, fontColors.length)];
+    }
 
     
     public ImageCodeParams setFontColors(Color... fontColors) {
@@ -199,6 +212,13 @@ public class ImageCodeParams {
     
     public Color[] getBackgroundColors() {
         return backgroundColors;
+    }
+    
+    public Color rndBackgroundColor() {
+        if(backgroundColors.length==1) {
+            return backgroundColors[0];
+        }
+        return backgroundColors[randInt(0, backgroundColors.length)];
     }
 
     
@@ -216,5 +236,17 @@ public class ImageCodeParams {
     public ImageCodeParams setOutputStream(OutputStream outputStream) {
         this.outputStream = outputStream;
         return this;
+    }
+
+    public Random getRandom() {
+        return random;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+    
+    public int randInt(int begin, int limit) {
+        return NumberUtil.genRndInt(random, begin, limit);
     }
 }
