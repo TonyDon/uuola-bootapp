@@ -7,6 +7,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uuola.webapp.constants.Constants;
+
 /**
  * 
  * <pre>
@@ -38,6 +40,7 @@ public class ViewInterceptor implements HandlerInterceptor{
                     mv.setViewName(action.getViewName(hm.getMethod().getName()));
                 }
             }
+            mv.addObject(Constants.SERVER_CONTEXT_PATH, request.getContextPath());
         }
     }
 

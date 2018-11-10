@@ -21,4 +21,6 @@ public abstract class Constants {
     public static final String SESSION_IMAGE_CODE = "session_image_code";
     
     public static final String SESSION_ADMIN = "session_admin";
+    
+    public static final String SERVER_CONTEXT_PATH = "context_path";
 }
