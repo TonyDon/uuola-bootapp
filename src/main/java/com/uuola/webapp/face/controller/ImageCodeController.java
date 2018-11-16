@@ -34,7 +34,7 @@ import com.uuola.webapp.util.imagecode.ImageCodeParams;
 @RequestMapping("/imagecode")
 public class ImageCodeController {
 
-    private Font font = new Font(Font.MONOSPACED, Font.PLAIN, 21);
+    private Font font = new Font(Font.MONOSPACED, Font.PLAIN, 22);
     
 
     @GetMapping("")
