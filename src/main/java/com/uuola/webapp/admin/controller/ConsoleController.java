@@ -54,6 +54,7 @@ public class ConsoleController extends BaseController {
         Map<String,Object> result = Maps.newHashMap();
         HttpSession sn = request.getSession();
         String code = (String)sn.getAttribute(Constants.SESSION_IMAGE_CODE);
+        sn.setAttribute(Constants.SESSION_IMAGE_CODE, null);
         if(StringUtils.isEmpty(query.getCode()) || null == code || !code.equalsIgnoreCase(query.getCode())) {
             //验证码错误
             result.put("state", -1);
@@ -71,7 +72,6 @@ public class ConsoleController extends BaseController {
                 }
             }
         }
-        sn.setAttribute(Constants.SESSION_IMAGE_CODE, null);
         log.info("console-login[state={}, admin={}]", result.get("state"), admin);
         return ResponseEntity.ok(result);
     }
