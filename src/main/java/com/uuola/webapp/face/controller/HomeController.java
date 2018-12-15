@@ -9,6 +9,8 @@ package com.uuola.webapp.face.controller;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,10 +44,11 @@ public class HomeController extends BaseController{
     }
     
     @GetMapping("/show")
-    public ResponseEntity<Object> show(){
+    public ResponseEntity<Object> show(HttpServletRequest request){
         Map<String, Object> data = Maps.newHashMap();
         data.put("class", this.getClass().getCanonicalName());
         data.put("time", System.currentTimeMillis());
+        data.put("realpath('/')", request.getServletContext().getRealPath("/"));
         return ResponseEntity.ok(data);
     }
     
@@ -54,5 +57,5 @@ public class HomeController extends BaseController{
         String ctx = String.format("window.ctx='%s';", request.getContextPath());
         return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/x-javascript;charset=UTF-8")).body(ctx);
     }
-
+    
 }
