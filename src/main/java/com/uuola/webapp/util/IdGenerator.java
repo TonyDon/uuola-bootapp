@@ -3,7 +3,7 @@ package com.uuola.webapp.util;
 /**
  * 
  * <pre>
- * time(44bit) + workerId(6bit) + sequence(12bit)
+ * time(44bit) + workerId(4bit) + sequence(12bit)
  * @author tonydon
  * 创建日期: 2018年12月16日
  * </pre>
