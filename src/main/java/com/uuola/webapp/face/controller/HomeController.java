@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Maps;
 import com.uuola.webapp.support.view.BaseController;
 import com.uuola.webapp.util.DateUtil;
+import com.uuola.webapp.util.IdGenerator;
 
 /**
  * <pre>
@@ -40,6 +41,7 @@ public class HomeController extends BaseController{
         ModelAndView mv = makeModelView();
         mv.addObject("name", UUID.randomUUID().toString());
         mv.addObject("time", DateUtil.getNowTime());
+        mv.addObject("id", IdGenerator.INSTANCE.nextId());
         return mv;
     }
     

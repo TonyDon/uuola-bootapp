@@ -1,43 +1,34 @@
 package com.uuola.webapp.util;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 /**
- * Created by Administrator on 2017/12/12.
+ * 
+ * <pre>
+ * time(44bit) + workerId(6bit) + sequence(12bit)
+ * @author tonydon
+ * 创建日期: 2018年12月16日
+ * </pre>
  */
 public enum IdGenerator {
 
     INSTANCE;
     private long workerId;
-    private long datacenterId = 0L;
     private long sequence = 0L;
-    private long twepoch = 1533052800000L; // 2018-08-01 00:00:00
-    private long workerIdBits = 8L; //节点ID长度
-    private long datacenterIdBits = 2L; //数据中心ID长度
+    private long twepoch = 1543593600000L; // 2018-12-01 00:00:00
+    private long workerIdBits = 4L; //节点ID长度
     private long sequenceBits = 12L; //序列号12位
-    private long workerIdShift = sequenceBits; //机器节点左移12位
-    private long datacenterIdShift = sequenceBits + workerIdBits; //数据中心节点左移17位
-    private long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits; //时间毫秒数左移22位
+    private long timeLeftShift = sequenceBits + workerIdBits; //时间毫秒数左移位
     private long sequenceMask = -1L ^ (-1L << sequenceBits); //4095
     private long lastTimestamp = -1L;
 
     IdGenerator() {
-        /**
-         * IP最后一位是255，8位；因为数据中心ID是2位，且为0~3，所以执行或运算时可以忽略
-         * 使用IP作为workerId，左移12位
-         * 而数据中心ID为0，所以计算无影响。如果要配置数据中心,最多配置 4个 0~3
-         * 在数据中心ID为0的情况下，最多可以使用10位的workerId
-         */
-        this.datacenterId = Long.parseLong(System.getProperty("datacenterId", "0"));
-        if(this.datacenterId<0L || this.datacenterId> 3L){
-            throw new RuntimeException("the datacenterId config must be in range [0,3]");
+        this.workerId = Long.parseLong(System.getProperty("idGenerator.workerId", "0"));
+        if(this.workerId<0L || this.workerId> 15L){
+            throw new RuntimeException("the workerId config must be in range [0,15]");
         }
-        this.workerId = 0x000000FF & getLastIP();
     }
 
     public synchronized long nextId() {
-        long timestamp = timeGen(); //获取当前毫秒数
+        long timestamp = time(); //获取当前毫秒数
         //如果服务器时间有问题(时钟后退) 报错。
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(String.format(
@@ -56,34 +47,22 @@ public enum IdGenerator {
         }
         lastTimestamp = timestamp;
         // 最后按照规则拼出ID。
-        // 000000000000000000000000000000000000000000 00 00000000 000000000000
-        // time datacenterId workerId sequence
-        return ((timestamp - twepoch) << timestampLeftShift) | (datacenterId << datacenterIdShift)
-                | (workerId << workerIdShift) | sequence;
+        // 000000000000000000000000000000000000000000 0000 000000000000
+        // time workerId sequence
+        return ((timestamp - twepoch) << timeLeftShift) | (workerId << sequenceBits) | sequence;
     }
 
     private long nextMillis(long lastTimestamp) {
-        long timestamp = timeGen();
+        long timestamp = time();
         while (timestamp <= lastTimestamp) {
-            timestamp = timeGen();
+            timestamp = time();
         }
         return timestamp;
     }
 
-    private long timeGen() {
+    private long time() {
         return System.currentTimeMillis();
     }
 
-    private byte getLastIP() {
-        byte lastip = 0;
-        try {
-            InetAddress ip = InetAddress.getLocalHost();
-            byte[] ipByte = ip.getAddress();
-            lastip = ipByte[ipByte.length - 1];
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        return lastip;
-    }
 }
 

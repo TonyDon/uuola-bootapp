@@ -8,6 +8,8 @@ package com.uuola.webapp;
 
 import java.io.IOException;
 
+import com.uuola.webapp.constants.DATE_FORMAT;
+import com.uuola.webapp.util.DateUtil;
 import com.uuola.webapp.util.IdGenerator;
 import com.uuola.webapp.util.coder.DESede;
 import com.uuola.webapp.util.coder.DigestHash;
@@ -27,7 +29,7 @@ public class Test {
      * @throws IOException 
      */
     public static void main(String[] args) throws InterruptedException, IOException {
-//        System.out.println(DateUtil.parseDate("2018-08-01 00:00:00", DATE_FORMAT.YYYY_MM_DD_HH_MM_SS).getTime());
+        System.out.println(DateUtil.parseDate("2018-12-01 00:00:00", DATE_FORMAT.YYYY_MM_DD_HH_MM_SS).getTime());
         for(int k=0; k<100; k++)
         System.out.println(IdGenerator.INSTANCE.nextId());
 //        File file = new File("C:\\tmp_dir\\详细设计.rar");

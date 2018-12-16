@@ -1,2 +1,2 @@
 Home Test Page<br/>
-${name!}, ${time!}, ${NumberUtil.genRndInt(1000,10000)}
+${name!}, ${time!}, ${NumberUtil.genRndInt(1000,10000)} , ${id}
