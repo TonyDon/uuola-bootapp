@@ -29,6 +29,7 @@
 /.settings/
 /.classpath
 /.springBeans
+/.vscode/
 # maven ignore
 target/
 *.jar
