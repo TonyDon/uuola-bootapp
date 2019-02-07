@@ -36,6 +36,11 @@ public class NcItemController extends BaseController{
         return ResponseEntity.ok(ncItemService.get(id));
     }
     
+    @GetMapping("/itemId/{itemId}")
+    public ResponseEntity<Object> show(@PathVariable("itemId") Integer itemId){
+        return ResponseEntity.ok(ncItemService.getByItemId(itemId));
+    }
+    
     @GetMapping("/list")
     public ResponseEntity<Object> list(NcItemQuery query){
         return ResponseEntity.ok(ncItemService.list(query));

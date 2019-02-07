@@ -18,4 +18,5 @@ import com.uuola.webapp.support.db.CrudService;
  */
 public interface NcZoneService extends CrudService<NcZone>{
 
+    NcZone getByZoneId(Integer zoneId);
 }

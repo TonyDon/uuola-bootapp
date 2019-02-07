@@ -18,4 +18,5 @@ import com.uuola.webapp.support.db.CrudService;
  */
 public interface NcItemService extends CrudService<NcItem>{
   
+    NcItem getByItemId(Integer itemId);
 }

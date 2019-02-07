@@ -36,6 +36,11 @@ public class NcZoneController extends BaseController{
         return ResponseEntity.ok(ncZoneService.get(id));
     }
     
+    @GetMapping("/zoneId/{zoneId}")
+    public ResponseEntity<Object> show(@PathVariable("zoneId") Integer zoneId){
+        return ResponseEntity.ok(ncZoneService.getByZoneId(zoneId));
+    }
+    
     @GetMapping("/list")
     public ResponseEntity<Object> list(NcZoneQuery query){
         return ResponseEntity.ok(ncZoneService.list(query));

@@ -6,6 +6,9 @@
 
 package com.uuola.webapp.service.impl;
 
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import com.uuola.webapp.model.entity.NcZone;
@@ -24,5 +27,11 @@ import com.uuola.webapp.support.db.PrimaryTx;
 @Service
 @PrimaryTx
 public class NcZoneServiceImpl extends CrudOperator<NcZone> implements NcZoneService {
+
+    @Override
+    public NcZone getByZoneId(Integer zoneId) {
+        List<NcZone> list = this.crudDAO.findByField("zoneId", zoneId);
+        return CollectionUtils.isNotEmpty(list) ? list.get(0) : null;
+    }
 
 }
