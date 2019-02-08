@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,8 +38,6 @@ import com.uuola.webapp.util.coder.DigestHash;
 @RestController
 @RequestMapping("/admin-console")
 public class ConsoleController extends BaseController {
-    
-    private Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
     SysCfgService sysCfgService;
