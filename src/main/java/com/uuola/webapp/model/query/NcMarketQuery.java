@@ -6,6 +6,7 @@
 
 package com.uuola.webapp.model.query;
 
+import com.uuola.webapp.support.view.BaseQuery;
 
 /**
  * <pre>

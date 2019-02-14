@@ -4,8 +4,9 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.model.dto;
+package com.uuola.webapp.support.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -46,7 +47,9 @@ public class Page<T> {
      */
     private Map<String, Object> extra;
 
-    public Page() {}
+    public Page() {
+        this.dataSet = new ArrayList<>();
+    }
 
     /**
      * 当前数据集，总数据条数
@@ -75,7 +78,19 @@ public class Page<T> {
     }
 
     public Page<T> setDataSet(Collection<T> datas) {
-        this.dataSet = datas;
+        if(null != datas && datas.size()>0) {
+            this.dataSet = datas;
+        }
+        return this;
+    }
+    
+    public Page<T> addDataSet(Collection<T> datas) {
+        if(null == dataSet) {
+            dataSet = new ArrayList<>();
+        }
+        if(null != datas && datas.size()>0) {
+            this.dataSet.addAll(datas);
+        }
         return this;
     }
 

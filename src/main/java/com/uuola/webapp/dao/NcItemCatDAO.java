@@ -9,6 +9,7 @@ package com.uuola.webapp.dao;
 import org.springframework.stereotype.Repository;
 
 import com.uuola.webapp.model.entity.NcItemCat;
+import com.uuola.webapp.support.db.PrimaryDAO;
 
 /**
  * <pre>

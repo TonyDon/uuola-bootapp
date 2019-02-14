@@ -9,8 +9,8 @@ package com.uuola.webapp.support.db;
 import java.io.Serializable;
 import java.util.List;
 
-import com.uuola.webapp.model.dto.Page;
-import com.uuola.webapp.model.query.BaseQuery;
+import com.uuola.webapp.support.view.BaseQuery;
+import com.uuola.webapp.support.view.Page;
 
 /**
  * <pre>

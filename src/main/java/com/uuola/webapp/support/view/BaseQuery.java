@@ -4,7 +4,7 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.model.query;
+package com.uuola.webapp.support.view;
 
 
 /**

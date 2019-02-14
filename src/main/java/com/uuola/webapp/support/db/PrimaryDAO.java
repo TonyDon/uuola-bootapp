@@ -4,13 +4,11 @@
  * Copy Right@ uuola
  */ 
 
-package com.uuola.webapp.dao;
+package com.uuola.webapp.support.db;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-
-import com.uuola.webapp.support.db.BaseDAO;
 
 
 /**

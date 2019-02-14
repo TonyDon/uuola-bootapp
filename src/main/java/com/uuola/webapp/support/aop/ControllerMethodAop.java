@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-import com.uuola.webapp.model.query.BaseQuery;
+import com.uuola.webapp.support.view.BaseQuery;
 
 /**
  * <pre>

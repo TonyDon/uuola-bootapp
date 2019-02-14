@@ -18,8 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import com.uuola.webapp.model.dto.Page;
-import com.uuola.webapp.model.query.BaseQuery;
+import com.uuola.webapp.support.view.BaseQuery;
+import com.uuola.webapp.support.view.Page;
 
 /**
  * <pre>
