@@ -6,6 +6,7 @@
 
 package com.uuola.webapp.model.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,9 +23,10 @@ import javax.persistence.Table;
 */
 @Table
 @Entity
-public class BlogInfo {
+public class BlogInfo implements Serializable{
 
-        
+        private static final long serialVersionUID = 6976977999858815764L;
+
         @Id
         private Long id;
                 
