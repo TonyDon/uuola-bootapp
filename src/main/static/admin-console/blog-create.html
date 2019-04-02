@@ -171,8 +171,7 @@
 <script src="../layui/layui.js"></script>
 <script src="../js/vue.min.js"></script>
 <script src="../js/common.js"></script>
-<script src="../editor/kindeditor-all-min.js"></script>
-<script src="../editor/lang/zh-CN.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
 <script>
 layui.use(['layer','laydate'], function(){
         	 var layer = layui.layer, laydate = layui.laydate;
@@ -184,13 +183,10 @@ layui.use(['layer','laydate'], function(){
 (function(){
 
 		var frm = $('#blogInfoCreateFrm');
-
-        KindEditor.ready(function(K) {
-                window.postContent = K.create('#post_content');
-        });
-
+        CKEDITOR.replace('post_content');
 		$('#addBlogBtn').on('click',function(){
-			window.postContent.sync();
+		    CKEDITOR.instances.post_content.updateElement();
+		    //CKEDITOR.instances.post_content.setData('abc');
 			var blogData = frm.getFormData();
 			$.post(ctx+'/admin-console/blog',blogData,function(r){
 				JDialog.alertMsg('创建成功!', function () {

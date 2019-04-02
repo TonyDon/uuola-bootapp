@@ -35,3 +35,7 @@ body > .container {
     color:#ffffff;
     border:none;
 }
+label.error{
+	color:red;
+	font-size:80%;
+}

@@ -39,7 +39,7 @@ public class ImageCodeController {
 
     @GetMapping("")
     public ResponseEntity<?> showImageCode(HttpServletRequest request) {
-        String code = String.valueOf(NumberUtil.genRndInt(1000, 100000));
+        String code = String.valueOf(NumberUtil.genRndInt(100, 1000));
         ImageCodeParams params = new ImageCodeParams(code);
         ByteArrayOutputStream bufferStream = new ByteArrayOutputStream();
         params.setOutputStream(bufferStream)
