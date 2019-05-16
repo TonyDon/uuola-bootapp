@@ -32,7 +32,7 @@ import com.uuola.webapp.support.view.ViewInterceptor;
  * </pre>
  */
 @Configuration
-public class WebAppMvcConfig implements WebMvcConfigurer{
+public class WebAppConfig implements WebMvcConfigurer{
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

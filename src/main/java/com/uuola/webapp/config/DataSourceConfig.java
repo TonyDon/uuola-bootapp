@@ -30,7 +30,7 @@ import com.zaxxer.hikari.HikariDataSource;
  * </pre>
  */
 @Configuration
-public class DbConfig {
+public class DataSourceConfig {
 
     @Bean
     @Primary

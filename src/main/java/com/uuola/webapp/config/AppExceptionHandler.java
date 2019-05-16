@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
 /**
@@ -25,7 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * </pre>
  */
 @RestControllerAdvice
-public class AppControllerExceptionHandler extends ResponseEntityExceptionHandler {
+public class AppExceptionHandler{
     
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -33,16 +32,8 @@ public class AppControllerExceptionHandler extends ResponseEntityExceptionHandle
     @ResponseBody
     public ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
         log.error("ExceptionHandler:", ex);
-        HttpStatus status = getStatus(request);
         String msg = String.format("Server Error: %s", ExceptionUtils.getMessage(ex));
-        return new ResponseEntity<>(msg, status);
+        return new ResponseEntity<>(msg, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    
-    private HttpStatus getStatus(HttpServletRequest request) {
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if (statusCode == null) {
-            return HttpStatus.INTERNAL_SERVER_ERROR;
-        }
-        return HttpStatus.valueOf(statusCode);
-    }
+
 }
