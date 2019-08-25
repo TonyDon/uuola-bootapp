@@ -15,9 +15,9 @@ public enum IdGenerator {
     private long sequence = 0L;
     private long twepoch = 1543593600000L; // 2018-12-01 00:00:00
     private long workerIdBits = 4L; //节点ID长度
-    private long sequenceBits = 12L; //序列号12位
+    private long sequenceBits = 10L; //序列号10位
     private long timeLeftShift = sequenceBits + workerIdBits; //时间毫秒数左移位
-    private long sequenceMask = -1L ^ (-1L << sequenceBits); //4095
+    private long sequenceMask = -1L ^ (-1L << sequenceBits); //1023
     private long lastTimestamp = -1L;
 
     IdGenerator() {
@@ -36,9 +36,9 @@ public enum IdGenerator {
         }
         //如果上次生成时间和当前时间相同,在同一毫秒内
         if (lastTimestamp == timestamp) {
-            //sequence自增，因为sequence只有12bit，所以和sequenceMask相与一下，去掉高位
+            //sequence自增，因为sequence只有sequenceBits长度，所以和sequenceMask相与一下，去掉高位
             sequence = (sequence + 1) & sequenceMask;
-            //判断是否溢出,也就是每毫秒内超过4095，当为4096时，与sequenceMask相与，sequence就等于0
+            //判断是否溢出,也就是每毫秒内超过sequenceMask，当为sequenceMask时，与sequenceMask相与，sequence就等于0
             if (sequence == 0) {
                 timestamp = nextMillis(lastTimestamp); //自旋等待到下一毫秒
             }
@@ -47,7 +47,7 @@ public enum IdGenerator {
         }
         lastTimestamp = timestamp;
         // 最后按照规则拼出ID。
-        // 000000000000000000000000000000000000000000 0000 000000000000
+        // 000000000000000000000000000000000000000000 0000 0000000000
         // time workerId sequence
         return ((timestamp - twepoch) << timeLeftShift) | (workerId << sequenceBits) | sequence;
     }
