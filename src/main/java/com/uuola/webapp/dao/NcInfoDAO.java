@@ -1,21 +1,22 @@
 /*
- * @(#)NcInfoDAO.java 2018年9月23日
+ * @(#)NcInfoDAO.java 2019-09-08 11:31:46
  * 
- * Copy Right@ uuola
+ * Copy Right@ uuola.com
  */ 
 
 package com.uuola.webapp.dao;
 
 import org.springframework.stereotype.Repository;
-
 import com.uuola.webapp.model.entity.NcInfo;
 import com.uuola.webapp.support.db.PrimaryDAO;
 
+
 /**
  * <pre>
- *
+ * 农产品供销信息
  * @author tonydon
- * 创建日期: 2018年9月23日
+ * by bootapp_skt_maker.py v1.0 generated
+ * at 2019-09-08 11:31:46
  * </pre>
  */
 @Repository

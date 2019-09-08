@@ -2,24 +2,102 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.uuola.webapp.dao.NcInfoDAO">
+<!-- 农产品供销信息 -->
 
-	<sql id="listQueryCondition">
-		<if test="id!=null">and id=#{id}</if>
-		<if test="zoneId!=null">and zone_id=#{zoneId}</if>
+	<sql id="queryCond">
+		
+                <if test="id!=null">and id=#{id}</if>
+                <if test="title!=null">and title=#{title}</if>
+                <if test="pubName!=null">and pub_name=#{pubName}</if>
+                <if test="pubTime!=null">and pub_time=#{pubTime}</if>
+                <if test="endTime!=null">and end_time=#{endTime}</if>
+                <if test="rtype!=null">and rtype=#{rtype}</if>
+                <if test="pubState!=null">and pub_state=#{pubState}</if>
+                <if test="phone!=null">and phone=#{phone}</if>
+                <if test="email!=null">and email=#{email}</if>
+                <if test="qq!=null">and qq=#{qq}</if>
+                <if test="site!=null">and site=#{site}</if>
+                <if test="provinceId!=null">and province_id=#{provinceId}</if>
+                <if test="cityId!=null">and city_id=#{cityId}</if>
+                <if test="address!=null">and address=#{address}</if>
+                <if test="content!=null">and content=#{content}</if>
+                <if test="picUrls!=null">and pic_urls=#{picUrls}</if>
+                <if test="clientIp!=null">and client_ip=#{clientIp}</if>
+                <if test="clickNum!=null">and click_num=#{clickNum}</if>
+                <if test="zoneId!=null">and zone_id=#{zoneId}</if>
+                <if test="geoLat!=null">and geo_lat=#{geoLat}</if>
+                <if test="geoLng!=null">and geo_lng=#{geoLng}</if>
+                <if test="refItemId!=null">and ref_item_id=#{refItemId}</if>
+                <if test="beginCreateTime!=null and endCreateTime!=null">
+                    and ( create_time <![CDATA[ >= ]]> #{beginCreateTime} and create_time <![CDATA[ < ]]> #{endCreateTime} )
+                </if>
+                <if test="updateTime!=null">and update_time=#{updateTime}</if>
 	</sql>
-	
-	<select id="count" parameterType="NcInfoQuery" resultType="java.lang.Integer">
-        select count(*) from nc_info where id!=0 <include refid="listQueryCondition"/>
-    </select>
 
+	<select id="count" parameterType="NcInfoQuery" resultType="java.lang.Integer">
+        select count(*) from nc_info where id!=0 <include refid="queryCond"/>
+    </select>
+    
 	<select id="range" resultType="NcInfo" parameterType="NcInfoQuery">
 		select * from nc_info where id <![CDATA[ <= ]]> (
-			select id from nc_info where id!=0 <include refid="listQueryCondition"/> 
+			select id from nc_info where id!=0 <include refid="queryCond"/> 
 			order by id desc limit #{crow}, 1
-		) <include refid="listQueryCondition"/> order by id desc limit 0, #{listSize}
+		) <include refid="queryCond"/> order by id desc limit 0, #{listSize}
 	</select>
 	
 	<select id="list" resultType="NcInfo" parameterType="NcInfoQuery">
-		select * from nc_info where  id!=0 <include refid="listQueryCondition"/> order by id desc limit 0, 10000
+		select * from nc_info where id!=0 <include refid="queryCond"/> order by id desc limit 0, 10000
 	</select>
+	
+	<insert id="bulkInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+      insert into nc_info(title,
+          pub_name,
+          pub_time,
+          end_time,
+          rtype,
+          pub_state,
+          phone,
+          email,
+          qq,
+          site,
+          province_id,
+          city_id,
+          address,
+          content,
+          pic_urls,
+          client_ip,
+          click_num,
+          zone_id,
+          geo_lat,
+          geo_lng,
+          ref_item_id,
+          create_time,
+          update_time) values
+      <foreach collection="list" item="NcInfo" separator=",">
+          (#{NcInfo.title},
+          #{NcInfo.pubName},
+          #{NcInfo.pubTime},
+          #{NcInfo.endTime},
+          #{NcInfo.rtype},
+          #{NcInfo.pubState},
+          #{NcInfo.phone},
+          #{NcInfo.email},
+          #{NcInfo.qq},
+          #{NcInfo.site},
+          #{NcInfo.provinceId},
+          #{NcInfo.cityId},
+          #{NcInfo.address},
+          #{NcInfo.content},
+          #{NcInfo.picUrls},
+          #{NcInfo.clientIp},
+          #{NcInfo.clickNum},
+          #{NcInfo.zoneId},
+          #{NcInfo.geoLat},
+          #{NcInfo.geoLng},
+          #{NcInfo.refItemId},
+          #{NcInfo.createTime},
+          #{NcInfo.updateTime})
+      </foreach>
+    </insert>
+	
 </mapper>

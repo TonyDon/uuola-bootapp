@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Retention(RUNTIME)
 @Target({ TYPE, METHOD })
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public @interface PrimaryTx {
 
 }
