@@ -6,6 +6,7 @@
 
 package com.uuola.webapp.model.dto;
 
+import com.uuola.webapp.model.entity.BlogCatalog;
 import com.uuola.webapp.model.entity.BlogInfo;
 import com.uuola.webapp.model.entity.BlogPost;
 
@@ -17,6 +18,8 @@ import com.uuola.webapp.model.entity.BlogPost;
  * </pre>
  */
 public class BlogDTO {
+    
+    private BlogCatalog blogCatalog;
 
     private BlogInfo info;
     
@@ -54,5 +57,19 @@ public class BlogDTO {
         if(null != post) {
             post.setId(id);
         }
+    }
+
+
+
+    
+    public BlogCatalog getBlogCatalog() {
+        return blogCatalog;
+    }
+
+
+
+    
+    public void setBlogCatalog(BlogCatalog blogCatalog) {
+        this.blogCatalog = blogCatalog;
     }
 }

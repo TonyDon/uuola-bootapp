@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="${blog.info.keywords!},久富农客,互联网+农业">
-        <meta name="description" content="${blog.info.summary!},久富农客-986001.com-关注互联网+农业">
+        <meta name="keywords" content="${pageData.extra.blogCatalog.name},久富农客,互联网+农业">
+        <meta name="description" content="板块-${pageData.extra.blogCatalog.name},久富农客-986001.com-关注互联网+农业">
         <meta name="author" content="">
-        <title>【${blog.info.title}】-久富农客-986001.com-关注互联网+农业</title>
+        <title>【${pageData.extra.blogCatalog.name}】-久富农客-986001.com-关注互联网+农业</title>
         <link href="${basePath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="${basePath}/css/main.css" rel="stylesheet">
     </head>
@@ -48,35 +48,19 @@
             <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="${basePath}/">首页</a></li>
-                          <li class="breadcrumb-item"><a href="${basePath}/blog/list?cid=${blog.blogCatalog.id}">${blog.blogCatalog.name}</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">文章正文</li>
+                          <li class="breadcrumb-item">${pageData.extra.blogCatalog.name}</li>
                         </ol>
             </nav>
-            <h1 class="title">${blog.info.title}</h1>
-            <p class="lead">${blog.info.summary}</p>
-            ${blog.post.content}
             <ul class="list-unstyled">
+            <#list pageData.dataSet as blogInfo>
                     <li class="media">
                       <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
                       <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <h5 class="mt-0 mb-1"><a href="${basePath}/blog/${blogInfo.id}/${blogInfo.title}.shtml" target="_blank" title="${blogInfo.title},${blogInfo.keywords!}">${blogInfo.title}</a></h5>
+                        ${blogInfo.summary!}
                       </div>
                     </li>
-                    <li class="media my-4">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                      </div>
-                    </li>
-                    <li class="media">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                      </div>
-                    </li>
+            </#list>
             </ul>
         </main>
 

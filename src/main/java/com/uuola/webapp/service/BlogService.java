@@ -9,6 +9,9 @@ package com.uuola.webapp.service;
 import java.util.List;
 
 import com.uuola.webapp.model.dto.BlogDTO;
+import com.uuola.webapp.model.entity.BlogInfo;
+import com.uuola.webapp.model.query.BlogInfoQuery;
+import com.uuola.webapp.support.view.Page;
 
 /**
  * <pre>
@@ -31,6 +34,7 @@ public interface BlogService {
     int update(BlogDTO blog);
 
     int bulkDelete(List<Long> ids);
-    
 
+    Page<BlogInfo> findBlogInfoBy(BlogInfoQuery query);
+    
 }

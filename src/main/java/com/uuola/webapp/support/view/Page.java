@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -98,8 +99,11 @@ public class Page<T> {
         return extra;
     }
 
-    public Page<T> setExtra(Map<String, Object> extra) {
-        this.extra = extra;
+    public Page<T> addExtraAttr(String attrKey, Object attrVal) {
+        if(null == extra) {
+            extra = new HashMap<String, Object>();
+        }
+        extra.put(attrKey, attrVal);
         return this;
     }
 
