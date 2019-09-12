@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,9 +63,8 @@ public class EntityDefManager {
         Map<String, Field> propFieldMap = FieldUtil.getAllAccessibleFieldNameMap(defBean.getEntityClass());
         Assert.notEmpty(propFieldMap, "Entity 's Field  not define! In " + clazz.getSimpleName());
         defBean.setPropFieldMap(propFieldMap);
-        Map<String, String> propColumnMap = getPropertyColumnMap(defBean);
-        Assert.notEmpty(propColumnMap, "Entity 's @Column not Exist! In " + clazz.getSimpleName());
-        defBean.setPropColumnMap(propColumnMap);
+        resovleEntityDefine(defBean);
+        Assert.notEmpty(defBean.getPropColumnMap(), "Entity 's @Column not Exist! In " + clazz.getSimpleName());
         return defBean;
     }
     
@@ -73,7 +73,7 @@ public class EntityDefManager {
      * @param entityClass2
      * @return
      */
-    private  static Map<String, String> getPropertyColumnMap(EntityDefine defBean) {
+    private static void resovleEntityDefine(EntityDefine defBean) {
         Map<String, Field> propFieldMap = defBean.getPropFieldMap();
         Map<String, String> propColumnMap = new HashMap<String, String>();
         boolean isFoundIdColumn = false;
@@ -82,6 +82,7 @@ public class EntityDefManager {
             Field field = propFieldMap.get(propName);
             Assert.notNull(field, "By Class's defBean find field is null!");
             Column column = field.getAnnotation(Column.class);
+            Version version = field.getAnnotation(Version.class);
             String colName = null;
             if (null != column) {
                 if (StringUtil.isEmpty(colName = column.name())) {
@@ -104,8 +105,14 @@ public class EntityDefManager {
                     defBean.setUniqueKeyPropName(propName);
                 }
             }
+            //乐观锁支持，仅限整数类型
+            if (null != version) {
+                Class<?> type = field.getType();
+                Assert.isTrue(type == int.class || type == Integer.class, "Found @Version field, but require a int or Integer type!");
+                defBean.setVersionPropName(propName);
+            }
         }
-        return propColumnMap;
+        defBean.setPropColumnMap(propColumnMap);
     }
     
     /**
