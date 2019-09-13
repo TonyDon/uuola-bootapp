@@ -1,4 +1,5 @@
 <#assign basePath = "${context_path}" />
+<#import "page-commons.ftl" as commons/>
 <!doctype html>
 <html>
     <head>
@@ -53,15 +54,19 @@
             </nav>
             <ul class="list-unstyled">
             <#list pageData.dataSet as blogInfo>
-                    <li class="media">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1"><a href="${basePath}/blog/${blogInfo.id}/${blogInfo.title}.shtml" target="_blank" title="${blogInfo.title},${blogInfo.keywords!}">${blogInfo.title}</a></h5>
-                        ${blogInfo.summary!}
-                      </div>
-                    </li>
+               <li class="media">
+                  <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
+                  <div class="media-body">
+                  	<h5 class="mt-0 mb-1"><a href="${basePath}/blog/${blogInfo.id}/${blogInfo.title}.shtml" target="_blank" title="${blogInfo.title},${blogInfo.keywords!}">${blogInfo.title}</a></h5>
+                    ${blogInfo.summary!}
+                  </div>
+               </li>
             </#list>
             </ul>
+            <nav aria-label="Page navigation example">
+              <#assign hreftpl = basePath + "/blog/list?cid="+pageData.extra.blogCatalog.id+"&amp;listSize=2&amp;pageNo=@pageNo@" />
+			  <@commons.page pageNo=pageData.pageNo total=pageData.total listSize=pageData.listSize showPages=3 hrefTpl=hreftpl/>
+			</nav>
         </main>
 
         <footer class="footer">

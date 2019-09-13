@@ -54,7 +54,11 @@ public class BlogController extends BaseController {
     public ModelAndView show(@PathVariable("id") Long id) {
         ModelAndView mv = makeModelView();
         BlogDTO blog = blogService.get(id);
+        BlogInfoQuery query = new BlogInfoQuery();
+        query.setCid(blog.getBlogCatalog().getId());
+        List<BlogInfo> recomm = blogService.findRecommended(query);
         mv.addObject("blog", blog);
+        mv.addObject("recomm", recomm);
         return mv;
     }
 }

@@ -48,7 +48,7 @@
             <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="${basePath}/">首页</a></li>
-                          <li class="breadcrumb-item"><a href="${basePath}/blog/list?cid=${blog.blogCatalog.id}&cname=${blog.blogCatalog.name}" title="${blog.blogCatalog.name}">${blog.blogCatalog.name}</a></li>
+                          <li class="breadcrumb-item"><a href="${basePath}/blog/list?cid=${blog.blogCatalog.id}&amp;cname=${blog.blogCatalog.name}&amp;pageNo=1&amp;listSize=2" title="${blog.blogCatalog.name}">${blog.blogCatalog.name}</a></li>
                           <li class="breadcrumb-item active" aria-current="page">文章正文</li>
                         </ol>
             </nav>
@@ -56,27 +56,15 @@
             <p class="lead">${blog.info.summary}</p>
             ${blog.post.content}
             <ul class="list-unstyled">
-                    <li class="media">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                      </div>
-                    </li>
-                    <li class="media my-4">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                      </div>
-                    </li>
-                    <li class="media">
-                      <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                      </div>
-                    </li>
+            <#list recomm as blogInfo>
+               <li class="media">
+                  <img class="mr-3" src="${basePath}/image/1.jpg" alt="Generic placeholder image">
+                  <div class="media-body">
+                  	<h5 class="mt-0 mb-1"><a href="${basePath}/blog/${blogInfo.id}/${blogInfo.title}.shtml" target="_blank" title="${blogInfo.title},${blogInfo.keywords!}">${blogInfo.title}</a></h5>
+                    ${blogInfo.summary!}
+                  </div>
+               </li>
+            </#list>
             </ul>
         </main>
 
