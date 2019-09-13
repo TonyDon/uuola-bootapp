@@ -54,6 +54,9 @@ public abstract class BaseDAO<T> {
     // jdbcTemplate 数据行与实体属性映射mapper
     private RowMapper<T> entityPropertyRowMapper;
     
+    // entity id field
+    private Field idField;
+    
     @SuppressWarnings("unchecked")
     public BaseDAO() {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
@@ -61,6 +64,7 @@ public abstract class BaseDAO<T> {
         this.entityDef = EntityDefManager.getDef(entityClass);
         this.tableName = entityDef.getTableName();
         this.idColumnName = getIdColumn();
+        this.idField = getIdField();
         this.mapperNamespace = this.getClass().getName();
         this.entityPropertyRowMapper = EntityPropertyMapper.newInstance(this.entityDef);
     }
@@ -159,8 +163,6 @@ public abstract class BaseDAO<T> {
         jdbcTemplate.getJdbcOperations().update(pscFactory.newPreparedStatementCreator(params), keyHolder);
         Number id = keyHolder.getKey();
         if (null != id) {
-            Map<String, Field> propField = entityDef.getPropFieldMap();
-            Field idField = propField.get("id");
             if (null == idField) {
                 throw new IllegalArgumentException(
                         "The id Field, Not found in [" + entity.getClass().getCanonicalName() + "]");
@@ -221,6 +223,18 @@ public abstract class BaseDAO<T> {
             throw new IllegalArgumentException("not found uniqueKeyPropName at entity : " + entityClass.getCanonicalName());
         }
         return entityDef.getPropColumnMap().get(keyPropName);
+    }
+    
+    /**
+     * 根据唯一主键属性获取field
+     * @return
+     */
+    private Field getIdField() {
+        String uniqueKeyProp = entityDef.getUniqueKeyPropName();
+        if(null != uniqueKeyProp) {
+            return entityDef.getPropFieldMap().get(uniqueKeyProp);
+        }
+        return null;
     }
     
     
