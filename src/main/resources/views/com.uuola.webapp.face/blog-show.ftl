@@ -48,7 +48,7 @@
             <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="${basePath}/">首页</a></li>
-                          <li class="breadcrumb-item"><a href="${basePath}/blog/list?cid=${blog.blogCatalog.id}&amp;cname=${blog.blogCatalog.name}&amp;pageNo=1&amp;listSize=2" title="${blog.blogCatalog.name}">${blog.blogCatalog.name}</a></li>
+                          <li class="breadcrumb-item"><a href="${basePath}/blog/list/${blog.blogCatalog.id}/2/1/${blog.blogCatalog.name}.shtml" title="${blog.blogCatalog.name}">${blog.blogCatalog.name}</a></li>
                           <li class="breadcrumb-item active" aria-current="page">文章正文</li>
                         </ol>
             </nav>

@@ -42,8 +42,13 @@ public class BlogController extends BaseController {
         return makeModelView();
     }
     
-    @GetMapping("/list")
-    public ModelAndView list(BlogInfoQuery query) {
+    @GetMapping("/list/{cid}/{listSize}/{pageNo}/{cname}")
+    public ModelAndView list(@PathVariable("cid") Integer cid, @PathVariable("listSize") Integer listSize, @PathVariable("pageNo") Integer pageNo) {
+        BlogInfoQuery query = new BlogInfoQuery();
+        query.setCid(cid);
+        query.setListSize(listSize);
+        query.setPageNo(pageNo);
+        query.filter();
         ModelAndView mv = makeModelView();
         Page<BlogInfo> pageData = blogService.findBlogInfoBy(query);
         mv.addObject("pageData", pageData);

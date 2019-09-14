@@ -64,7 +64,7 @@
             </#list>
             </ul>
             <nav aria-label="Page navigation example">
-              <#assign hreftpl = basePath + "/blog/list?cid="+pageData.extra.blogCatalog.id+"&amp;listSize=2&amp;pageNo=@pageNo@" />
+              <#assign hreftpl = basePath + "/blog/list/"+pageData.extra.blogCatalog.id+"/"+pageData.listSize+"/@pageNo@/"+pageData.extra.blogCatalog.name+".shtml"/>
 			  <@commons.page pageNo=pageData.pageNo total=pageData.total listSize=pageData.listSize showPages=3 hrefTpl=hreftpl/>
 			</nav>
         </main>
