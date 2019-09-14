@@ -98,13 +98,10 @@
 		                        <button type="button" id="searchBtn" class="btn btn-primary"><span
 		                                class="glyphicon glyphicon-search"></span> 查询
 		                        </button>
-		                        <button type="button" id="addBtn" class="btn btn-warning"><span
-		                                class="glyphicon glyphicon-plus"></span> 新增
-		                        </button>
 		                        <button type="button" id="delBtn" class="btn btn-danger"><span
 		                                class="glyphicon glyphicon-remove"></span> 删除
 		                        </button>
-		                        <button type="button" id="resetBtn" class="btn btn-default"><span
+		                        <button type="button" id="resetBtn" class="btn btn-light"><span
 		                                class="glyphicon glyphicon-refresh"></span> 重置
 		                        </button>
 		                    </div>
@@ -222,10 +219,6 @@
 
               $('#resetBtn').on('click',function(){
                 searchfrm.resetfrm();
-              });
-             
-              $('#addBtn').on('click', function () {
-                  JDialog.openWin("添加分类", "#addFrmBox");
               });
 
               $('#cancelBtn').on('click', function(){
