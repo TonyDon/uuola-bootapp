@@ -82,7 +82,7 @@
 						<button type="button" id="delBtn" v-on:click="doDelete" class="btn btn-danger">
 							<span class="glyphicon glyphicon-remove"></span> 删除
 						</button>
-						<button type="button" id="resetBtn" v-on:click="resetSearchFrm" class="btn btn-default">
+						<button type="button" id="resetBtn" v-on:click="resetSearchFrm" class="btn btn-light">
 							<span class="glyphicon glyphicon-refresh"></span> 重置
 						</button>
 					</div>
@@ -139,14 +139,14 @@
 							<input type="text" class="form-control" name="ver" v-model="orgData.ver" placeholder="" required>
 						</div>
 					</div>
-					<div class="form-group float-right">
-						<div class="col-sm-3"></div>
-						<div class="btn-group col-sm-9" role="group">
+					<div class="form-group row float-right">
+						<div class="col-sm-2"></div>
+						<div class="btn-group col-sm-10" role="group">
 							<button type="button" v-on:click="doSubmit" class="btn btn-info submit-btn">
-								<span class="glyphicon glyphicon-ok"></span> 确认
+								确认
 							</button>
-							<button type="button" v-on:click="doClear" class="btn btn-default cancel-btn">
-								<span class="glyphicon glyphicon-remove-circle"></span> 取消
+							<button type="button" v-on:click="doClear" class="btn btn-light cancel-btn">
+								取消
 							</button>
 						</div>
 					</div>
