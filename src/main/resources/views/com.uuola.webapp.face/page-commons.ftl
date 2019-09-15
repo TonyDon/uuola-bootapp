@@ -1,8 +1,9 @@
 <#macro page pageNo total listSize showPages hrefTpl>
+<#if total gt 0>
 	<#if total%listSize gt 0>
-		<#assign totalPage = ((total/listSize)+1)/>
+		<#assign totalPage = ((total/listSize)?int +1)/>
 	<#else>
-		<#assign totalPage = (total/listSize)/>
+		<#assign totalPage = ((total/listSize)?int)/>
 	</#if>
 	<ul class="pagination justify-content-center">
 		<#if pageNo!=1>
@@ -34,12 +35,13 @@
         	<li class="page-item"><a class="page-link" href="${hrefTpl?replace("@pageNo@", page)}">${page}</a></li>
         	</#if>
         </#list>
-		<#if pageNo!=totalPage>
+		<#if pageNo lt totalPage>
         <li class="page-item"><a class="page-link" href="${hrefTpl?replace("@pageNo@", pageNo+1)}">下一页</a></li>
         <li class="page-item"><a class="page-link" href="${hrefTpl?replace("@pageNo@", totalPage)}">最末页</a></li>
         </#if>
     </ul>
+</#if>
     <ul class="nav float-right">
-        <li class="nav-item"><span class="d-inline p-2">共 ${total} 条记录</span></li>
+        <li class="nav-item"><span class="d-inline p-2">共 ${total} 条记录,  总页数 ${totalPage!0}</span></li>
     </ul>
 </#macro>
