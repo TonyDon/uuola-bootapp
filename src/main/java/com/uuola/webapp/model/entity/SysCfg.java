@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * <pre>
@@ -47,6 +48,10 @@ public class SysCfg {
     
     @Column
     private String remark;
+    
+    @Version
+    @Column
+    private Integer ver;
 
     
     public Integer getId() {
@@ -126,6 +131,18 @@ public class SysCfg {
     
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+
+    
+    public Integer getVer() {
+        return ver;
+    }
+
+
+    
+    public void setVer(Integer ver) {
+        this.ver = ver;
     }
     
     

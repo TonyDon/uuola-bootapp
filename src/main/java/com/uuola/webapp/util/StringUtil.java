@@ -257,21 +257,16 @@ public  abstract class StringUtil {
         StringBuilder result = new StringBuilder();
         boolean nextIsUpper = false;
         int len = name.length();
-//        if (len > 1 && name.substring(1, 2).equals(CHAR.STR_UNDER_LINE)) {
-//            result.append(name.substring(0, 1).toUpperCase());
-//        } else {
-//            result.append(name.substring(0, 1).toLowerCase());
-//        }
         for (int i = 0; i < len; i++) {
-            String s = name.substring(i, i + 1);
-            if (s.equals(CHAR.STR_UNDER_LINE)) {
+            char s = name.charAt(i);
+            if (s == CHAR.CHAR_UNDER_LINE) {
                 nextIsUpper = true;
             } else {
                 if (nextIsUpper) {
-                    result.append(s.toUpperCase());
+                    result.append(Character.toUpperCase(s));
                     nextIsUpper = false;
                 } else {
-                    result.append(s.toLowerCase());
+                    result.append(Character.toLowerCase(s));
                 }
             }
         }
@@ -290,16 +285,15 @@ public  abstract class StringUtil {
             return CHAR.STR_EMPTY;
         }
         StringBuilder result = new StringBuilder();
-        result.append(name.substring(0, 1).toLowerCase());
+        result.append(Character.toLowerCase(name.charAt(0)));
         int len = name.length();
         for (int i = 1; i < len; i++) {
-            String s = name.substring(i, i + 1);
-            String slc = s.toLowerCase();
-            if (!s.equals(slc)) {
-                result.append("_").append(slc);
+            char c = name.charAt(i);
+            if (Character.isUpperCase(c)) {
+                result.append(CHAR.CHAR_UNDER_LINE).append(Character.toLowerCase(c));
             }
             else {
-                result.append(s);
+                result.append(c);
             }
         }
         return result.toString();

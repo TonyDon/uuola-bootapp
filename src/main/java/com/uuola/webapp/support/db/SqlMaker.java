@@ -52,6 +52,10 @@ public class SqlMaker{
     
     private Class<?> entityClass;
     
+    private String versionColName;
+    
+    private Integer versionColValue;
+    
     public SqlMaker(){
         
     }
@@ -72,23 +76,26 @@ public class SqlMaker{
         Map<String, String> propNameColumnMap = entityDef.getPropColumnMap();
         sqlColumns = new ArrayList<String>();
         sqlParams = new ArrayList<Object>();
-        Object uniquePropVal = null;
         String uniquePropName = entityDef.getUniqueKeyPropName();
+        String versionPropName = entityDef.getVersionPropName();
         for (Map.Entry<String, Field> pf : propNameFieldMap.entrySet()) {
             String propName = pf.getKey();
             Field propField = pf.getValue();
             Object val = FieldUtil.getValue(propField, entity);
             String col = propNameColumnMap.get(propName);
+            if(null == val || null == col) {
+                continue;
+            }
             if (propName.equals(uniquePropName)) {
-                uniquePropVal = val;
-            } else if (null != val && null != col) {
+                uniqueColValue = val;
+                uniqueColName = col;
+            } else if(propName.equals(versionPropName) && val instanceof Integer) {
+                versionColValue = (Integer)val;
+                versionColName = col;
+            } else {
                 sqlColumns.add(col);
                 sqlParams.add(val);
             }
-        }
-        if (null == uniqueColName && null != uniquePropVal) {
-            uniqueColName = propNameColumnMap.get(uniquePropName);
-            uniqueColValue = uniquePropVal;
         }
         return this;
     }
@@ -102,6 +109,10 @@ public class SqlMaker{
         if (null != this.uniqueColName && null != this.uniqueColValue) {
             sqlColumns.add(this.uniqueColName);
             sqlParams.add(this.uniqueColValue);
+        }
+        if (null != this.versionColName && null != this.versionColValue) {
+            sqlColumns.add(this.versionColName);
+            sqlParams.add(this.versionColValue);
         }
         StringBuilder sql = new StringBuilder("INSERT INTO ");
         sql.append(this.getTableName()).append("(");
@@ -126,8 +137,17 @@ public class SqlMaker{
             sql.append(sqlColumns.get(k)).append("=?").append(",");
         }
         sql.append(sqlColumns.get(lastColIndex)).append("=?");
+        if (null != this.versionColValue) {
+            Integer ver = this.versionColValue + 1;
+            sql.append(",").append(versionColName).append("=").append(ver);
+        }
         sql.append(" WHERE ").append(this.uniqueColName).append("=?");
-        sqlParams.add(this.uniqueColValue);// append where condition to last
+        sqlParams.add(this.uniqueColValue);
+        if(null != this.versionColValue) {
+            if(this.versionColValue instanceof Integer) {
+                sql.append(" AND ").append(versionColName).append("=").append(this.versionColValue);
+            }
+        }
         return sql.toString();
     }
     

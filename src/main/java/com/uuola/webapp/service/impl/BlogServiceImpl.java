@@ -110,4 +110,9 @@ public class BlogServiceImpl implements BlogService {
         return pageData;
     }
 
+    @Override
+    public List<BlogInfo> findRecommended(BlogInfoQuery query) {
+        return blogInfoService.list(query);
+    }
+
 }

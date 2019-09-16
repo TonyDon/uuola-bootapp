@@ -39,8 +39,13 @@ public abstract class BaseQuery {
      * 2.查询前对参数进行修改<br/>
      */
     public void filter() {
-        if (this.listSize > 100 || this.listSize < 1) {
+        if (null == this.listSize || this.listSize < 1) {
+            this.listSize = 10;
+        } else if (this.listSize > 100) {
             this.listSize = 100;
+        }
+        if (null == this.pageNo || this.pageNo < 1) {
+            this.pageNo = 1;
         }
     }
 

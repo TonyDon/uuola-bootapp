@@ -46,6 +46,11 @@ public class EntityDefine {
      * 主键属性名
      */
     private String uniqueKeyPropName;
+    
+    /**
+     * 乐观锁版本属性名
+     */
+    private String versionPropName;
 
     
     public Class<?> getEntityClass() {
@@ -98,6 +103,18 @@ public class EntityDefine {
     public void setUniqueKeyPropName(String uniqueKeyPropName) {
         this.uniqueKeyPropName = uniqueKeyPropName;
     }
+
+    
+    public String getVersionPropName() {
+        return versionPropName;
+    }
+
+
+    
+    public void setVersionPropName(String versionPropName) {
+        this.versionPropName = versionPropName;
+    }
+
 
     /**
      * 将column名称( 转为大写、小写名称）、属性名称 对应到字段对象

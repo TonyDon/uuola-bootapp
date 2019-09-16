@@ -14,6 +14,7 @@ import java.util.Enumeration;
 import com.uuola.webapp.constants.DATE_FORMAT;
 import com.uuola.webapp.util.DateUtil;
 import com.uuola.webapp.util.IdGenerator;
+import com.uuola.webapp.util.StringUtil;
 import com.uuola.webapp.util.coder.DESede;
 import com.uuola.webapp.util.coder.DigestHash;
 
@@ -33,15 +34,15 @@ public class Test {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         System.out.println(DateUtil.parseDate("2018-12-01 00:00:00", DATE_FORMAT.YYYY_MM_DD_HH_MM_SS).getTime());
-        for (int k = 0; k < 10; k++)
-            System.out.println(IdGenerator.INSTANCE.nextId());
-        //        File file = new File("C:\\tmp_dir\\详细设计.rar");
-        //        FileInfo info = FileTypeUtil.detect(file);
-        //        System.out.println(info);
-        //        int len = (int)(info.getSize()>FileTypeUtil.HEADER_LEN ? FileTypeUtil.HEADER_LEN : info.getSize());
-        //        byte[] segment = new byte[len];
-        //        IOUtils.read(Files.newInputStream(file.toPath()), segment);
-        //        System.out.println(ByteHexUtil.byte2hex(segment));
+        for(int k=0; k<10; k++)
+        System.out.println(IdGenerator.INSTANCE.nextId());
+//        File file = new File("C:\\tmp_dir\\详细设计.rar");
+//        FileInfo info = FileTypeUtil.detect(file);
+//        System.out.println(info);
+//        int len = (int)(info.getSize()>FileTypeUtil.HEADER_LEN ? FileTypeUtil.HEADER_LEN : info.getSize());
+//        byte[] segment = new byte[len];
+//        IOUtils.read(Files.newInputStream(file.toPath()), segment);
+//        System.out.println(ByteHexUtil.byte2hex(segment));
         System.out.println(DigestHash.encode("123abc_123", DigestHash.TYPE.SHA1));
         String key = "123456abcedf123456abcedf";
         System.out.println(DESede.encrypt("7cd571daa921998adc409e5bf144fd3c3a40a05d", key));
@@ -69,6 +70,20 @@ public class Test {
             }
 
         }
+        System.out.println(StringUtil.getUnderscoreName("userName"));
+        System.out.println(StringUtil.getUnderscoreName("uName"));
+        System.out.println(StringUtil.getUnderscoreName("uname"));
+        String test = "UnameHell";
+        System.out.println(StringUtil.getUnderscoreName(test));
+        System.out.println(test);
+        String test1 = "n_customer_number_";
+        System.out.println(StringUtil.getCamelcaseName(test1));
+        System.out.println(test1);
+        
+        int ver =1;
+        
+        Object n = ver;
+        System.out.println(n instanceof Integer);
     }
 
 }

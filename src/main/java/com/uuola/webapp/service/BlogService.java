@@ -37,4 +37,6 @@ public interface BlogService {
 
     Page<BlogInfo> findBlogInfoBy(BlogInfoQuery query);
     
+    List<BlogInfo> findRecommended(BlogInfoQuery query);
+    
 }
