@@ -7,7 +7,7 @@
         <meta name="keywords" content="久富农客,互联网+农业">
         <meta name="description" content="久富农客-986001.com-关注互联网+农业">
         <meta name="author" content="">
-        <title>久富农客-986001.com-关注互联网+农业</title>
+        <title>久富农客-986001.com-关注互联网+农业${(blog.info.title)!}${(pageData.extra.blogCatalog.name)!}</title>
         <link href="${basePath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="${basePath}/css/main.css" rel="stylesheet">
     </head>
