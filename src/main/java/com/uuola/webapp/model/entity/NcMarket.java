@@ -33,6 +33,12 @@ public class NcMarket {
     
     @Column
     private Integer zoneId;
+    
+    @Column
+    private String introduction;
+    
+    @Column
+    private String picUrl;
 
     
     public Long getId() {
@@ -72,5 +78,29 @@ public class NcMarket {
     
     public void setZoneId(Integer zoneId) {
         this.zoneId = zoneId;
+    }
+
+
+    
+    public String getIntroduction() {
+        return introduction;
+    }
+
+
+    
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+
+    
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+
+    
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 }
