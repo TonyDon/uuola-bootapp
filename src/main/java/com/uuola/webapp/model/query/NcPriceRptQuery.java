@@ -6,6 +6,7 @@
 
 package com.uuola.webapp.model.query;
 
+import com.uuola.webapp.enums.NC_PRICE_STAT_TYPE;
 import com.uuola.webapp.support.view.BaseQuery;
 
 /**
@@ -27,7 +28,7 @@ public class NcPriceRptQuery extends BaseQuery {
     
     private Integer month;
     
-    private Integer statType;
+    private Integer statType = NC_PRICE_STAT_TYPE.month.intVal();
 
     @Override
     public void filter() {

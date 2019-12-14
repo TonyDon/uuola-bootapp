@@ -9,6 +9,7 @@
 			<if test="itemId!=null">and item_id=#{itemId}</if>
 			<if test="year!=null">and year=#{year}</if>
 			<if test="month!=null">and month=#{month}</if>
+			<if test="statType!=null">and stat_type=#{statType}</if>
 	</sql>
 	
 	<select id="count" parameterType="NcPriceRptQuery" resultType="java.lang.Integer">
